@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">safeSoftApplication</string>
+    <string name="strBtnLogin">Valider</string>
+    <string name="strBtnInscription">Inscription</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="strNom">Nom</string>
+    <string name="strPrenom">Prénom</string>
+    <string name="strPassword">Password</string>
+    <string name="strEmail">Email</string>
+    <string name="strDateNaissance">Date de naissance</string>
+    <string name="strTelephone">Télephone</string>
+    <string name="strAdresse">Adresse</string>
+    <string name="strCodePostal">Code postal</string>
 </resources>
