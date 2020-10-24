@@ -28,7 +28,7 @@
                     android:text="@string/strNom" />
 
                 <EditText
-                    android:id="@+id/editTextNom"
+                    android:id="@+id/editTextNomonCompte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -227,11 +227,19 @@
                     android:inputType="number" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnEnregistrer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Enregistrer" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnEnregistrer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enregistrer" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

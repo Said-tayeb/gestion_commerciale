@@ -3,9 +3,7 @@ package com.example.safesoftapplication.ui.inscription
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.ViewModel.InscriptionVM
 import com.example.safesoftapplication.ui.CatalogueClient.CatalogueActivity
-import com.example.safesoftapplication.ui.authentification.LoginActivity
 import kotlinx.android.synthetic.main.activity_insription.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
@@ -24,7 +22,7 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
             //recuperation des données
             var loginClient = editTextLoginInscription.toString()
             var pswClient = editTextPasswordInscription.toString()
-            var nomClient = editTextNom.toString()
+            var nomClient = editTextNomonCompte.toString()
             var prenomClient = editTextPrenom.toString()
             var dateNaissance : Date
             //dateNaissance = Date.from(editTextDateNaissance)

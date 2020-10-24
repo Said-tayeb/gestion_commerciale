@@ -7,11 +7,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Gestion comerciale"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeSoftApplication">
-        <activity android:name=".ui.inscription.InsriptionActivity"></activity>
+
+        <activity android:name=".ui.inscription.InsriptionActivity" />
         <activity android:name=".ui.CatalogueClient.CatalogueActivity" />
         <activity android:name=".ui.authentification.LoginActivity">
             <intent-filter>
@@ -20,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>
