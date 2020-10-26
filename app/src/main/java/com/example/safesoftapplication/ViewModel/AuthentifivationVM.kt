@@ -1,5 +1,4 @@
 package com.example.safesoftapplication.ViewModel
-import com.example.safesoftapplication.backend.model.Client
 //import retrofit2.Call
 //import retrofit2.Callback
 //import retrofit2.Response

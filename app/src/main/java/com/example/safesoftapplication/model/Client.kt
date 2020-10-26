@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.backend.model
+package com.example.safesoftapplication.model
 
 import java.util.*
 
@@ -11,7 +11,7 @@ data class Client(
        val dateNaissance : Date,
        val emailClient : String,
        val adresseClient : String,
-       val codePostalClient : String
+       val codePostalClient : Int
 ){
 
 }

@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.backend.model
+package com.example.safesoftapplication.model
 
 import java.util.*
 

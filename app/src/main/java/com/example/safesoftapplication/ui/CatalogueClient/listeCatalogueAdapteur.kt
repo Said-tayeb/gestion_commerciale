@@ -3,7 +3,7 @@ package com.example.safesoftapplication.ui.CatalogueClient
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.example.safesoftapplication.backend.model.Produit
+import com.example.safesoftapplication.model.Produit
 
 class listeCatalogueAdapteur : BaseAdapter() {
 

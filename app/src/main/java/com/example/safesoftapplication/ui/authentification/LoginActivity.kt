@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.backend.model.Client
-import com.example.safesoftapplication.backend.services.AuthServices
+import com.example.safesoftapplication.model.Client
+import com.example.safesoftapplication.backend.api.services.AuthServices
 import com.example.safesoftapplication.ui.CatalogueClient.CatalogueActivity
 import com.example.safesoftapplication.ui.inscription.InsriptionActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory.*
 class LoginActivity : AppCompatActivity() , AnkoLogger {
 
     //instance retrofit
-    val url = "https://api.themoviedb.org/"
+    val url = "http://127.0.0.1/api"
     val retrofit = Retrofit.Builder().baseUrl(url).addConverterFactory(create()).build()
 
     override fun onCreate(savedInstanceState: Bundle?) {

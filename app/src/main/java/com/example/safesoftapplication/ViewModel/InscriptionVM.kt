@@ -1,6 +1,6 @@
 package com.example.safesoftapplication.ViewModel
 
-import com.example.safesoftapplication.backend.model.Client
+import com.example.safesoftapplication.model.Client
 import java.util.*
 
 class InscriptionVM {
