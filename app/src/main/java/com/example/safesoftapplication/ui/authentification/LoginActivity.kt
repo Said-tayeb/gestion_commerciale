@@ -38,24 +38,23 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
         /**.recupToutClients()
          * gestion d'evenement pour le bouton Inscription
          */
-//        btnInscription.setOnClickListener{
-//            longToast("Créer un compte")
-//            Log.d("retrofit", "______efejopiozdjpaojpj")
-//            startActivity < InsriptionActivity >()
-//        }
+        btnInscription.setOnClickListener{
+            longToast("Créer un compte")
+            startActivity < InsriptionActivity >()
+        }
 
 
         /**
          * Gestion d'évenement pour le bouton Valider
          */
-//        btnLogin.setOnClickListener{
-//            if (true){
-//                longToast("Bonjour")
-//                startActivity<CatalogueActivity>()
-//            }else{
-//                longToast("erreur d'authentification")
-//            }
-//        }
+        btnLogin.setOnClickListener{
+            if (true){
+                longToast("Bonjour")
+                startActivity<CatalogueActivity>()
+            }else{
+                longToast("erreur d'authentification")
+            }
+        }
 
     }
 
@@ -76,7 +75,6 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
                      .observeOn(AndroidSchedulers.mainThread())
                      .subscribeOn(Schedulers.io())
                      .subscribe(this::handleResponse, this :: handleError))
-
     }
 
     /**
