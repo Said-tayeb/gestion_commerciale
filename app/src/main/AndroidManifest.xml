@@ -13,7 +13,9 @@
         android:theme="@style/Theme.SafeSoftApplication">
 
         <activity android:name=".ui.inscription.InsriptionActivity" />
-        <activity android:name=".ui.CatalogueClient.CatalogueActivity" />
+        <activity android:name=".ui.CatalogueClient.CatalogueActivity" >
+
+        </activity>
         <activity android:name=".ui.authentification.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
