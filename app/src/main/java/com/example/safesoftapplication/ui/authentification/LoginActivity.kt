@@ -6,7 +6,9 @@ import android.util.Log
 import android.util.Log.*
 
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.ViewModel.AuthentifivationVM
 import com.example.safesoftapplication.backend.api.AppelRetrofit
+import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientResponse
 import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientsResponse
 import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.backend.api.services.AuthServices
@@ -28,7 +30,10 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     //declarer les variables
     private val BASE_URL = "http://192.168.43.165/api/"
     private var myCompositeDisposable: CompositeDisposable? = null
-
+    private lateinit var loginClient : String
+    private lateinit var pswClient : String
+    private lateinit var listClients : List<ClientsResponse>
+    private lateinit var authentifivationVM : AuthentifivationVM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -48,7 +53,10 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
          * Gestion d'évenement pour le bouton Valider
          */
         btnLogin.setOnClickListener{
-            if (true){
+            loginClient = idLogin.text.toString()
+            pswClient = idPSW.text.toString()
+            Log.d("login","_______"+loginClient+"______"+pswClient)
+            if (authentifivationVM.verifier(listClients, loginClient, pswClient)){
                 longToast("Bonjour")
                 startActivity<CatalogueActivity>()
             }else{
@@ -80,17 +88,15 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     /**
      * gerer la reponse de rxjava observable
      */
-    private fun handleResponse(clientList: List<ClientsResponse>) {
-        longToast("oui oui oui"+clientList.size)
-        Log.d("getter", "les client = "+ clientList.get(1).nomClient)
+    private fun handleResponse(Clients: List<ClientsResponse>) {
+        listClients = Clients
     }
 
     /**
      * gerer l'erreur
      */
     fun handleError (error: Throwable) {
-        longToast("oui")
-        Log.d("clients", "oui")
+        Log.d("login", "erreur")
 
     }
 
@@ -100,5 +106,18 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     override fun onDestroy() {
         super.onDestroy()
         myCompositeDisposable?.clear()
+    }
+
+    fun verifier(listClients : List<ClientsResponse>, loginClient : String, pswClient : String):Boolean{
+        var bool = false
+        var j = 0
+        while (!bool and(j < listClients.size)){
+            if ((listClients.get(j).loginClient == loginClient) and(listClients.get(j).pswClient == pswClient) ){
+                Log.d("login","trouvé")
+                bool = true
+            }
+            j++
+        }
+        return bool
     }
 }

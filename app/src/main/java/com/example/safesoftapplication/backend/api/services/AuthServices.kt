@@ -9,9 +9,10 @@ import retrofit2.http.GET
 
 interface AuthServices {
     //recuperer un client
-    @GET("/client/recupClient")
-   fun recupClient(
-        @Field("idClient") idClient : Int
+    @GET("/client/recupClientLogin.php")
+   fun recupClientLogin(
+        @Field("loginClient") loginClient : String,
+        @Field("pswClient") pswClient : String
     ): Observable<ClientResponse>
     @GET("client/recupToutClients.php")
     fun recupToutClients() : Observable<List<ClientsResponse>>
