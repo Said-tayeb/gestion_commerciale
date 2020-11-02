@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeSoftApplication">
-
+        <activity
+            android:name=".AccueilActivity"
+            android:label="@string/title_activity_accueil"
+            android:theme="@style/Theme.SafeSoftApplication.NoActionBar"></activity>
         <activity android:name=".ui.inscription.InsriptionActivity" />
-        <activity android:name=".ui.CatalogueClient.CatalogueActivity" >
-
-        </activity>
         <activity android:name=".ui.authentification.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,7 +3,7 @@ package com.example.safesoftapplication.ui.inscription
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.ui.CatalogueClient.CatalogueActivity
+import com.example.safesoftapplication.ui.authentification.LoginActivity
 import kotlinx.android.synthetic.main.activity_insription.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
@@ -30,7 +30,7 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
             var adresseClient = editTextAdresse.toString()
             var codePostalClient = editTextCodePostal.toString()
             longToast("Vous avez bien inscrit")
-                startActivity<CatalogueActivity>()
+            startActivity<LoginActivity>()
 //            if (InscriptionVM.verifier(
 //                    loginClient,  pswClient,  nomClient,  prenomClient,  dateNaissance,  emailClient,  adresseClient,  codePostalClient)){
 //                longToast("Vous avez bien inscrit")

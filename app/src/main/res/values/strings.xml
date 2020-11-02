@@ -20,7 +20,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Contacts</string>
+
+    <string name="title_activity_accueil">AccueilActivity</string>
+    <string name="title_activity_accuei">AccueiActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 </resources>

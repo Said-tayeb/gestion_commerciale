@@ -3,16 +3,12 @@ package com.example.safesoftapplication.ui.authentification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.*
+import com.example.safesoftapplication.AccueilActivity
 
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.ViewModel.AuthentifivationVM
-import com.example.safesoftapplication.backend.api.AppelRetrofit
-import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientResponse
 import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientsResponse
-import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.backend.api.services.AuthServices
-import com.example.safesoftapplication.ui.CatalogueClient.CatalogueActivity
 import com.example.safesoftapplication.ui.inscription.InsriptionActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -55,10 +51,10 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
         btnLogin.setOnClickListener{
             loginClient = idLogin.text.toString()
             pswClient = idPSW.text.toString()
-            Log.d("login","_______"+loginClient+"______"+pswClient)
-            if (authentifivationVM.verifier(listClients, loginClient, pswClient)){
+            Log.d("login", "_______" + loginClient + "______" + pswClient)
+            if (verifier(listClients, loginClient, pswClient)){
                 longToast("Bonjour")
-                startActivity<CatalogueActivity>()
+                startActivity<AccueilActivity>()
             }else{
                 longToast("erreur d'authentification")
             }
