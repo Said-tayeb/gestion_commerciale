@@ -11,6 +11,14 @@ import org.jetbrains.anko.startActivity
 import java.util.*
 
 class InsriptionActivity : AppCompatActivity(), AnkoLogger {
+    private lateinit var loginClient : String
+    private lateinit var pswClient : String
+    private lateinit var nomClient : String
+    private lateinit var prenomClient : String
+    private lateinit var dateNaissanceClient : String
+    private lateinit var emailClient : String
+    private lateinit var adresseClient : String
+    private lateinit var codePostalClient : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insription)
@@ -20,15 +28,14 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
          */
         btnEnregistrer.setOnClickListener{
             //recuperation des données
-            var loginClient = editTextLoginInscription.toString()
-            var pswClient = editTextPasswordInscription.toString()
-            var nomClient = editTextNomonCompte.toString()
-            var prenomClient = editTextPrenom.toString()
-            var dateNaissance : Date
-            //dateNaissance = Date.from(editTextDateNaissance)
-            var emailClient = editTextEmail.toString()
-            var adresseClient = editTextAdresse.toString()
-            var codePostalClient = editTextCodePostal.toString()
+            loginClient = editTextLoginInscription.toString()
+            pswClient = editTextPasswordInscription.toString()
+            nomClient = editTextNomonCompte.toString()
+            prenomClient = editTextPrenom.toString()
+            dateNaissanceClient = editTextDateNaissance.toString()
+            emailClient = editTextEmail.toString()
+            adresseClient = editTextAdresse.toString()
+            codePostalClient = editTextCodePostal.toString()
             longToast("Vous avez bien inscrit")
             startActivity<LoginActivity>()
 //            if (InscriptionVM.verifier(

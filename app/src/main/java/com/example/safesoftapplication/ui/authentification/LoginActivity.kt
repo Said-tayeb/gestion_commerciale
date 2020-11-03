@@ -29,6 +29,8 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     private lateinit var loginClient : String
     private lateinit var pswClient : String
     private lateinit var listClients : List<ClientsResponse>
+    var connexion = false
+    var j=0
     private lateinit var authentifivationVM : AuthentifivationVM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +51,22 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
          * Gestion d'évenement pour le bouton Valider
          */
         btnLogin.setOnClickListener{
-            loginClient = idLogin.text.toString()
-            pswClient = idPSW.text.toString()
-            Log.d("login", "_______" + loginClient + "______" + pswClient)
-            if (verifier(listClients, loginClient, pswClient)){
-                longToast("Bonjour")
-                startActivity<AccueilActivity>()
+            if (connexion){
+                loginClient = idLogin.text.toString()
+                pswClient = idPSW.text.toString()
+                Log.d("login", "_______" + loginClient + "______" + pswClient)
+
+                if (verifier(listClients, loginClient, pswClient)){
+                    longToast("Bonjour")
+                    startActivity<AccueilActivity>()
+                }else{
+                    longToast("erreur d'authentification")
+
+                }
             }else{
-                longToast("erreur d'authentification")
+                longToast("Aucune connexion")
             }
+
         }
 
     }
@@ -85,6 +94,9 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
      * gerer la reponse de rxjava observable
      */
     private fun handleResponse(Clients: List<ClientsResponse>) {
+        longToast("connecter")
+        connexion = true
+        Log.d("login", "connecter")
         listClients = Clients
     }
 
@@ -92,6 +104,7 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
      * gerer l'erreur
      */
     fun handleError (error: Throwable) {
+        longToast("l'apparail n'est pas connecter au serveur")
         Log.d("login", "erreur")
 
     }
@@ -106,11 +119,12 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
 
     fun verifier(listClients : List<ClientsResponse>, loginClient : String, pswClient : String):Boolean{
         var bool = false
-        var j = 0
+        j=0
         while (!bool and(j < listClients.size)){
             if ((listClients.get(j).loginClient == loginClient) and(listClients.get(j).pswClient == pswClient) ){
                 Log.d("login","trouvé")
                 bool = true
+                return bool
             }
             j++
         }
