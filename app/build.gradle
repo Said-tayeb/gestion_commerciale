@@ -73,4 +73,7 @@ dependencies {
     def rxcalladapter_version = '2.5.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapter_version"
 
+    implementation "com.google.dagger:dagger:2.24"
+    implementation 'com.google.dagger:dagger-android:2.22'
+
 }

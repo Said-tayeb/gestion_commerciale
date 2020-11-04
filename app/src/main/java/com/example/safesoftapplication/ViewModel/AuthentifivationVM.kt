@@ -1,7 +1,7 @@
 package com.example.safesoftapplication.ViewModel
 
 import android.util.Log
-import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientsResponse
+import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
 
 class AuthentifivationVM{
 

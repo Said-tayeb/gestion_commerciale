@@ -6,9 +6,9 @@ import android.util.Log
 import com.example.safesoftapplication.AccueilActivity
 
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.ViewModel.AuthentifivationVM
-import com.example.safesoftapplication.backend.api.reponses.authResponse.ClientsResponse
-import com.example.safesoftapplication.backend.api.services.AuthServices
+import com.example.safesoftapplication.backend.api.AppelRetrofit
+import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
+import com.example.safesoftapplication.backend.api.api.services.AuthServices
 import com.example.safesoftapplication.ui.inscription.InsriptionActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -17,9 +17,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory.*
 
 class LoginActivity : AppCompatActivity() , AnkoLogger {
 
@@ -31,7 +28,8 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     private lateinit var listClients : List<ClientsResponse>
     var connexion = false
     var j=0
-    private lateinit var authentifivationVM : AuthentifivationVM
+//    private lateinit var authentifivationVM : AuthentifivationVM
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -57,7 +55,7 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
                 Log.d("login", "_______" + loginClient + "______" + pswClient)
 
                 if (verifier(listClients, loginClient, pswClient)){
-                    longToast("Bonjour")
+                    longToast("Bonjour ")
                     startActivity<AccueilActivity>()
                 }else{
                     longToast("erreur d'authentification")
@@ -76,18 +74,25 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
      */
     fun loadData(){
         //creation de l'instance retrofit
-            val authService = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //Obtenez un objet Retrofit utilisable en appelant .build ()
-                .build().create(AuthServices::class.java)
+//            val authService = Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(create())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                //Obtenez un objet Retrofit utilisable en appelant .build ()
+//                .build().create(AuthServices::class.java)
+//        myCompositeDisposable?.add(authService.recupToutClients()
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(this::handleResponse, this :: handleError))
 
+        var authService = AppelRetrofit.getClient(BASE_URL)?.create(AuthServices::class.java)
         // Appeler l'API à l'aide de RxJava & RxAndroid
-                 myCompositeDisposable?.add(authService.recupToutClients()
-                     .observeOn(AndroidSchedulers.mainThread())
-                     .subscribeOn(Schedulers.io())
-                     .subscribe(this::handleResponse, this :: handleError))
+        if (authService != null) {
+            myCompositeDisposable?.add(authService.recupToutClients()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponse, this :: handleError))
+        }
     }
 
     /**
@@ -115,6 +120,7 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     override fun onDestroy() {
         super.onDestroy()
         myCompositeDisposable?.clear()
+        Log.d("login", "composite destroy")
     }
 
     fun verifier(listClients : List<ClientsResponse>, loginClient : String, pswClient : String):Boolean{

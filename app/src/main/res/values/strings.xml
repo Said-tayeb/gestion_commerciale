@@ -27,9 +27,9 @@
     <string name="title_activity_accuei">AccueiActivity</string>
     <string name="title_activity_main">MainActivity</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Accueil</string>
+    <string name="menu_gallery">Catalogue</string>
+    <string name="menu_slideshow">Mon Compte</string>
     <string name="strEnregistrer">Enregistrer</string>
     <string name="strMotDePasse">Mot de passe</string>
     <string name="strNumeroDeTelephone">Numero de telephone</string>
