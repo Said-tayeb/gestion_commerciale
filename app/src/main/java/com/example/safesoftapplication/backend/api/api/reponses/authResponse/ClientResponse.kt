@@ -7,11 +7,8 @@ class ClientResponse(
     val idClient : Int,
     val loginClient : String,
     val pswClient : String,
+    val emailClient : String,
     val nomClient : String,
     val prenomClient : String,
-    val dateNaissance : Date,
-    val emailClient : String,
-    val adresseClient : String,
-    val codePostalClient : Int,
     details: MutableList<String>
 ): Response(details)

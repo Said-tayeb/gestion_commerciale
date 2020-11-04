@@ -10,9 +10,6 @@ class LoginResponse (
     val emailClient: String,
     val nomClient: String,
     val prenomClient: String,
-    val dateNaissance: Date?,
-    val adresseClient: String?,
-    val codePostalClient: Int?,
     details: MutableList<String>
 ) : Response(details)
 {
