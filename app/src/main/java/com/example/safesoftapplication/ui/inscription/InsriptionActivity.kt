@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_insription.editTextLoginInscripti
 import kotlinx.android.synthetic.main.activity_insription.editTextNomonCompte
 import kotlinx.android.synthetic.main.activity_insription.editTextPasswordInscription
 import kotlinx.android.synthetic.main.activity_insription.editTextPrenom
-import kotlinx.android.synthetic.main.fragment_blank.*
+//import kotlinx.android.synthetic.main.fragment_blank.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
@@ -52,15 +52,15 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
          */
         btnEnregistrer.setOnClickListener{
             //recuperation des données
-            dateConverter = DateConverter()
-            loginClient = editTextLoginInscription.toString()
-            pswClient = editTextPasswordInscription.toString()
-            nomClient = editTextNomonCompte.toString()
-            prenomClient = editTextPrenom.toString()
-            dateNaissanceClient = dateConverter.stringToDate((editTextDateNaissance.toString()), "aa-bb-yyyy")!!
-            emailClient = editTextEmail.toString()
-            adresseClient = editTextAdresse.toString()
-            codePostalClient = Integer.parseInt(editTextCodePostal.toString())
+//            dateConverter = DateConverter()
+//            loginClient = editTextLoginInscription.toString()
+//            pswClient = editTextPasswordInscription.toString()
+//            nomClient = editTextNomonCompte.toString()
+//            prenomClient = editTextPrenom.toString()
+//            dateNaissanceClient = dateConverter.stringToDate((editTextDateNaissance.toString()), "aa-bb-yyyy")!!
+//            emailClient = editTextEmail.toString()
+//            adresseClient = editTextAdresse.toString()
+//            codePostalClient = Integer.parseInt(editTextCodePostal.toString())
 //            ajoutClient()
             var client = Client(1, loginClient, pswClient,emailClient, nomClient, prenomClient)
             longToast("Vous avez bien inscrit")

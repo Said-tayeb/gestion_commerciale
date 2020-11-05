@@ -3,9 +3,12 @@ package com.example.safesoftapplication.ui.authentification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.safesoftapplication.AccueilActivity
 
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.ViewModel.AuthentifivationVM
 import com.example.safesoftapplication.backend.api.AppelRetrofit
 import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
 import com.example.safesoftapplication.backend.api.api.services.AuthServices
@@ -19,6 +22,10 @@ import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() , AnkoLogger {
+    private val viewModel: AuthentifivationVM by viewModels(
+//        factoryProducer = { SavedStateVMFactory(this) }
+    )
+
 
     //declarer les variables
     private val BASE_URL = "http://192.168.43.165/api/"
