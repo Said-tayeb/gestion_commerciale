@@ -61,9 +61,8 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
             emailClient = editTextEmail.toString()
             adresseClient = editTextAdresse.toString()
             codePostalClient = Integer.parseInt(editTextCodePostal.toString())
-            ajoutClient()
-            var client = Client(1, loginClient, pswClient, nomClient, prenomClient,
-                dateNaissanceClient, emailClient, adresseClient, codePostalClient )
+//            ajoutClient()
+            var client = Client(1, loginClient, pswClient,emailClient, nomClient, prenomClient)
             longToast("Vous avez bien inscrit")
             startActivity<LoginActivity>()
 //            if (InscriptionVM.verifier( client )){
@@ -76,20 +75,20 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    fun ajoutClient(){
-        disposable = inscriptionServices?.ajoutClient(loginClient, pswClient, nomClient, prenomClient, emailClient,
-            adresseClient, codePostalClient)
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe(
-                { result ->
-                    longToast("succee d'ajout")
-                    Log.v("inscription", "_______succee" ) },
-                { error ->
-                    longToast("echeck d'ajout")
-                    Log.e("inscription", "________"+error.message.toString()) }
-            )
-    }
+//    fun ajoutClient(){
+//        disposable = inscriptionServices?.ajoutClient(loginClient, pswClient, nomClient, prenomClient, emailClient,
+//            adresseClient, codePostalClient)
+//            ?.subscribeOn(Schedulers.io())
+//            ?.observeOn(AndroidSchedulers.mainThread())
+//            ?.subscribe(
+//                { result ->
+//                    longToast("succee d'ajout")
+//                    Log.v("inscription", "_______succee" ) },
+//                { error ->
+//                    longToast("echeck d'ajout")
+//                    Log.e("inscription", "________"+error.message.toString()) }
+//            )
+//    }
 
     override fun onPause() {
         super.onPause()

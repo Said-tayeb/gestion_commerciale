@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         myCompositeDisposable = CompositeDisposable()
-        loadData()
+        //loadData()
 
         /**.recupToutClients()
          * gestion d'evenement pour le bouton Inscription
