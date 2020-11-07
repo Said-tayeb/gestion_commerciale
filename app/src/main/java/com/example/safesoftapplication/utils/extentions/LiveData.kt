@@ -1,8 +1,10 @@
-package com.example.safesoftapplication.utils
+package com.example.safesoftapplication.utils.extentions
 
 import androidx.lifecycle.MutableLiveData
+import com.example.safesoftapplication.utils.Resource
+import com.example.safesoftapplication.utils.ResourceState
 
-// extension functions into the LiveData class
+
 fun <T> MutableLiveData<Resource<T>>.setSuccess(data: T? = null) =
     postValue(Resource(ResourceState.SUCCESS, data))
 

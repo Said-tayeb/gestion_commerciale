@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Update
-import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -12,10 +11,6 @@ import io.reactivex.Single
 
 @Dao
 interface ClientDao {
-
-    @Query("select * from clients")
-    fun getAll(): LiveData<List<ClientEntity>>
-
 
     /**
      * recuperer tous les clients
@@ -27,7 +22,7 @@ interface ClientDao {
      * recuperer les informations d'un client
      */
     @Query("select * from clients where idClient = :idClient")
-    fun recupClient(idClient : Int): LiveData<ClientEntity>
+    fun recupClient(idClient: ClientEntity): LiveData<ClientEntity>
 
     /**
      * recuperer un client par son loginClient
