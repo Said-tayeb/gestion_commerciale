@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey
 
 data class Catalogue(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "ID_PRODUIT") val id: Long,
-    @ColumnInfo(name = "TITRE") val titre: String,
-    @ColumnInfo(name = "PRIX") val prix: Int,
-    @ColumnInfo(name = "DESCRIPTION") val description: String,
-    @ColumnInfo(name = "CATEGORIE") val categorie: String,
-    @ColumnInfo(name = "STOCK", defaultValue = "0") val stock: Double? = null,
+    @ColumnInfo(name = "TITRE_PRODUIT") val titreProduit: String,
+    @ColumnInfo(name = "PRIX_PRODUIT") val prixProdut: Int,
+    @ColumnInfo(name = "DESCRIPTION_PRODUIT") val descriptionProdut: String,
+    @ColumnInfo(name = "CATEGOR_IEPRODUIT") val categorieProdut: String,
+    @ColumnInfo(name = "STOCK_PRODUIT", defaultValue = "0") val stockProdut: Double? = null,
 
 
     )
