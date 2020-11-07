@@ -12,7 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class BaseViewModel : ViewModel() {
+abstract  class BaseViewModel : ViewModel() {
 
     private val TAG = BaseViewModel::class.simpleName
 
