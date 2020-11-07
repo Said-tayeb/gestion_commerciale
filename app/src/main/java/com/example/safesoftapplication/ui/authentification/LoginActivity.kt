@@ -20,6 +20,7 @@ import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() , AnkoLogger {
 
+
     //declarer les variables
     private val BASE_URL = "http://192.168.43.165/api/"
     private var myCompositeDisposable: CompositeDisposable? = null

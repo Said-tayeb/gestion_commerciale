@@ -10,9 +10,10 @@ import java.util.*
 data class ClientEntity (
     @PrimaryKey(autoGenerate = true) val idClient: Int,
     @ColumnInfo(name = "loginClient") val loginClient : String,
-    @ColumnInfo(name = "pswClient") val pswClient: String,
+    @ColumnInfo(name = "pswClient") val pswClient : String,
+    @ColumnInfo(name = "emailClient") val emailClient : String,
     @ColumnInfo(name = "nomClient") val nomClient : String,
-    @ColumnInfo(name = "prenomClient") val prenomClient: String,
+    @ColumnInfo(name = "prenomClient") val prenomClient : String,
     @ColumnInfo(name = "LOGGED") val LOGGED : String,
 
 )

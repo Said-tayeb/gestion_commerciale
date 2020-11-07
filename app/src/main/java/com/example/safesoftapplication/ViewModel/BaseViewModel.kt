@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.safesoftapplication.utils.Resource
-import com.example.safesoftapplication.utils.setError
-import com.example.safesoftapplication.utils.setLoading
-import com.example.safesoftapplication.utils.setSuccess
+import com.example.safesoftapplication.utils.extentions.setError
+import com.example.safesoftapplication.utils.extentions.setLoading
+import com.example.safesoftapplication.utils.extentions.setSuccess
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
