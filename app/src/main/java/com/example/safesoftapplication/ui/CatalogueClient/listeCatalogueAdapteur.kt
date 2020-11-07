@@ -9,7 +9,7 @@ class listeCatalogueAdapteur : BaseAdapter() {
 
     lateinit var lesProduits : ArrayList<Produit>
     /**
-     * retourner le nombre de ligne
+     * retourner le nombre de lignes
      */
     override fun getCount(): Int {
         TODO("Not yet implemented")

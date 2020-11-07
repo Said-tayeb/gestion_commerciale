@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 
-data class Catalogue(
+data class ProduitEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "ID_PRODUIT") val id: Long,
     @ColumnInfo(name = "TITRE_PRODUIT") val titreProduit: String,
     @ColumnInfo(name = "PRIX_PRODUIT") val prixProdut: Int,

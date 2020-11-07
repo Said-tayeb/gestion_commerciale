@@ -1,15 +1,19 @@
 package com.example.safesoftapplication.backend.api.bdLocal.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
+import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
+
 
 @Dao
 interface CatalogueDao {
 
 
-//    @Query("SELECT * FROM Catalogue")
-//    fun
+    @Transaction
+    @Query("SELECT * FROM ProduitEntity")
+    fun getAllProduits(): LiveData<List<ProduitEntity>>
 
 
 }
