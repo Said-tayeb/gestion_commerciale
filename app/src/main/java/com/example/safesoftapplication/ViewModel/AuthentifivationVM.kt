@@ -7,13 +7,28 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
 import com.example.safesoftapplication.backend.api.api.repository.AuthRepository
+import com.example.safesoftapplication.backend.api.bdLocal.repositoryBdLocal.ClientRepository
 import com.example.safesoftapplication.model.Client
 
 class AuthentifivationVM @ViewModelInject constructor(
-    private val authRepository : AuthRepository
+    private val authRepository : AuthRepository,
+    private val clientRepository: ClientRepository
 ) : BaseViewModel() {
 //    val idClient : String = savedStateHandle["idClient"] ?: throw IllegalArgumentException("missing user idClient")
 //    val client : LiveData<Client> = TODO()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
