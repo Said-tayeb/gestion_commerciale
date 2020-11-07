@@ -18,7 +18,9 @@ interface AuthServices {
         @Field("loginClient") loginClient : String,
         @Field("pswClient") pswClient : String
     ): Flowable<ClientResponse>
-
+    fun getClient(
+        @Field("idClient") idClient : String
+    ): Flowable<ClientResponse>
     //recuperer tous les clients
     @FormUrlEncoded
     @GET("/client/recupToutClients.php")

@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.safesoftapplication.AccueilActivity
 
 import com.example.safesoftapplication.R
@@ -22,9 +25,10 @@ import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() , AnkoLogger {
-    private val viewModel: AuthentifivationVM by viewModels(
-//        factoryProducer = { SavedStateVMFactory(this) }
-    )
+
+    lateinit var factory: ViewModelProvider.Factory
+    val viewModel = ViewModelProvider(this, factory)
+        .get(AuthentifivationVM::class.java)
 
 
     //declarer les variables
@@ -40,6 +44,9 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+//        viewModel.client.observe(LifecycleOwner { viewLifecycleOwner }) {
+//            // update UI
+//        }
         myCompositeDisposable = CompositeDisposable()
         //loadData()
 

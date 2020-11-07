@@ -11,5 +11,6 @@ data class ClientEntity (
     @ColumnInfo(name = "loginClient") val loginClient: String,
     @ColumnInfo(name = "pswClient") val pswClient: String,
     @ColumnInfo(name = "nomClient") val firstName: String,
-    @ColumnInfo(name = "prenomClient") val lastName: String
+    @ColumnInfo(name = "prenomClient") val lastName: String,
+    @ColumnInfo(name = "LOGGED") val logged: Boolean
 )
