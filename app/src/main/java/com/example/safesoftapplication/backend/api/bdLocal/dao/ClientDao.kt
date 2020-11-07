@@ -13,7 +13,7 @@ import io.reactivex.Single
 @Dao
 interface ClientDao {
 
-    @Query("select * from clientEntity")
+    @Query("select * from clients")
     fun getAll(): LiveData<List<ClientEntity>>
 
 

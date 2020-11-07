@@ -8,9 +8,11 @@ import java.util.*
 
 @Entity(tableName = "clients", indices = [Index(value = ["loginClient"], unique = true)])
 data class ClientEntity (
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "first_name") val firstName: String,
-    @ColumnInfo(name = "last_name") val lastName: String,
-    @ColumnInfo(name = "access_token") val accessToken: String,
-    @ColumnInfo(name = "birth_date") val birthDate: Date
+    @PrimaryKey(autoGenerate = true) val idClient: Int,
+    @ColumnInfo(name = "loginClient") val loginClient : String,
+    @ColumnInfo(name = "pswClient") val pswClient: String,
+    @ColumnInfo(name = "nomClient") val nomClient : String,
+    @ColumnInfo(name = "prenomClient") val prenomClient: String,
+    @ColumnInfo(name = "LOGGED") val LOGGED : String,
+
 )
