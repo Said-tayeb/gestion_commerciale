@@ -12,14 +12,7 @@ import com.example.safesoftapplication.ui.authentification.LoginActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_insription.btnEnregistrer
-import kotlinx.android.synthetic.main.activity_insription.editTextAdresse
-import kotlinx.android.synthetic.main.activity_insription.editTextCodePostal
-import kotlinx.android.synthetic.main.activity_insription.editTextEmail
-import kotlinx.android.synthetic.main.activity_insription.editTextLoginInscription
-import kotlinx.android.synthetic.main.activity_insription.editTextNomonCompte
-import kotlinx.android.synthetic.main.activity_insription.editTextPasswordInscription
-import kotlinx.android.synthetic.main.activity_insription.editTextPrenom
+import kotlinx.android.synthetic.main.activity_insription.*
 //import kotlinx.android.synthetic.main.fragment_blank.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
@@ -52,15 +45,15 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
          */
         btnEnregistrer.setOnClickListener{
             //recuperation des données
-//            dateConverter = DateConverter()
-//            loginClient = editTextLoginInscription.toString()
-//            pswClient = editTextPasswordInscription.toString()
-//            nomClient = editTextNomonCompte.toString()
-//            prenomClient = editTextPrenom.toString()
-//            dateNaissanceClient = dateConverter.stringToDate((editTextDateNaissance.toString()), "aa-bb-yyyy")!!
-//            emailClient = editTextEmail.toString()
-//            adresseClient = editTextAdresse.toString()
-//            codePostalClient = Integer.parseInt(editTextCodePostal.toString())
+            dateConverter = DateConverter()
+            loginClient = editTextLoginInscription.toString()
+            pswClient = editTextPasswordInscription.toString()
+            nomClient = editTextNomonCompte.toString()
+            prenomClient = editTextPrenom.toString()
+            dateNaissanceClient = dateConverter.stringToDate((editTextDateNaissance.toString()), "aa-bb-yyyy")!!
+            emailClient = editTextEmail.toString()
+            adresseClient = editTextAdresse.toString()
+            codePostalClient = Integer.parseInt(editTextCodePostal.toString())
 //            ajoutClient()
             var client = Client(1, loginClient, pswClient,emailClient, nomClient, prenomClient)
             longToast("Vous avez bien inscrit")
