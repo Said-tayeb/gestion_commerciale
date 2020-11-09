@@ -14,6 +14,6 @@ class CatalogueVM @ViewModelInject constructor(
     ) :BaseViewModel() {
 
 
-    fun getAllProduits(query: String): LiveData<List<ProduitEntity>> =
+    fun getAllProduits(): LiveData<List<ProduitEntity>> =
         catalogueRepository.getAllProduits()
 }
