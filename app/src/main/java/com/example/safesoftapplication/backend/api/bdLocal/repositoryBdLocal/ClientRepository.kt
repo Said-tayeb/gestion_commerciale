@@ -14,7 +14,7 @@ class ClientRepository @Inject constructor(val clientDao: ClientDao) {
     /**
      * recuperer un client par son id
      */
-    fun recupClient(idClient: ClientEntity) = clientDao.recupClient(idClient)
+    fun recupClient(idClient: Int) = clientDao.recupClient(idClient)
 
     /**
      * modifier les information d'un client
@@ -24,7 +24,7 @@ class ClientRepository @Inject constructor(val clientDao: ClientDao) {
     /**
      * recuperer les informations d'un client a partir de son login
      */
-    fun attemptLogin(loginClient: String) = clientDao.attemptLogin(loginClient)
+   //fun attemptLogin(loginClient: String) = clientDao.attemptLogin(loginClient)
 
     /**
      *

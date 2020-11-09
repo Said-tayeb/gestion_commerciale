@@ -13,6 +13,4 @@ data class ProduitEntity(
     @ColumnInfo(name = "DESCRIPTION_PRODUIT") val descriptionProdut: String,
     @ColumnInfo(name = "CATEGOR_IEPRODUIT") val categorieProdut: String,
     @ColumnInfo(name = "STOCK_PRODUIT", defaultValue = "0") val stockProdut: Double? = null,
-
-
     )

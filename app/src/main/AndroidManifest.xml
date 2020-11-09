@@ -14,7 +14,7 @@
         <activity
             android:name=".AccueilActivity"
             android:label="@string/title_activity_accueil"
-            android:theme="@style/Theme.SafeSoftApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.SafeSoftApplication.NoActionBar" />
         <activity android:name=".ui.inscription.InsriptionActivity" />
         <activity android:name=".ui.authentification.LoginActivity">
             <intent-filter>

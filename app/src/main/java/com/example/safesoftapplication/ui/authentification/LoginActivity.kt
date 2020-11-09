@@ -3,12 +3,20 @@ package com.example.safesoftapplication.ui.authentification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateViewModelFactory
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.safesoftapplication.AccueilActivity
 
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.ViewModel.AuthentifivationVM
 import com.example.safesoftapplication.backend.api.AppelRetrofit
 import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
 import com.example.safesoftapplication.backend.api.api.services.AuthServices
+import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.ui.inscription.InsriptionActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -17,124 +25,49 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
-
+import com.example.safesoftapplication.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() , AnkoLogger {
+    private lateinit var binding: ActivityLoginBinding
+//    private val viewModel: AuthentifivationVM by viewModels(
+//        factoryProducer = { SavedStateVMFactory(this) })
 
-
-    //declarer les variables
-    private val BASE_URL = "http://192.168.43.165/api/"
-    private var myCompositeDisposable: CompositeDisposable? = null
-    private lateinit var loginClient : String
-    private lateinit var pswClient : String
-    private lateinit var listClients : List<ClientsResponse>
-    var connexion = false
-    var j=0
-//    private lateinit var authentifivationVM : AuthentifivationVM
+//    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
+//        SavedStateViewModelFactory(application, this, intent?.extras ?: Bundle())
+//    val model = ViewModelProviders.of(this).get(AuthentifivationVM::class.java)
+//private val viewModel: AuthentifivationVM by viewModels()
+// lateinit var c : LiveData<Client>
+//    private lateinit var loginClient : String
+//    private lateinit var pswClient : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        myCompositeDisposable = CompositeDisposable()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+//    val model = ViewModelProviders.of(this, SavedStateViewModelFactory(getApplication(), this)).get(AuthentifivationVM::class.java)
+       // myCompositeDisposable = CompositeDisposable()
         //loadData()
 
         /**.recupToutClients()
          * gestion d'evenement pour le bouton Inscription
          */
-        btnInscription.setOnClickListener{
+        binding.btnInscription.setOnClickListener{
             longToast("Créer un compte")
             startActivity < InsriptionActivity >()
         }
 
-
-        /**
+        /**!
          * Gestion d'évenement pour le bouton Valider
          */
-        btnLogin.setOnClickListener{
-            if (connexion){
-                loginClient = idLogin.text.toString()
-                pswClient = idPSW.text.toString()
-                Log.d("login", "_______" + loginClient + "______" + pswClient)
-
-                if (verifier(listClients, loginClient, pswClient)){
-                    longToast("Bonjour ")
-                    startActivity<AccueilActivity>()
-                }else{
-                    longToast("erreur d'authentification")
-
-                }
-            }else{
-                longToast("Aucune connexion")
-            }
-
+        binding.btnLogin.setOnClickListener {
+            longToast("clic bouton login")
+            //            longToast(""+viewModel.recupClient())
+//            if (viewModel.recupClient() == null){
+//                longToast("erreur d'authentification")
+//            }else{
+//                longToast("Bonjour")
+//                startActivity<AccueilActivity>()
+//            }
         }
 
     }
 
-    /**
-     * recuperation des donnees dans la base de données distante
-     */
-    fun loadData(){
-        //creation de l'instance retrofit
-//            val authService = Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(create())
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                //Obtenez un objet Retrofit utilisable en appelant .build ()
-//                .build().create(AuthServices::class.java)
-//        myCompositeDisposable?.add(authService.recupToutClients()
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(this::handleResponse, this :: handleError))
-
-        var authService = AppelRetrofit.getClient(BASE_URL)?.create(AuthServices::class.java)
-        // Appeler l'API à l'aide de RxJava & RxAndroid
-        if (authService != null) {
-            myCompositeDisposable?.add(authService.recupToutClients()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this :: handleError))
-        }
-    }
-
-    /**
-     * gerer la reponse de rxjava observable
-     */
-    private fun handleResponse(Clients: List<ClientsResponse>) {
-        longToast("connecter")
-        connexion = true
-        Log.d("login", "connecter")
-        listClients = Clients
-    }
-
-    /**
-     * gerer l'erreur
-     */
-    fun handleError (error: Throwable) {
-        longToast("l'apparail n'est pas connecter au serveur")
-        Log.d("login", "erreur")
-
-    }
-
-    /**
-     * effacer le CompositeDisposable
-     */
-    override fun onDestroy() {
-        super.onDestroy()
-        myCompositeDisposable?.clear()
-        Log.d("login", "composite destroy")
-    }
-
-    fun verifier(listClients : List<ClientsResponse>, loginClient : String, pswClient : String):Boolean{
-        var bool = false
-        j=0
-        while (!bool and(j < listClients.size)){
-            if ((listClients.get(j).loginClient == loginClient) and(listClients.get(j).pswClient == pswClient) ){
-                Log.d("login","trouvé")
-                bool = true
-                return bool
-            }
-            j++
-        }
-        return bool
-    }
 }

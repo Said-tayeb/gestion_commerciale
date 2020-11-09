@@ -1,7 +1,9 @@
 package com.example.safesoftapplication.backend.api.bdLocal.dao
 
+
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
@@ -22,13 +24,13 @@ interface ClientDao {
      * recuperer les informations d'un client
      */
     @Query("select * from clients where idClient = :idClient")
-    fun recupClient(idClient: ClientEntity): LiveData<ClientEntity>
+    fun recupClient(idClient: Int): LiveData<ClientEntity>
 
     /**
      * recuperer un client par son loginClient
      */
-    @Query("SELECT * FROM clients WHERE loginClient = :loginClient")
-    fun attemptLogin(loginClient: String): Single<ClientEntity>
+    @Query("SELECT * FROM clients WHERE loginClient = :loginClient and pswClient= :pswClient")
+    fun attemptLogin(loginClient: String, pswClient : String): LiveData<ClientEntity>
 
     /**
      * deconnecter un client
@@ -41,5 +43,18 @@ interface ClientDao {
      */
     @Update
     suspend fun modifierClient(vararg client : ClientEntity)
+
+    /**
+     * recuperer les informations d'un client connecter
+     */
+    @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")
+    fun checkLogged(): LiveData<ClientEntity>
+
+    /**
+     * ajouter un client a la base de donnees local
+     */
+    @Insert
+    fun ajoutClient(vararg client : ClientEntity): Completable
+
 
 }
