@@ -19,7 +19,7 @@ class AppelRetrofit {
                 Log.d("login", "retrofit create")
             }
             return retrofit
+        }
     }
-}
 }
 

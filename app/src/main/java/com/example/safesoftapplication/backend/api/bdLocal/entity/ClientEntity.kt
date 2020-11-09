@@ -8,12 +8,12 @@ import java.util.*
 
 @Entity(tableName = "clients", indices = [Index(value = ["loginClient"], unique = true)])
 data class ClientEntity (
-    @PrimaryKey(autoGenerate = true) val idClient: Int,
+    @PrimaryKey(autoGenerate = true) var idClient: Int,
     @ColumnInfo(name = "loginClient") var loginClient : String,
-    @ColumnInfo(name = "pswClient") val pswClient : String,
-    @ColumnInfo(name = "emailClient") val emailClient : String,
-    @ColumnInfo(name = "nomClient") val nomClient : String,
-    @ColumnInfo(name = "prenomClient") val prenomClient : String,
-    @ColumnInfo(name = "LOGGED") val LOGGED : String,
+    @ColumnInfo(name = "pswClient") var pswClient : String,
+    @ColumnInfo(name = "emailClient") var emailClient : String,
+    @ColumnInfo(name = "nomClient") var nomClient : String,
+    @ColumnInfo(name = "prenomClient") var prenomClient : String,
+    @ColumnInfo(name = "LOGGED") var LOGGED : String,
 
     )
