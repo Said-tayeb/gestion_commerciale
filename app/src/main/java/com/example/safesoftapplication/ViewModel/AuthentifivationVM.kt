@@ -6,9 +6,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
-import com.example.safesoftapplication.backend.api.api.repository.AuthRepository
+//import com.example.safesoftapplication.backend.api.api.repository.AuthRepository
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import com.example.safesoftapplication.backend.api.bdLocal.repositoryBdLocal.ClientRepository
+//import com.example.safesoftapplication.backend.api.bdLocal.repositoryBdLocal.ClientRepository
 import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.repository.RepositoryAth
 import androidx.lifecycle.LiveData
