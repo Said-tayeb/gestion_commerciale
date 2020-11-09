@@ -62,8 +62,9 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
          */
         binding.btnLogin.setOnClickListener {
             viewModel.init()
-//            longToast("clic bouton login")
-//            //longToast(""+viewModel.recupClient())
+            longToast("clic bouton login")
+            Log.d("viewModel", "_____")
+            //longToast(""+viewModel.recupClient())
 //            if (viewModel.recupClient().value?.loginClient == "said"){
 //                longToast("erreur d'authentification")
 //            }else{

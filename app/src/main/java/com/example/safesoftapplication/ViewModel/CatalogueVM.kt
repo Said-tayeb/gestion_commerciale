@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 
 class CatalogueVM @ViewModelInject constructor(
-    private val catalogueRepository: CatalogueRepository,
-    private val config: PagedList.Config
+//    private val catalogueRepository: CatalogueRepository,
+//    private val config: PagedList.Config
 ) :BaseViewModel() {
 
     val searchQuery = MutableLiveData<String>()
