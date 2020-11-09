@@ -26,9 +26,12 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
 import com.example.safesoftapplication.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() , AnkoLogger {
     private lateinit var binding: ActivityLoginBinding
-//    private val viewModel: AuthentifivationVM by viewModels(
+    private val viewModel: AuthentifivationVM by viewModels()
 //        factoryProducer = { SavedStateVMFactory(this) })
 
 //    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
@@ -58,14 +61,15 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
          * Gestion d'évenement pour le bouton Valider
          */
         binding.btnLogin.setOnClickListener {
-            longToast("clic bouton login")
-            //            longToast(""+viewModel.recupClient())
-//            if (viewModel.recupClient() == null){
+            viewModel.init()
+//            longToast("clic bouton login")
+//            //longToast(""+viewModel.recupClient())
+//            if (viewModel.recupClient().value?.loginClient == "said"){
 //                longToast("erreur d'authentification")
 //            }else{
 //                longToast("Bonjour")
 //                startActivity<AccueilActivity>()
-//            }
+//           }
         }
 
     }

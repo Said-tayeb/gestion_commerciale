@@ -7,8 +7,8 @@ import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import javax.inject.Inject
 
 class repositoryInscription @Inject constructor(
-    private val clientDao: ClientDao,
-    private val inscriptionServices: InscriptionServices
+    private val clientDao: ClientDao
+//    private val inscriptionServices: InscriptionServices
 )
 {
     /**

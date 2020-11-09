@@ -8,8 +8,8 @@ import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import javax.inject.Inject
 
 class RepositoryAth @Inject constructor(
-    private val clientDao: ClientDao,
-    private val authService: AuthServices
+    private val clientDao: ClientDao
+//    private val authService: AuthServices
 ) {
     var l : LiveData<ClientEntity>? = null
 
