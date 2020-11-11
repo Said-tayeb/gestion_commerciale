@@ -15,6 +15,12 @@ import io.reactivex.Single
 interface ClientDao {
 
     /**
+     * recuperer les informations d'un client par rapport a son login
+     */
+    @Query("select * from clients where loginClient = :loginClient")
+    fun recupClientsByLogin(loginClient: String): LiveData<ClientEntity>
+
+    /**
      * recuperer tous les clients
      */
     @Query("select * from clients")
@@ -55,6 +61,5 @@ interface ClientDao {
      */
     @Insert
     fun ajoutClient(vararg client : ClientEntity): Completable
-
 
 }

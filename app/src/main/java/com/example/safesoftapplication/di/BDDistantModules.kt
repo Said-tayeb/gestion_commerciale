@@ -1,5 +1,6 @@
 package com.example.safesoftapplication.di
 
+import com.example.safesoftapplication.backend.api.api.reponses.contact.InfosOrganismeResponse
 import com.example.safesoftapplication.backend.api.api.services.*
 import dagger.Module
 import dagger.Provides
@@ -62,6 +63,8 @@ class BDDistantModules {
     @Provides
     fun provideRechercheService(retrofit: Retrofit):
             RechercheService = retrofit.create(RechercheService::class.java)
+
+
 
 
 }

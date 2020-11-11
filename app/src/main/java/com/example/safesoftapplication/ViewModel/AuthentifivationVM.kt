@@ -13,19 +13,35 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
 class AuthentifivationVM @ViewModelInject constructor(
-     val repositoryAth: RepositoryAth,
+     val repositoryAth: RepositoryAth
 //     @Assisted savedStateHandle: SavedStateHandle
 ) : ViewModel(){
-//    val client : LiveData<ClientEntity> = TODO()
+    var login ="yes"
+    var client : MutableLiveData<ClientEntity> = MutableLiveData()
+    fun essaif(): LiveData<ClientEntity>{
+    val client = ClientEntity(1,"said","said","said","said","said",1)
+        var essai : MutableLiveData<ClientEntity> = MutableLiveData()
+        essai.value=client
+    Log.d("viewModel", ""+ essai.value!!.loginClient)
+    return essai
+    }
+
     //recuperer les information des champs du l'activity authentification
 //    val loginClient : String = savedStateHandle["loginClient"] ?: throw IllegalArgumentException("missing user LoginClient")
 //    val pswClient : String = savedStateHandle["pswClient"] ?: throw IllegalArgumentException("missing user pswClient")
-    lateinit var loginClient : String
-    lateinit var pswClient : String
 
     fun init(){
         Log.d("viewModel", "_________le view model")
     }
+
+    fun recupClient(loginClient : String, pswClient : String) : LiveData<ClientEntity>{
+        Log.d("viewModel", "_________le recupe")
+//        client.value = repositoryAth.attemptLogin(loginClient, pswClient).value
+        client.postValue(repositoryAth.attemptLogin(loginClient, pswClient).value)
+        Log.d("viewModel", "=========="+ client.value?.loginClient)
+        return  client
+    }
+
     /**
      * passer les information du client a l'activity authentification
      */

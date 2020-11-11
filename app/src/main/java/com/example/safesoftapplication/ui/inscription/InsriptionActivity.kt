@@ -3,12 +3,22 @@ package com.example.safesoftapplication.ui.inscription
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.safesoftapplication.AccueilActivity
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.ViewModel.AuthentifivationVM
+import com.example.safesoftapplication.ViewModel.InscriptionVM
 import com.example.safesoftapplication.backend.api.AppelRetrofit
 import com.example.safesoftapplication.backend.api.bdLocal.DateConverter
 import com.example.safesoftapplication.backend.api.api.services.InscriptionServices
+import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
+import com.example.safesoftapplication.databinding.ActivityInsriptionBinding
+import com.example.safesoftapplication.databinding.ActivityLoginBinding
 import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.ui.authentification.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -19,55 +29,55 @@ import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
 import java.util.*
 
+@AndroidEntryPoint
 class InsriptionActivity : AppCompatActivity(), AnkoLogger {
     private val BASE_URL = "http://192.168.43.165/api/"
-    val inscriptionServices by lazy {
-        AppelRetrofit.getClient(BASE_URL)?.create(InscriptionServices::class.java)
-    }
-    var disposable: Disposable? = null
+    private lateinit var binding: ActivityInsriptionBinding
+    private val viewModel: InscriptionVM by viewModels()
+//    val inscriptionServices by lazy {
+//        AppelRetrofit.getClient(BASE_URL)?.create(InscriptionServices::class.java)
+//    }
+//    var disposable: Disposable? = null
 //    private var myCompositeDisposable: CompositeDisposable? = null
-    private lateinit var dateConverter : DateConverter
-    private lateinit var loginClient : String
-    private lateinit var pswClient : String
-    private lateinit var nomClient : String
-    private lateinit var prenomClient : String
-    private lateinit var dateNaissanceClient : Date
-    private lateinit var emailClient : String
-    private lateinit var adresseClient : String
-    private var codePostalClient : Int = 0
-    var connexion = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_insription)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_insription)
 
         /**
          * gestion d'évenement pour le bouton
          */
-        btnEnregistrer.setOnClickListener{
-            //recuperation des données
-            dateConverter = DateConverter()
-            loginClient = editTextLoginInscription.toString()
-            pswClient = editTextPasswordInscription.toString()
-            nomClient = editTextNomonCompte.toString()
-            prenomClient = editTextPrenom.toString()
-            dateNaissanceClient = dateConverter.stringToDate((editTextDateNaissance.toString()), "aa-bb-yyyy")!!
-            emailClient = editTextEmail.toString()
-            adresseClient = editTextAdresse.toString()
-            codePostalClient = Integer.parseInt(editTextCodePostal.toString())
-//            ajoutClient()
-            var client = Client(1, loginClient, pswClient,emailClient, nomClient, prenomClient)
-            longToast("Vous avez bien inscrit")
-            startActivity<LoginActivity>()
-//            if (InscriptionVM.verifier( client )){
-//                longToast("Vous avez bien inscrit")
-//                startActivity<AccueilActivity>()
-//            }else{
-//                longToast("Ce compte éxite déjà")
-//            }
-
+        binding.btnEnregistrer.setOnClickListener{
+            even()
         }
     }
 
+    /**
+     * gestion d'evenement pour le bouton inscription
+     */
+    fun even(){
+        var loginClient = binding.editTextLoginInscription.text.toString()
+        var pswClient = binding.editTextPasswordInscription.text.toString()
+        var cPswClient = binding.editTextConfirmePassword.text.toString()
+        var emailClient = binding.editTextEmail.text.toString()
+        var nomClient = binding.editTextNomonCompte.text.toString()
+        var prenomClient = binding.editTextPrenom.text.toString()
+        if (loginClient == "" || pswClient == "" || cPswClient == "" || emailClient == "" || nomClient == "" || prenomClient == ""){
+            longToast("vous devez remplir tous les champs")
+        }else{
+            if (cPswClient == pswClient){
+                var clientEntity = ClientEntity(1,loginClient, pswClient, emailClient, nomClient, prenomClient, 1 )
+                Log.d("viewModel", "=========" + viewModel.essai)
+                if (true){
+                    longToast("Vous avez bien inscrit")
+                    startActivity<AccueilActivity>()
+                }else{
+                    longToast("utilisateur déja exitant")
+                }
+            }else{
+                longToast("verifier votre mot de passe")
+            }
+        }
+    }
 //    fun ajoutClient(){
 //        disposable = inscriptionServices?.ajoutClient(loginClient, pswClient, nomClient, prenomClient, emailClient,
 //            adresseClient, codePostalClient)
@@ -83,8 +93,8 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
 //            )
 //    }
 
-    override fun onPause() {
-        super.onPause()
-        disposable?.dispose()
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        disposable?.dispose()
+//    }
 }

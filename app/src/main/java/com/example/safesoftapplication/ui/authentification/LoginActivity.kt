@@ -32,22 +32,19 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginActivity : AppCompatActivity() , AnkoLogger {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: AuthentifivationVM by viewModels()
+
 //        factoryProducer = { SavedStateVMFactory(this) })
 
 //    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
 //        SavedStateViewModelFactory(application, this, intent?.extras ?: Bundle())
 //    val model = ViewModelProviders.of(this).get(AuthentifivationVM::class.java)
-//private val viewModel: AuthentifivationVM by viewModels()
-// lateinit var c : LiveData<Client>
 //    private lateinit var loginClient : String
 //    private lateinit var pswClient : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-//    val model = ViewModelProviders.of(this, SavedStateViewModelFactory(getApplication(), this)).get(AuthentifivationVM::class.java)
-       // myCompositeDisposable = CompositeDisposable()
-        //loadData()
+//        val model = ViewModelProviders.of(this, SavedStateViewModelFactory(getApplication(), this)).get(AuthentifivationVM::class.java)
 
         /**.recupToutClients()
          * gestion d'evenement pour le bouton Inscription
@@ -61,18 +58,21 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
          * Gestion d'évenement pour le bouton Valider
          */
         binding.btnLogin.setOnClickListener {
-            viewModel.init()
-            longToast("clic bouton login")
+            var loginClient = binding.idLogin.text.toString()
+            var pswClient = binding.idPSW.text.toString()
+            viewModel.essaif()
             Log.d("viewModel", "_____")
-            //longToast(""+viewModel.recupClient())
-//            if (viewModel.recupClient().value?.loginClient == "said"){
-//                longToast("erreur d'authentification")
-//            }else{
-//                longToast("Bonjour")
-//                startActivity<AccueilActivity>()
-//           }
+            longToast("clic")
+            if (loginClient == "" || pswClient == ""){
+                longToast("vous devez remplir tous les champs")
+            }else{
+                if (viewModel.recupClient(loginClient, pswClient).value == null){
+                    longToast("erreur d'authentification")
+                }else{
+                    longToast("Bonjour")
+                    startActivity<AccueilActivity>()
+                }
+            }
         }
-
     }
-
 }

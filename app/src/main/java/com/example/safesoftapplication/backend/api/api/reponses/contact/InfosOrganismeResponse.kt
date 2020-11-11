@@ -2,10 +2,8 @@ package com.example.safesoftapplication.backend.api.api.reponses.contact
 
 class InfosOrganismeResponse (
     val nomOrganisme : String,
-    val email1Organisme: String,
-    val email2Organisme : String?,
-    val telephone1Organisme : Int,
-    val telephone2Organisme : Int?,
+    val emailOrganisme: String,
+    val telephoneOrganisme : Int,
     val adresseOrganisme : String,
     val codePostalOrganisme : String
 )

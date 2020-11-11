@@ -19,7 +19,13 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.safesoftapplication.ui.slideshow.SlideshowFragment"
+        android:name="com.example.safesoftapplication.ui.slideshow.MonCompteFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.example.safesoftapplication.ui.contacts.ContactsFragment"
+        android:label="@string/menu_contacts"
+        tools:layout="@layout/fragment_contacts" />
 </navigation>

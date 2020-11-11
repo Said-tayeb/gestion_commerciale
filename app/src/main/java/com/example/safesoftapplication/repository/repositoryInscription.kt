@@ -20,7 +20,10 @@ class repositoryInscription @Inject constructor(
      * ajout d'un client a la base de donnees local
      */
     fun ajoutClient(client : ClientEntity){
-        //inscriptionServices.ajoutClient(client)
-        clientDao.ajoutClient(client)
+//        try {
+//            clientDao.ajoutClient(client)
+//        }catch ( ){
+//
+//        }
     }
 }
