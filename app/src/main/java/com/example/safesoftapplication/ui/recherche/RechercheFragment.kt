@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.ui.detailsAchat
+package com.example.safesoftapplication.ui.recherche
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,21 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.databinding.FragmentDetailsAchatBinding
-import com.example.safesoftapplication.databinding.FragmentDetailsProduitBinding
 import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
+import com.example.safesoftapplication.databinding.FragmentRechercheBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailsAchatFragment : Fragment() {
+class RechercheFragment : Fragment() {
 
-    private lateinit var binding: FragmentDetailsAchatBinding
+    private lateinit var binding: FragmentRechercheBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentDetailsAchatBinding>(inflater,
-            R.layout.fragment_details_achat,container,false)
+        binding = DataBindingUtil.inflate<FragmentRechercheBinding>(inflater,
+            R.layout.fragment_recherche,container,false)
 
         return binding.root
 
     }
+
+
 }

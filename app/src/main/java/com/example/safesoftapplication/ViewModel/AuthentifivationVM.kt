@@ -1,29 +1,31 @@
 package com.example.safesoftapplication.ViewModel
 
+import android.app.Application
 import android.util.Log
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
 
 //import com.example.safesoftapplication.backend.api.api.repository.AuthRepository
 
 //import com.example.safesoftapplication.backend.api.bdLocal.repositoryBdLocal.ClientRepository
 
 
-
-import com.example.safesoftapplication.model.Client
 import com.example.safesoftapplication.repository.RepositoryAth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
+
 
 class AuthentifivationVM @ViewModelInject constructor(
-     val repositoryAth: RepositoryAth
+     val repositoryAth: RepositoryAth,
+     val application: Application
 //     @Assisted savedStateHandle: SavedStateHandle
 ) : ViewModel(){
-    var login ="yes"
+    var loginClient : String = ""
+    var pswClient : String = ""
+
     var client : MutableLiveData<ClientEntity> = MutableLiveData()
+
     fun essaif(): LiveData<ClientEntity>{
     val client = ClientEntity(1,"said","said","said","said","said",1)
         var essai : MutableLiveData<ClientEntity> = MutableLiveData()
@@ -40,12 +42,37 @@ class AuthentifivationVM @ViewModelInject constructor(
         Log.d("viewModel", "_________le view model")
     }
 
-    fun recupClient(loginClient : String, pswClient : String) : LiveData<ClientEntity>{
+    fun recupClient() : LiveData<ClientEntity>{
         Log.d("viewModel", "_________le recupe")
 //        client.value = repositoryAth.attemptLogin(loginClient, pswClient).value
         client.postValue(repositoryAth.attemptLogin(loginClient, pswClient).value)
         Log.d("viewModel", "=========="+ client.value?.loginClient)
         return  client
+    }
+
+    /**
+     * verifier c'est les champs sont vides
+     */
+    fun verifierLogin() : Boolean {
+        if (loginClient == "" || pswClient == ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    /**
+     * gestion d'evenement de clic sur le bouton login
+     */
+    fun clicLogin(){
+
+    }
+
+    /**
+     * gestion d'evenement de clic sur le bouton inscription
+     */
+    fun clicInscription(){
+
     }
 
     /**
@@ -75,7 +102,5 @@ class AuthentifivationVM @ViewModelInject constructor(
 //            return true
 //        }
 //    }
-
-
 
 }

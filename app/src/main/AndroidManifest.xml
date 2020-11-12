@@ -15,14 +15,16 @@
         <activity
             android:name=".AccueilActivity"
             android:label="@string/title_activity_accueil"
-            android:theme="@style/Theme.SafeSoftApplication.NoActionBar" />
-        <activity android:name=".ui.inscription.InsriptionActivity" />
-        <activity android:name=".ui.authentification.LoginActivity">
+            android:theme="@style/Theme.SafeSoftApplication.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.inscription.InsriptionActivity" />
+        <activity android:name=".ui.authentification.LoginActivity">
+
         </activity>
     </application>
 

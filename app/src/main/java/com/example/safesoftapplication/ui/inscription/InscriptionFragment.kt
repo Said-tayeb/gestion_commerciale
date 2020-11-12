@@ -1,62 +1,77 @@
 package com.example.safesoftapplication.ui.inscription
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import com.example.safesoftapplication.AccueilActivity
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.ViewModel.InscriptionVM
+import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
+import com.example.safesoftapplication.databinding.ActivityInsriptionBinding
+import com.example.safesoftapplication.databinding.FragmentDetailsAchatBinding
+import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.startActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InscriptionFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class InscriptionFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val viewModel: InscriptionVM by viewModels()
+    private lateinit var binding: FragmentInscriptionBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+         binding = DataBindingUtil.inflate<FragmentInscriptionBinding>(inflater,
+            R.layout.fragment_inscription,container,false)
+
+        binding.btnEnregistrer.setOnClickListener {
+            even()
+        }
+        return binding.root
+
+    }
+
+    /**
+     * gestion d'evenement pour le bouton inscription
+     */
+    fun even(){
+        var loginClient = binding.editTextLoginInscription.text.toString()
+        var pswClient = binding.editTextPasswordInscription.text.toString()
+        var cPswClient = binding.editTextConfirmePassword.text.toString()
+        var emailClient = binding.editTextEmail.text.toString()
+        var nomClient = binding.editTextNomonCompte.text.toString()
+        var prenomClient = binding.editTextPrenom.text.toString()
+        if (loginClient == "" || pswClient == "" || cPswClient == "" || emailClient == "" || nomClient == "" || prenomClient == ""){
+            //longToast("vous devez remplir tous les champs")
+            Toast.makeText(context, "vous devez remplir tous les champs", Toast.LENGTH_LONG)
+            Log.d("viewModel", "==============oui oui")
+        }else{
+            if (cPswClient == pswClient){
+                var clientEntity = ClientEntity(1,loginClient, pswClient, emailClient, nomClient, prenomClient, 1 )
+                //Log.d("viewModel", "=========" + viewModel.essai)
+                if (true){
+                    //longToast("Vous avez bien inscrit")
+                    Toast.makeText(context, "Vous avez bien inscrit", Toast.LENGTH_LONG)
+                    view?.findNavController()?.navigate(R.id.action_inscriptionFragment_to_nav_gallery)
+                }else{
+                    //longToast("utilisateur déja exitant")
+                    Toast.makeText(context, "utilisateur déja exitant", Toast.LENGTH_LONG)
+                }
+            }else{
+                //longToast("verifier votre mot de passe")
+                Toast.makeText(context, "verifier votre mot de passe", Toast.LENGTH_LONG)
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inscription, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InscriptionFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InscriptionFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

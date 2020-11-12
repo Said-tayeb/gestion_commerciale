@@ -35,7 +35,7 @@ class BDLocalModules  {
         return Room.databaseBuilder(
             application,
             BaseDonneesLocal::class.java,
-            "gestiondatabase"
+            "base_de_donnees_safe"
         ).addCallback(callback)
             .fallbackToDestructiveMigration()
             .build()

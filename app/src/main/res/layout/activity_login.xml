@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.safesoftapplication.model.Client" />
+</data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,21 +24,23 @@
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:orientation="vertical">
-
+                <!--                    android:text="@={viewModel.loginClient}"-->
                 <EditText
                     android:id="@+id/idLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/strLogin"
-                    android:inputType="textPersonName"
-                    android:autofillHints="" />
 
+                    android:inputType="textPersonName"
+                    android:autofillHints=""/>
+<!--                android:text="@={viewModel.pswClient}"-->
                 <EditText
                     android:id="@+id/idPSW"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+
                     android:hint="@string/strPassword"
                     android:inputType="textPassword" />
 
@@ -59,6 +66,5 @@
                     android:text="@string/strBtnInscription" />
             </LinearLayout>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

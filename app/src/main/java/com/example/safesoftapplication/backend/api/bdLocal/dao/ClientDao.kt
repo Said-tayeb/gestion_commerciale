@@ -23,7 +23,7 @@ interface ClientDao {
     /**
      * recuperer tous les clients
      */
-    @Query("select * from clients")
+    @Query("select * from clients ")
     fun recupToutClients(): LiveData<List<ClientEntity>>
 
     /**

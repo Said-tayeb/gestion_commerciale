@@ -64,7 +64,4 @@ class BDDistantModules {
     fun provideRechercheService(retrofit: Retrofit):
             RechercheService = retrofit.create(RechercheService::class.java)
 
-
-
-
 }
