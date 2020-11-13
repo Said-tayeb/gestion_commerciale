@@ -1,9 +1,5 @@
-package com.example.safesoftapplication.ViewModel
+package com.example.safesoftapplication.vM
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import com.example.safesoftapplication.backend.api.bdLocal.entity.InfosOrganismeEntity
-import com.example.safesoftapplication.repository.RepositoryContacts
 //
 //class ContactVM @ViewModelInject constructor(
 //    val repositoryContacts: RepositoryContacts,

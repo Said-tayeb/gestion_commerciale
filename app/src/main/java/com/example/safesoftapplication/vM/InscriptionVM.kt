@@ -1,15 +1,9 @@
-package com.example.safesoftapplication.ViewModel
+package com.example.safesoftapplication.vM
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import com.example.safesoftapplication.model.Client
-import com.example.safesoftapplication.repository.RepositoryMonCompte
 import com.example.safesoftapplication.repository.repositoryInscription
-import java.util.*
 
 class InscriptionVM @ViewModelInject constructor(
     val repositoryInscription: repositoryInscription

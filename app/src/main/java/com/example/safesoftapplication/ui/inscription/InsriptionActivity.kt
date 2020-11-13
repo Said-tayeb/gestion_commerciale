@@ -5,29 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.safesoftapplication.AccueilActivity
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.ViewModel.AuthentifivationVM
-import com.example.safesoftapplication.ViewModel.InscriptionVM
-import com.example.safesoftapplication.backend.api.AppelRetrofit
-import com.example.safesoftapplication.backend.api.bdLocal.DateConverter
-import com.example.safesoftapplication.backend.api.api.services.InscriptionServices
+import com.example.safesoftapplication.vM.InscriptionVM
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.databinding.ActivityInsriptionBinding
 import com.example.safesoftapplication.databinding.ActivityLoginBinding
-import com.example.safesoftapplication.model.Client
-import com.example.safesoftapplication.ui.authentification.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_insription.*
 //import kotlinx.android.synthetic.main.fragment_blank.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
-import java.util.*
 
 @AndroidEntryPoint
 class InsriptionActivity : AppCompatActivity(), AnkoLogger {

@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.ViewModel
+package com.example.safesoftapplication.vM
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 

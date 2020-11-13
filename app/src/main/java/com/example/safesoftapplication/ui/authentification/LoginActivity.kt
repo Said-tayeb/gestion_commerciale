@@ -1,30 +1,8 @@
 package com.example.safesoftapplication.ui.authentification
 
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateViewModelFactory
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import com.example.safesoftapplication.AccueilActivity
 
-import com.example.safesoftapplication.R
-import com.example.safesoftapplication.ViewModel.AuthentifivationVM
-import com.example.safesoftapplication.backend.api.AppelRetrofit
-import com.example.safesoftapplication.backend.api.api.reponses.authResponse.ClientsResponse
-import com.example.safesoftapplication.backend.api.api.services.AuthServices
-import com.example.safesoftapplication.model.Client
-import com.example.safesoftapplication.ui.inscription.InsriptionActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.startActivity
 import com.example.safesoftapplication.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 

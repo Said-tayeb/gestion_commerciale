@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.ViewModel
+package com.example.safesoftapplication.vM
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
