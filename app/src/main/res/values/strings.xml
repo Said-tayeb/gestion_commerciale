@@ -30,6 +30,9 @@
     <string name="menu_home">Accueil</string>
     <string name="menu_gallery">Catalogue</string>
     <string name="menu_slideshow">Mon Compte</string>
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_mesCommandes">Mes commandes</string>
+    <string name="menu_monPanier">Mon panier</string>
     <string name="strEnregistrer">Enregistrer</string>
     <string name="strMotDePasse">Mot de passe</string>
     <string name="strNumeroDeTelephone">Numero de telephone</string>

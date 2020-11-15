@@ -3,23 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:name="com.example.safesoftapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_mesCommandes"
+            app:destination="@id/mesCommandesFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_monCompte"
+            app:destination="@id/monCompteFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_monPanier"
+            app:destination="@id/monPanierFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_contacts"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.safesoftapplication.ui.gallery.GalleryFragment"
+        android:id="@+id/catalogueFragment"
+        android:name="com.example.safesoftapplication.ui.catalogue.CatalogueFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_catalogueFragment_to_detailsProduitFragment"
+            app:destination="@id/detailsProduitFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.safesoftapplication.ui.slideshow.SlideshowFragment"
+        android:id="@+id/mesCommandesFragment"
+        android:name="com.example.safesoftapplication.ui.mesCommandes.MesCommandesFragment"
+        android:label="@string/menu_mesCommandes"
+        tools:layout="@layout/fragment_mes_commandes" >
+        <action
+            android:id="@+id/action_nav_mesCommandes_to_detailsAchatFragment"
+            app:destination="@id/detailsAchatFragment" />
+        <action
+            android:id="@+id/action_nav_mesCommandes_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monCompteFragment"
+        android:name="com.example.safesoftapplication.ui.slideshow.MonCompteFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_nav_monCompte_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monPanierFragment"
+        android:name="com.example.safesoftapplication.ui.monPanier.MonPanierFragment"
+        android:label="@string/menu_monPanier"
+        tools:layout="@layout/fragment_mon_panier" >
+        <action
+            android:id="@+id/action_nav_monPanier_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.safesoftapplication.ui.contacts.ContactsFragment"
+        android:label="@string/menu_contacts"
+        tools:layout="@layout/fragment_contacts" />
+    <fragment
+        android:id="@+id/detailsAchatFragment"
+        android:name="com.example.safesoftapplication.ui.detailsAchat.DetailsAchatFragment"
+        android:label="fragment_details_achat"
+        tools:layout="@layout/fragment_details_achat" />
+    <fragment
+        android:id="@+id/detailsProduitFragment"
+        android:name="com.example.safesoftapplication.ui.detailsProduit.DetailsProduitFragment"
+        android:label="fragment_details_produit"
+        tools:layout="@layout/fragment_details_produit" >
+        <action
+            android:id="@+id/action_detailsProduitFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.safesoftapplication.ui.authentification.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_inscriptionFragment"
+            app:destination="@id/inscriptionFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/inscriptionFragment"
+        android:name="com.example.safesoftapplication.ui.inscription.InscriptionFragment"
+        android:label="InscriptionFragment" >
+        <action
+            android:id="@+id/action_inscriptionFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

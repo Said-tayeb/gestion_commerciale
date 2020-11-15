@@ -11,6 +11,14 @@ class RepositoryMonCompte @Inject constructor(
 //    private val monCompteServices: MonCompteServices
 )
 {
+
+
+    fun recupClientByLogin(loginClient : String) = clientDao.recupClientsByLogin(loginClient)
+    /**
+     * recuperer le client par rapport a son id
+     */
+    fun recupClient(idClient : Int) = clientDao.recupClient(idClient)
+
     /**
      * recuperer les informations d'un client authentifier
      */

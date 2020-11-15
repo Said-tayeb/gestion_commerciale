@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ContactServices {
     @GET("/api/infoOrganisme/recupInfosOrganisme")
-        fun infosOrganisme() : Flowable<InfosOrganismeResponse>
+        fun recupInfosOrganisme() : Flowable<InfosOrganismeResponse>
 }

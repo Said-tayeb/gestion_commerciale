@@ -18,9 +18,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.Duration
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-
 
 
 @Module
@@ -49,10 +50,12 @@ class NetModule {
     ): OkHttpClient {
         val client = OkHttpClient
             .Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
             .cache(cache)
 
-        if (BuildConfig.DEBUG)
-            client.addInterceptor(loggingInterceptor)
+//        if (BuildConfig.DEBUG)
+        client.addInterceptor(loggingInterceptor)
 
         return client.build()
     }
@@ -63,7 +66,7 @@ class NetModule {
     fun provideOkHttpClientAuthorized(
         cache: Cache,
         loggingInterceptor: HttpLoggingInterceptor,
-         accessToken: String
+        accessToken: String
     ): OkHttpClient {
         val client = OkHttpClient
             .Builder()
@@ -78,8 +81,8 @@ class NetModule {
             })
             .cache(cache)
 
-        if (BuildConfig.DEBUG)
-            client.addInterceptor(loggingInterceptor)
+//        if (BuildConfig.DEBUG)
+        client.addInterceptor(loggingInterceptor)
 
         return client.build()
     }
@@ -96,10 +99,11 @@ class NetModule {
     @Named("normal_retro")
     fun provideRetrofit(
         gson: Gson,
-         @Named("normal_client") okHttpClient: OkHttpClient): Retrofit {
+        @Named("normal_client") okHttpClient: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("")
+            .baseUrl("http://192.168.1.200/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -110,11 +114,11 @@ class NetModule {
     @Named("secure_retro")
     fun provideRetrofitAuthorized(
         gson: Gson,
-         @Named("secure_client") okHttpClient: OkHttpClient
+        @Named("secure_client") okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("http://192.168.1.117/api/")
+            .baseUrl("http://192.168.1.200/api/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

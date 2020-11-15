@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface CatalogueService {
 
-    @GET("/produits/recupToutProduits")
+    @GET("api/produit/recupToutProduits.php")
         fun recupToutProduits() : Flowable<List<produitsResponse>>
 }

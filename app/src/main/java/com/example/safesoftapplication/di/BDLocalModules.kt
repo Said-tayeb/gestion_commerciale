@@ -1,6 +1,7 @@
 package com.example.safesoftapplication.di
 
 import android.app.Application
+import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -26,17 +27,15 @@ class BDLocalModules  {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 db.execSQL(
-                    "INSERT INTO clients (" +
-                            "loginClient, pswClient, emailClient, nomClient, prenomClient, LOGGED" +
-                            ") VALUES" +
-                            " ('said', 'said', 'said@gmail.com', 'tayeb', 'said', 0);"
-                )
+                    "INSERT INTO clients (loginClient, pswClient, emailClient, nomClient, prenomClient, LOGGED) VALUES('said', 'said', 'said@gmail.com', 'tayeb', 'said', 0);")
+                Log.d("viewModel", "creation de la table")
             }
+
         }
         return Room.databaseBuilder(
             application,
             BaseDonneesLocal::class.java,
-            "safedatabase"
+            "base_de_donnees_safe"
         ).addCallback(callback)
             .fallbackToDestructiveMigration()
             .build()

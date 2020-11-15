@@ -1,6 +1,9 @@
-package com.example.safesoftapplication.ViewModel
+package com.example.safesoftapplication.vM
 
 import android.util.Log
+import com.example.safesoftapplication.vM.BaseViewModel
+
+
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,17 +18,20 @@ import javax.inject.Named
 class CatalogueVM @ViewModelInject constructor(
     private val catalogueRepository: CatalogueRepository
 
-) :BaseViewModel() {
+) : BaseViewModel() {
 
     fun getAllProduits(): LiveData<List<ProduitEntity>> =
         catalogueRepository.getAllProduits()
 
+    fun affiche(){
+        val data = getProduit()
+        Log.d("data", "mes data  :"+data.value?.data?.get(0)?.idProduit)
+    }
 
 
     fun getProduit(): LiveData<Resource<List<produitsResponse>>> {
         val data: MutableLiveData<Resource<List<produitsResponse>>> = MutableLiveData()
         enqueue(catalogueRepository.getAllProduitsServeur(), data)
-        Log.d("data", "mes data  :"+data.value?.data?.get(0)?.titreProduit)
         return data
     }
 

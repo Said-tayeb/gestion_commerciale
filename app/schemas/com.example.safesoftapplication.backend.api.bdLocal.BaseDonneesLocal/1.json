@@ -1,0 +1,221 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a06b142fddc40cd77c98fdbfef55b2cf",
+    "entities": [
+      {
+        "tableName": "clients",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idClient` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginClient` TEXT NOT NULL, `pswClient` TEXT NOT NULL, `emailClient` TEXT NOT NULL, `nomClient` TEXT NOT NULL, `prenomClient` TEXT NOT NULL, `LOGGED` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idClient",
+            "columnName": "idClient",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loginClient",
+            "columnName": "loginClient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pswClient",
+            "columnName": "pswClient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emailClient",
+            "columnName": "emailClient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nomClient",
+            "columnName": "nomClient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prenomClient",
+            "columnName": "prenomClient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "LOGGED",
+            "columnName": "LOGGED",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idClient"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_clients_loginClient",
+            "unique": true,
+            "columnNames": [
+              "loginClient"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_clients_loginClient` ON `${TABLE_NAME}` (`loginClient`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "produits",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idProduit` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `titreProduit` TEXT NOT NULL, `prixProduit` REAL NOT NULL, `descriptionProduit` TEXT NOT NULL, `categorieProduit` TEXT NOT NULL, `stockProduit` REAL DEFAULT 0)",
+        "fields": [
+          {
+            "fieldPath": "idProduit",
+            "columnName": "idProduit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titreProduit",
+            "columnName": "titreProduit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prixProduit",
+            "columnName": "prixProduit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionProduit",
+            "columnName": "descriptionProduit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categorieProduit",
+            "columnName": "categorieProduit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stockProduit",
+            "columnName": "stockProduit",
+            "affinity": "REAL",
+            "notNull": false,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idProduit"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "infosOrganismes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idInfosOrganisme` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomOrganisme ` TEXT NOT NULL, `emailOrganisme ` TEXT NOT NULL, `telephoneOrganisme ` TEXT NOT NULL, `adresseOrganisme ` TEXT NOT NULL, `codePostalOrganisme  ` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idInfosOrganisme",
+            "columnName": "idInfosOrganisme",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nomOrganisme",
+            "columnName": "nomOrganisme ",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emailOrganisme",
+            "columnName": "emailOrganisme ",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "telephoneOrganisme",
+            "columnName": "telephoneOrganisme ",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adresseOrganisme",
+            "columnName": "adresseOrganisme ",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codePostalOrganisme",
+            "columnName": "codePostalOrganisme  ",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idInfosOrganisme"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_infosOrganismes_idInfosOrganisme",
+            "unique": true,
+            "columnNames": [
+              "idInfosOrganisme"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_infosOrganismes_idInfosOrganisme` ON `${TABLE_NAME}` (`idInfosOrganisme`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "paniers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPanier` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginClient` INTEGER NOT NULL, `pswClient` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idPanier",
+            "columnName": "idPanier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idClient",
+            "columnName": "loginClient",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idProduit",
+            "columnName": "pswClient",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idPanier"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a06b142fddc40cd77c98fdbfef55b2cf')"
+    ]
+  }
+}

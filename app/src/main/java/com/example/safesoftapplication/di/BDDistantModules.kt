@@ -1,5 +1,6 @@
 package com.example.safesoftapplication.di
 
+import com.example.safesoftapplication.backend.api.api.reponses.contact.InfosOrganismeResponse
 import com.example.safesoftapplication.backend.api.api.services.*
 import dagger.Module
 import dagger.Provides
@@ -25,25 +26,21 @@ class BDDistantModules {
 
     @Singleton
     @Provides
-    @Named("contact_retro")
     fun provideContactService(@Named("contact_retro") retrofit: Retrofit):
             ContactServices = retrofit.create(ContactServices::class.java)
 
     @Singleton
     @Provides
-    @Named("achat_retro")
     fun provideDetailsAchatsService(@Named("achat_retro") retrofit: Retrofit):
             DetailsAchatsServices = retrofit.create(DetailsAchatsServices::class.java)
 
     @Singleton
     @Provides
-    @Named("detail_produit_retro")
     fun provideDetailsProduitService(@Named("detail_produit_retro") retrofit: Retrofit):
             DetailsProduitServices = retrofit.create(DetailsProduitServices::class.java)
 
     @Singleton
     @Provides
-    @Named("inscription_retro")
     fun provideInscriptionService(@Named("inscription_retro") retrofit: Retrofit):
             InscriptionServices = retrofit.create(InscriptionServices::class.java)
 
@@ -70,6 +67,4 @@ class BDDistantModules {
     @Named("recherche_retro")
     fun provideRechercheService(@Named("recherche_retro") retrofit: Retrofit):
             RechercheService = retrofit.create(RechercheService::class.java)
-
-
 }
