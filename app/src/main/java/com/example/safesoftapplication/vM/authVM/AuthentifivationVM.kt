@@ -86,6 +86,14 @@ class AuthentifivationVM @ViewModelInject constructor(
             _messageLogin.value = ""
         }
     }
+//    suspend fun recupClient() : List<ClientEntity>{
+//        var listClient : List<ClientEntity>
+//        viewModelScope.launch {
+//           return@launch dataBase.recupToutClients()
+//            Log.d("baseDonnees", "_________  "+ listClient.get(0).loginClient)
+//        }
+//
+//    }
 
 //    fun essaif(): LiveData<ClientEntity>{
 //    val client = ClientEntity(1,"said","said","said","said","said",1)
@@ -118,6 +126,7 @@ class AuthentifivationVM @ViewModelInject constructor(
         }
     }
 
+
     /**
      * gestion d'evenement de clic sur le bouton login
      */
@@ -127,10 +136,7 @@ class AuthentifivationVM @ViewModelInject constructor(
             _messageLogin.value = "vous devez remplir tous les champs"
         }else{
 //            val clientTest = dataBase.recupToutClients()
-            viewModelScope.launch {
-                val lisClients = dataBase.recupToutClients()
-                Log.d("baseDonnees", "_________  "+ lisClients.get(0).loginClient)
-            }
+
             Log.d("baseDonnees", "_________ ")
             if (client.value == null){
                 _messageLogin.value = "Erreur d'authentification"

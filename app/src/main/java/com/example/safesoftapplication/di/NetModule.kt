@@ -103,7 +103,7 @@ class NetModule {
     ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("http://192.168.1.200/")
+            .baseUrl("http://192.168.1.52/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -118,7 +118,7 @@ class NetModule {
     ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("http://192.168.1.200/api/")
+            .baseUrl("http://192.168.1.52/api/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
