@@ -5,13 +5,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".SafeAplication"
+        android:name=".SafeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Gestion comerciale"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.SafeSoftApplication">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+
         <activity
             android:name=".AccueilActivity"
             android:label="@string/title_activity_accueil"

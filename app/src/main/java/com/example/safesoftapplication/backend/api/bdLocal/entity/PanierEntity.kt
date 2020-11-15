@@ -9,5 +9,5 @@ import androidx.room.PrimaryKey
 data class PanierEntity(
     @PrimaryKey(autoGenerate = true) val idPanier: Int,
     @ColumnInfo(name = "loginClient") val idClient : Int,
-    @ColumnInfo(name = "pswClient") val idProduit : Int,
+    @ColumnInfo(name = "pswClient") val idProduit : Int
 )

@@ -12,5 +12,5 @@ data class InfosOrganismeEntity (
     @ColumnInfo(name = "emailOrganisme ") val emailOrganisme  : String,
     @ColumnInfo(name = "telephoneOrganisme ") val telephoneOrganisme  : String,
     @ColumnInfo(name = "adresseOrganisme ") val adresseOrganisme  : String,
-    @ColumnInfo(name = "codePostalOrganisme  ") val codePostalOrganisme   : String,
+    @ColumnInfo(name = "codePostalOrganisme  ") val codePostalOrganisme   : String
 )
