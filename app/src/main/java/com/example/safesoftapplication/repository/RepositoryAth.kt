@@ -22,7 +22,7 @@ class RepositoryAth @Inject constructor(
     /**
      * recuperer un client par rapport a son login et mot de passe
      */
-    fun attemptLogin(loginClient: String, pswClient : String):LiveData<ClientEntity>{
+    suspend fun attemptLogin(loginClient: String, pswClient : String): ClientEntity {
         return clientDao.attemptLogin(loginClient, pswClient)
     }
 

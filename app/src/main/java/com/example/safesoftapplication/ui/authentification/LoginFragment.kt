@@ -63,13 +63,16 @@ class LoginFragment : Fragment() {
         //gestion de button login
         viewModel.messageLogin.observe(viewLifecycleOwner, Observer<String> { newMessageLogin ->
              if (newMessageLogin != ""){
-                 Toast.makeText(context, newMessageLogin, Toast.LENGTH_LONG).show()
                  viewModel.trouver.observe(viewLifecycleOwner, Observer<Boolean>{newTrouver ->
                      if (newTrouver){
                          view?.findNavController()?.navigate(R.id.action_loginFragment_to_catalogueFragment)
                          viewModel.changeTrouver()
+                     }else{
+                         binding.idLogin.text = null
+                         binding.idPSW.text = null
                      }
                  })
+                 Toast.makeText(context, newMessageLogin, Toast.LENGTH_LONG).show()
                  viewModel.changeMessage()
              }
         })

@@ -2,23 +2,11 @@ package com.example.safesoftapplication.vM.authVM
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-
-//import com.example.safesoftapplication.backend.api.api.repository.AuthRepository
-
-//import com.example.safesoftapplication.backend.api.bdLocal.repositoryBdLocal.ClientRepository
-
-
-import com.example.safesoftapplication.repository.RepositoryAth
-import androidx.navigation.findNavController
-import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import com.example.safesoftapplication.ui.authentification.LoginActivity
 import kotlinx.coroutines.launch
-import org.koin.dsl.module.applicationContext
 
 
 class AuthentifivationVM @ViewModelInject constructor(
@@ -26,13 +14,7 @@ class AuthentifivationVM @ViewModelInject constructor(
      application: Application
 //     @Assisted savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application){
-//    private var _loginClient = MutableLiveData<String>()
-//    val loginClient : LiveData<String>
-//        get() = _loginClient
-//
-//    private var _pswClient = MutableLiveData<String>()
-//    val  pswClient : LiveData<String>
-//        get() = _pswClient
+
     var loginClient : String = ""
     var pswClient : String = ""
 
@@ -86,32 +68,13 @@ class AuthentifivationVM @ViewModelInject constructor(
             _messageLogin.value = ""
         }
     }
-//    suspend fun recupClient() : List<ClientEntity>{
-//        var listClient : List<ClientEntity>
-//        viewModelScope.launch {
-//           return@launch dataBase.recupToutClients()
-//            Log.d("baseDonnees", "_________  "+ listClient.get(0).loginClient)
-//        }
-//
-//    }
 
-//    fun essaif(): LiveData<ClientEntity>{
-//    val client = ClientEntity(1,"said","said","said","said","said",1)
-//        var essai : MutableLiveData<ClientEntity> = MutableLiveData()
-//        essai.value=client
-//    Log.d("viewModel", ""+ essai.value!!.loginClient)
-//    return essai
-//    }
-
-    fun init(){
-        Log.d("viewModel", "_________le view model")
+    /**
+     * recuperer le client de la base de donnees
+     */
+    suspend fun recupClientDatabase() : ClientEntity?{
+        return dataBase.attemptLogin(loginClient, pswClient)
     }
-
-//    fun recupClient() : LiveData<List<ClientEntity>> {
-//            return dataBase.recupToutClients()
-//        Log.d("baseDonnees", "_______recupList clients")
-//            //Log.d("baseDonnees", "le client :"+clientTest.value?.get(0)?.loginClient)
-//    }
 
 
     /**
@@ -126,25 +89,23 @@ class AuthentifivationVM @ViewModelInject constructor(
         }
     }
 
-
     /**
      * gestion d'evenement de clic sur le bouton login
      */
     fun clicLogin(){
-        Log.d("viewModel", "clic sur le bouton login____"+loginClient )
-        if (verifierLogin()){
-            _messageLogin.value = "vous devez remplir tous les champs"
-        }else{
-//            val clientTest = dataBase.recupToutClients()
-
-            Log.d("baseDonnees", "_________ ")
-            if (client.value == null){
-                _messageLogin.value = "Erreur d'authentification"
+        viewModelScope.launch {
+            _client.value = recupClientDatabase()
+            Log.d("baseDonnees", "_client : "+ client.value?.loginClient)
+            if (verifierLogin()){
+                _messageLogin.value = "vous devez remplir tous les champs"
             }else{
-                _messageLogin.value = "Bonjour " + client.value?.prenomClient
-                _trouver.value = true
-                //Toast.makeText(context, "Bonjour", Toast.LENGTH_LONG).show()
-                //view?.findNavController()?.navigate(R.id.action_loginFragment_to_nav_gallery)
+                Log.d("baseDonnees", "client : "+ client.value?.loginClient)
+                if (client.value?.loginClient == null){
+                    _messageLogin.value = "Erreur d'authentification"
+                }else{
+                    _messageLogin.value = "Bonjour " + client.value?.prenomClient
+                    _trouver.value = true
+                }
             }
         }
     }

@@ -76,27 +76,32 @@ class InscriptionVM @ViewModelInject constructor(
             //longToast("vous devez remplir tous les champs")
             _message.value = "vous devez remplir tous les champs"
         }else{
-            if (cPswClient != pswClient) {
-                _message.value = "verifier votre mot de passe"
-            }else{
-                if (existe()) {
-                    _message.value = "utilisateur déja exitant"
-                }else{
-                    //demarer une coroutine
-                    viewModelScope.launch {
-                        val newclient = ClientEntity(
-                            0,
-                            loginClient,
-                            pswClient,
-                            emailClient,
-                            nomClient,
-                            prenomClient,
-                            1
-                        )
-                       ajoutClient(newclient)
+            if(pswClient.length < 5){
+                _message.value = "votre mot de passe doit contenir au moins 5 caracteres"
+            }else {
+                if (cPswClient != pswClient) {
+                    _message.value = "verifier votre mot de passe"
+                } else{
+                    if (existe()) {
+                        _message.value = "utilisateur déja exitant"
+                    } else {
+                        //demarer une coroutine
+                        viewModelScope.launch {
+                            val newclient = ClientEntity(
+                                0,
+                                loginClient,
+                                pswClient,
+                                emailClient,
+                                nomClient,
+                                prenomClient,
+                                1
+                            )
+                            ajoutClient(newclient)
+                        }
+                        succes = true
+                        _message.value = "Vous avez bien inscrit"
+
                     }
-                    succes = true
-                    _message.value = "Vous avez bien inscrit"
 
                 }
             }
