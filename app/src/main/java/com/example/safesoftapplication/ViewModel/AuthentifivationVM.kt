@@ -19,7 +19,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
 class AuthentifivationVM @ViewModelInject constructor(
-     val repositoryAth: RepositoryAth,
+     val repositoryAth: RepositoryAth
 //     @Assisted savedStateHandle: SavedStateHandle
 ) : ViewModel(){
 //    val client : LiveData<ClientEntity> = TODO()

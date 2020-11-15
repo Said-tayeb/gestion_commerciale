@@ -6,6 +6,7 @@ import retrofit2.http.GET
 
 
 interface CatalogueService {
+
     @GET("/produits/recupToutProduits")
         fun recupToutProduits() : Flowable<List<produitsResponse>>
 }

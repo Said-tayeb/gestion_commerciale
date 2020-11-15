@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class RepositoryAth @Inject constructor(
     private val clientDao: ClientDao
-//    private val authService: AuthServices
+//   , private val authService: AuthServices
 ) {
 
     /**

@@ -15,52 +15,60 @@ class BDDistantModules {
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit):
+    fun provideAuthService(@Named("secure_retro") retrofit: Retrofit):
             AuthServices = retrofit.create(AuthServices::class.java)
 
     @Singleton
     @Provides
-    fun provideCatalogueService(retrofit: Retrofit):
+    fun provideCatalogueService(@Named("normal_retro") retrofit: Retrofit):
             CatalogueService = retrofit.create(CatalogueService::class.java)
 
     @Singleton
     @Provides
-    fun provideContactService(retrofit: Retrofit):
+    @Named("contact_retro")
+    fun provideContactService(@Named("contact_retro") retrofit: Retrofit):
             ContactServices = retrofit.create(ContactServices::class.java)
 
     @Singleton
     @Provides
-    fun provideDetailsAchatsService(retrofit: Retrofit):
+    @Named("achat_retro")
+    fun provideDetailsAchatsService(@Named("achat_retro") retrofit: Retrofit):
             DetailsAchatsServices = retrofit.create(DetailsAchatsServices::class.java)
 
     @Singleton
     @Provides
-    fun provideDetailsProduitService(retrofit: Retrofit):
+    @Named("detail_produit_retro")
+    fun provideDetailsProduitService(@Named("detail_produit_retro") retrofit: Retrofit):
             DetailsProduitServices = retrofit.create(DetailsProduitServices::class.java)
 
     @Singleton
     @Provides
-    fun provideInscriptionService(retrofit: Retrofit):
+    @Named("inscription_retro")
+    fun provideInscriptionService(@Named("inscription_retro") retrofit: Retrofit):
             InscriptionServices = retrofit.create(InscriptionServices::class.java)
 
     @Singleton
     @Provides
-    fun provideMesCommandesService(retrofit: Retrofit):
+    @Named("commendes_retro")
+    fun provideMesCommandesService(@Named("commendes_retro") retrofit: Retrofit):
             MesCommandesServices = retrofit.create(MesCommandesServices::class.java)
 
     @Singleton
     @Provides
-    fun provideMonCompteService(retrofit: Retrofit):
+    @Named("compte_retro")
+    fun provideMonCompteService(@Named("compte_retro") retrofit: Retrofit):
             MonCompteServices = retrofit.create(MonCompteServices::class.java)
 
     @Singleton
     @Provides
-    fun provideMonPanierService(retrofit: Retrofit):
+    @Named("mon_panier_retro")
+    fun provideMonPanierService(@Named("mon_panier_retro") retrofit: Retrofit):
             MonPanierServices = retrofit.create(MonPanierServices::class.java)
 
     @Singleton
     @Provides
-    fun provideRechercheService(retrofit: Retrofit):
+    @Named("recherche_retro")
+    fun provideRechercheService(@Named("recherche_retro") retrofit: Retrofit):
             RechercheService = retrofit.create(RechercheService::class.java)
 
 

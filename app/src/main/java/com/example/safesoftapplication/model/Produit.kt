@@ -1,5 +1,8 @@
 package com.example.safesoftapplication.model
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class Produit(
         val idProduit : Int,
         val titreProduit : String,
@@ -8,5 +11,6 @@ data class Produit(
         val categorieProduit : String,
         val stockProduit : Int
 ){
+
 
 }
