@@ -1,6 +1,5 @@
 package com.example.safesoftapplication.backend.api.bdLocal.dao
 
-
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -8,8 +7,6 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import io.reactivex.Completable
-import io.reactivex.Single
-
 
 @Dao
 interface ClientDao {
@@ -42,13 +39,13 @@ interface ClientDao {
      * deconnecter un client
      */
     @Query("UPDATE clients SET LOGGED = 0")
-    fun logOut(): Completable
+    fun logOut()
 
     /**
      * modifier les informations du client
      */
     @Update
-    suspend fun modifierClient(vararg client : ClientEntity)
+    fun modifierClient(client : ClientEntity)
 
     /**
      * recuperer les informations d'un client connecter
@@ -60,6 +57,6 @@ interface ClientDao {
      * ajouter un client a la base de donnees local
      */
     @Insert
-    fun ajoutClient(vararg client : ClientEntity): Completable
+    suspend fun ajoutClient(client : ClientEntity)
 
 }

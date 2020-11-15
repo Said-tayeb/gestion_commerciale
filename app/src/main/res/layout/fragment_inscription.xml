@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.safesoftapplication.vM.inscriptionVM.InscriptionVM" />
+    </data>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,7 +39,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/strNom"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.nomClient}"/>
 
             </LinearLayout>
 
@@ -57,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/strPrenom"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.prenomClient}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -78,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Adresse email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.emailClient}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -99,7 +106,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Login"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.loginClient}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Mot de passe"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.pswClient}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -141,7 +150,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Confirmer le mot de passe"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.cPswClient}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -154,7 +164,8 @@
                     android:id="@+id/btnEnregistrer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enregistrer" />
+                    android:text="Enregistrer"
+                    android:onClick="@{() -> viewModel.clicBtnInscription()}"/>
             </LinearLayout>
 
         </LinearLayout>

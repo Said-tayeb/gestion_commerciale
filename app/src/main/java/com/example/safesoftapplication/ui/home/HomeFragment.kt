@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         )
 
         binding.button.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_nav_home_to_nav_gallery)
+            view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogueFragment)
         }
 
         binding.button2.setOnClickListener {

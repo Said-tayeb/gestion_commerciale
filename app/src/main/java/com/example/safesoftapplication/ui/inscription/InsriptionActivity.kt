@@ -7,10 +7,9 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.safesoftapplication.AccueilActivity
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.vM.InscriptionVM
+import com.example.safesoftapplication.vM.inscriptionVM.InscriptionVM
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.databinding.ActivityInsriptionBinding
-import com.example.safesoftapplication.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 //import kotlinx.android.synthetic.main.fragment_blank.*
 import org.jetbrains.anko.AnkoLogger

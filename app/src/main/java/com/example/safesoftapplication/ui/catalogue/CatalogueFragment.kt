@@ -1,24 +1,20 @@
-package com.example.safesoftapplication.ui.gallery
+package com.example.safesoftapplication.ui.catalogue
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.databinding.FragmentGalleryBinding
-import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment() {
+class CatalogueFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var catalogueViewModel: CatalogueViewModel
     private lateinit var binding: FragmentGalleryBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,11 +22,9 @@ class GalleryFragment : Fragment() {
             R.layout.fragment_gallery,container,false)
 
         binding.button6.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_nav_gallery_to_detailsProduitFragment)
+            view?.findNavController()?.navigate(R.id.action_catalogueFragment_to_detailsProduitFragment)
         }
         return binding.root
-
-
     }
 
 //    galleryViewModel =

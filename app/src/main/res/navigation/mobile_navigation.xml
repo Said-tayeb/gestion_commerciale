@@ -23,17 +23,17 @@
             android:id="@+id/action_nav_home_to_nav_contacts"
             app:destination="@id/contactsFragment" />
         <action
-            android:id="@+id/action_nav_home_to_nav_gallery"
+            android:id="@+id/action_homeFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/catalogueFragment"
-        android:name="com.example.safesoftapplication.ui.gallery.GalleryFragment"
+        android:name="com.example.safesoftapplication.ui.catalogue.CatalogueFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" >
         <action
-            android:id="@+id/action_nav_gallery_to_detailsProduitFragment"
+            android:id="@+id/action_catalogueFragment_to_detailsProduitFragment"
             app:destination="@id/detailsProduitFragment" />
     </fragment>
     <fragment
@@ -92,10 +92,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_inscriptionFragment"
-            app:destination="@id/inscriptionFragment"
-            app:popUpToInclusive="false" />
+            app:destination="@id/inscriptionFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_nav_gallery"
+            android:id="@+id/action_loginFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />
@@ -105,7 +104,7 @@
         android:name="com.example.safesoftapplication.ui.inscription.InscriptionFragment"
         android:label="InscriptionFragment" >
         <action
-            android:id="@+id/action_inscriptionFragment_to_nav_gallery"
+            android:id="@+id/action_inscriptionFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.example.safesoftapplication.ViewModel.InscriptionVM" />-->
-<!--    </data>-->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.safesoftapplication.vM.inscriptionVM.InscriptionVM" />
+    </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -162,7 +162,6 @@
                     android:layout_height="wrap_content"
                     android:text="Enregistrer" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
