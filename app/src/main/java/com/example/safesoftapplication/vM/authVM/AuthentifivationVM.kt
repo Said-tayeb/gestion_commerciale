@@ -56,6 +56,37 @@ class AuthentifivationVM @ViewModelInject constructor(
     val btnInscription : LiveData<Boolean>
         get() = _btnInscription
 
+    /**
+     * modifier la valeur de btnInscriiption
+     */
+    fun changeBtnInscription(){
+        if(_btnInscription.value == true){
+            _btnInscription.value = false
+        }else{
+            _btnInscription.value = true
+        }
+    }
+
+    /**
+     * changer la valeur de la variable trouver
+     */
+    fun changeTrouver(){
+        if(_trouver.value == false){
+            _trouver.value = true
+        }else{
+            _trouver.value = false
+        }
+    }
+
+    /**
+     * changer la valeur de la variable message
+     */
+    fun changeMessage(){
+        if (_messageLogin.value != ""){
+            _messageLogin.value = ""
+        }
+    }
+
 //    fun essaif(): LiveData<ClientEntity>{
 //    val client = ClientEntity(1,"said","said","said","said","said",1)
 //        var essai : MutableLiveData<ClientEntity> = MutableLiveData()
@@ -68,14 +99,11 @@ class AuthentifivationVM @ViewModelInject constructor(
         Log.d("viewModel", "_________le view model")
     }
 
-    fun recupClient(){
-        var clientEntity = ClientEntity(1,"said", "said", "said", "said", "said", 1)
-//        Log.d("viewModel", "_________le recupe")
-        viewModelScope.launch {
-//            _client = dataBase.recupClientsByLogin(loginClient)
-        }
-//        Log.d("viewModel", "=========="+ client.value?.loginClient)
-    }
+//    fun recupClient() : LiveData<List<ClientEntity>> {
+//            return dataBase.recupToutClients()
+//        Log.d("baseDonnees", "_______recupList clients")
+//            //Log.d("baseDonnees", "le client :"+clientTest.value?.get(0)?.loginClient)
+//    }
 
 
     /**
@@ -98,7 +126,12 @@ class AuthentifivationVM @ViewModelInject constructor(
         if (verifierLogin()){
             _messageLogin.value = "vous devez remplir tous les champs"
         }else{
-            recupClient()
+//            val clientTest = dataBase.recupToutClients()
+            viewModelScope.launch {
+                val lisClients = dataBase.recupToutClients()
+                Log.d("baseDonnees", "_________  "+ lisClients.get(0).loginClient)
+            }
+            Log.d("baseDonnees", "_________ ")
             if (client.value == null){
                 _messageLogin.value = "Erreur d'authentification"
             }else{

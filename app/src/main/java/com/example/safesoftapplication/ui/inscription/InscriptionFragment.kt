@@ -47,15 +47,18 @@ class InscriptionFragment : Fragment() {
 //        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
         binding.viewModel = viewModel
 
+        //gestion de button enregistrer
         viewModel.message.observe(viewLifecycleOwner, Observer<String>{ newMessage ->
-            if (viewModel.succes){
-                view?.findNavController()?.navigate(R.id.action_inscriptionFragment_to_catalogueFragment)
-            }
+
             if (newMessage != ""){
+                if (viewModel.succes){
+                    view?.findNavController()?.navigate(R.id.action_inscriptionFragment_to_catalogueFragment)
+                }
                 Toast.makeText(context, newMessage, Toast.LENGTH_LONG).show()
 //                if (viewModel.succes){
 //                    view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogueFragment)
 //                }
+                viewModel.changeMessage()
             }
         })
         return binding.root

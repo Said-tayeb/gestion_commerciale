@@ -20,8 +20,8 @@ interface ClientDao {
     /**
      * recuperer tous les clients
      */
-    @Query("select * from clients ")
-    fun recupToutClients(): LiveData<List<ClientEntity>>
+    @Query("select * from clients limit 1 ")
+    suspend fun recupToutClients(): List<ClientEntity>
 
     /**
      * recuperer les informations d'un client
@@ -30,7 +30,7 @@ interface ClientDao {
     fun recupClient(idClient: Int): LiveData<ClientEntity>
 
     /**
-     * recuperer un client par son loginClient
+     * recuperer un client par son loginClient et mot de passe
      */
     @Query("SELECT * FROM clients WHERE loginClient = :loginClient and pswClient= :pswClient")
     fun attemptLogin(loginClient: String, pswClient : String): LiveData<ClientEntity>

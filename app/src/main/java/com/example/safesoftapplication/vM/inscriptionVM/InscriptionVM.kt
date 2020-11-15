@@ -33,6 +33,11 @@ class InscriptionVM @ViewModelInject constructor(
     val message : LiveData<String>
         get() = _message
 
+    fun changeMessage(){
+        if (_message.value != ""){
+            _message.value = ""
+        }
+    }
 //    private val _succes = MutableLiveData<Boolean>(false)
 //    val succes : LiveData<Boolean>
 //        get() = _succes
@@ -44,7 +49,6 @@ class InscriptionVM @ViewModelInject constructor(
     private suspend fun  ajoutClient(client : ClientEntity){
         clientDao.ajoutClient(client)
     }
-
 
     //passer les informations du client a l'activity inscription
 //    val client : LiveData<ClientEntity> = TODO()
@@ -81,7 +85,7 @@ class InscriptionVM @ViewModelInject constructor(
                     //demarer une coroutine
                     viewModelScope.launch {
                         val newclient = ClientEntity(
-                            1,
+                            0,
                             loginClient,
                             pswClient,
                             emailClient,
@@ -89,13 +93,13 @@ class InscriptionVM @ViewModelInject constructor(
                             prenomClient,
                             1
                         )
-                       // ajoutClient(newclient)
+                       ajoutClient(newclient)
                     }
-                    _message.value = "Vous avez bien inscrit"
                     succes = true
+                    _message.value = "Vous avez bien inscrit"
+
                 }
             }
         }
     }
-
 }

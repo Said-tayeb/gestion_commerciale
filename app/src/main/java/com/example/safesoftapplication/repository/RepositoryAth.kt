@@ -17,7 +17,7 @@ class RepositoryAth @Inject constructor(
     /**
      * recuperer tous les clients de la base de donnees local
      */
-    fun recupToutClient() = clientDao.recupToutClients()
+ //   fun recupToutClient() = clientDao.recupToutClients()
 
     /**
      * recuperer un client par rapport a son login et mot de passe
