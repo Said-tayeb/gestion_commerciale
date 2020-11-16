@@ -76,7 +76,6 @@ class AuthentifivationVM @ViewModelInject constructor(
         return dataBase.attemptLogin(loginClient, pswClient)
     }
 
-
     /**
      * verifier c'est les champs sont vides
      */

@@ -16,7 +16,7 @@ class RepositoryContacts @Inject constructor(
     /**
      * recuperer les informations de l'organisme
      */
-    fun recupInfosOrganisme() = infosOrganismeDao.recupInfosOrganisme()
+    suspend fun recupInfosOrganisme() = infosOrganismeDao.recupInfosOrganisme()
 
 //    fun recupInfosOrganismeServeur() = contactServices.recupInfosOrganisme()
 
