@@ -33,6 +33,11 @@ class InscriptionVM @ViewModelInject constructor(
     val message : LiveData<String>
         get() = _message
 
+    fun changeMessage(){
+        if (_message.value != ""){
+            _message.value = ""
+        }
+    }
 //    private val _succes = MutableLiveData<Boolean>(false)
 //    val succes : LiveData<Boolean>
 //        get() = _succes
@@ -44,7 +49,6 @@ class InscriptionVM @ViewModelInject constructor(
     private suspend fun  ajoutClient(client : ClientEntity){
         clientDao.ajoutClient(client)
     }
-
 
     //passer les informations du client a l'activity inscription
 //    val client : LiveData<ClientEntity> = TODO()
@@ -72,30 +76,35 @@ class InscriptionVM @ViewModelInject constructor(
             //longToast("vous devez remplir tous les champs")
             _message.value = "vous devez remplir tous les champs"
         }else{
-            if (cPswClient != pswClient) {
-                _message.value = "verifier votre mot de passe"
-            }else{
-                if (existe()) {
-                    _message.value = "utilisateur déja exitant"
-                }else{
-                    //demarer une coroutine
-                    viewModelScope.launch {
-                        val newclient = ClientEntity(
-                            1,
-                            loginClient,
-                            pswClient,
-                            emailClient,
-                            nomClient,
-                            prenomClient,
-                            1
-                        )
-                       // ajoutClient(newclient)
+            if(pswClient.length < 5){
+                _message.value = "votre mot de passe doit contenir au moins 5 caracteres"
+            }else {
+                if (cPswClient != pswClient) {
+                    _message.value = "verifier votre mot de passe"
+                } else{
+                    if (existe()) {
+                        _message.value = "utilisateur déja exitant"
+                    } else {
+                        //demarer une coroutine
+                        viewModelScope.launch {
+                            val newclient = ClientEntity(
+                                0,
+                                loginClient,
+                                pswClient,
+                                emailClient,
+                                nomClient,
+                                prenomClient,
+                                1
+                            )
+                            ajoutClient(newclient)
+                        }
+                        succes = true
+                        _message.value = "Vous avez bien inscrit"
+
                     }
-                    _message.value = "Vous avez bien inscrit"
-                    succes = true
+
                 }
             }
         }
     }
-
 }

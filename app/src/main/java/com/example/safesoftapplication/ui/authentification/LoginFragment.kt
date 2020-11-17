@@ -60,22 +60,29 @@ class LoginFragment : Fragment() {
 //            eventBtnInscription()
 //        }
 
-
+        //gestion de button login
         viewModel.messageLogin.observe(viewLifecycleOwner, Observer<String> { newMessageLogin ->
              if (newMessageLogin != ""){
-                 Toast.makeText(context, newMessageLogin, Toast.LENGTH_LONG).show()
                  viewModel.trouver.observe(viewLifecycleOwner, Observer<Boolean>{newTrouver ->
                      if (newTrouver){
                          view?.findNavController()?.navigate(R.id.action_loginFragment_to_catalogueFragment)
+                         viewModel.changeTrouver()
+                     }else{
+                         binding.idLogin.text = null
+                         binding.idPSW.text = null
                      }
                  })
+                 Toast.makeText(context, newMessageLogin, Toast.LENGTH_LONG).show()
+                 viewModel.changeMessage()
              }
         })
 
+        //gestion de button inscription
         viewModel.btnInscription.observe(viewLifecycleOwner, Observer<Boolean> { newBtnInscription ->
             if (newBtnInscription){
                 Toast.makeText(context,"Créer un compte", Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.navigate(R.id.action_loginFragment_to_inscriptionFragment)
+                viewModel.changeBtnInscription()
             }
         })
 

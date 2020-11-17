@@ -1,10 +1,7 @@
 package com.example.safesoftapplication.backend.api.bdLocal.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import io.reactivex.Completable
 
@@ -20,43 +17,51 @@ interface ClientDao {
     /**
      * recuperer tous les clients
      */
-    @Query("select * from clients ")
-    fun recupToutClients(): LiveData<List<ClientEntity>>
+    @Query("select * from clients limit 1 ")
+        suspend fun recupToutClients(): List<ClientEntity>
 
     /**
      * recuperer les informations d'un client
      */
     @Query("select * from clients where idClient = :idClient")
-    fun recupClient(idClient: Int): LiveData<ClientEntity>
+        fun recupClient(idClient: Int): LiveData<ClientEntity>
 
     /**
-     * recuperer un client par son loginClient
+     * recuperer un client par son loginClient et mot de passe
      */
-    @Query("SELECT * FROM clients WHERE loginClient = :loginClient and pswClient= :pswClient")
-    fun attemptLogin(loginClient: String, pswClient : String): LiveData<ClientEntity>
+    @Query("SELECT * FROM clients WHERE loginClient = :loginClient and pswClient= :pswClient limit 1")
+        suspend fun attemptLogin(loginClient: String, pswClient : String): ClientEntity
 
     /**
      * deconnecter un client
      */
     @Query("UPDATE clients SET LOGGED = 0")
-    fun logOut()
+        fun logOut()
 
     /**
      * modifier les informations du client
      */
     @Update
-    fun modifierClient(client : ClientEntity)
+        fun modifierClient(client : ClientEntity)
 
     /**
      * recuperer les informations d'un client connecter
      */
     @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")
-    fun checkLogged(): LiveData<ClientEntity>
+        fun checkLogged(): LiveData<ClientEntity>
 
     /**
      * ajouter un client a la base de donnees local
      */
     @Insert
-    suspend fun ajoutClient(client : ClientEntity)
+        suspend fun ajoutClient(client : ClientEntity)
 
+    /**
+     * modifier le logged du client par rapport a son username
+     */
+    @Query("update clients set LOGGED = 1 where LoginClient = :loginClient")
+        suspend fun logged(loginClient: String)
+
+    @Query("update clients set LOGGED = 0 where LoginClient = :loginClient")
+    suspend fun loggout(loginClient: String)
 }

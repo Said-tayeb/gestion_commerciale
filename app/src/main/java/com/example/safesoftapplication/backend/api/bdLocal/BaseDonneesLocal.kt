@@ -1,6 +1,7 @@
 package com.example.safesoftapplication.backend.api.bdLocal
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -50,6 +51,7 @@ abstract class BaseDonneesLocal : RoomDatabase()  {
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
+                    Log.d("baseDonnees", "la base de donnees a ete creer")
                 }
                 return instance
             }
