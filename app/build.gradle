@@ -178,5 +178,11 @@ dependencies {
     androidTestImplementation ' androidx.test.espresso: espresso-core: 3.2.0 '
     androidTestCompile "android.arch.core:core-testing:1.1.0"
 
+    //materiels google
+    implementation 'com.google.android.material:material:1.2.1'
+
+    // intuit sdp/ssp library
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
 }

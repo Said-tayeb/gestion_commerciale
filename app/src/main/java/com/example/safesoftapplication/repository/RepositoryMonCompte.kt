@@ -22,7 +22,7 @@ class RepositoryMonCompte @Inject constructor(
     /**
      * recuperer les informations d'un client authentifier
      */
-    fun checkLogged() = clientDao.checkLogged()
+   // fun checkLogged() = clientDao.checkLogged()
 
     /**
      * modifier les information du client dans la base de donnees local

@@ -50,12 +50,15 @@
     </fragment>
     <fragment
         android:id="@+id/monCompteFragment"
-        android:name="com.example.safesoftapplication.ui.slideshow.MonCompteFragment"
+        android:name="com.example.safesoftapplication.ui.monCompte.MonCompteFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" >
         <action
             android:id="@+id/action_nav_monCompte_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_monCompteFragment_to_modifierPswFragment"
+            app:destination="@id/modifierPswFragment" />
     </fragment>
     <fragment
         android:id="@+id/monPanierFragment"
@@ -109,4 +112,8 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/modifierPswFragment"
+        android:name="com.example.safesoftapplication.ui.modifierPsw.ModifierPswFragment"
+        android:label="ModifierPswFragment" />
 </navigation>

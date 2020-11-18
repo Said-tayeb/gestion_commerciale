@@ -32,21 +32,21 @@ class LoginActivity : AppCompatActivity() , AnkoLogger {
         /**.recupToutClients()
          * gestion d'evenement pour le bouton Inscription
          */
-        binding.btnInscription.setOnClickListener{
-            val uri = Uri.parse("tel:0658164251")
-            val callIntent = Intent(Intent.ACTION_CALL, uri)
-//            callIntent.data = Uri.parse("tel:0658164251")
-            if(ActivityCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED)
-            {
-                var permissions: Array<String>
-                permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
-                requestPermissions(permissions, 1000)
-            }
-            startActivity(callIntent)
-        }
+//        binding.btnInscription.setOnClickListener{
+//            val uri = Uri.parse("tel:0658164251")
+//            val callIntent = Intent(Intent.ACTION_CALL, uri)
+////            callIntent.data = Uri.parse("tel:0658164251")
+//            if(ActivityCompat.checkSelfPermission(
+//                    this,
+//                    android.Manifest.permission.CALL_PHONE
+//                ) != PackageManager.PERMISSION_GRANTED)
+//            {
+//                var permissions: Array<String>
+//                permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
+//                requestPermissions(permissions, 1000)
+//            }
+//            startActivity(callIntent)
+//        }
 
         /**!
          * Gestion d'évenement pour le bouton Valider

@@ -7,45 +7,231 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_line"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/_100sdp" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/menu_gallery" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/idCatalogue"
+            android:layout_width="@dimen/dashboard_card_width"
+            android:layout_height="@dimen/dashboard_card_height"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:elevation="@dimen/_8sdp"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:contentPadding="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_line">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/menu_mesCommandes" />
 
-            <Button
-                android:id="@+id/button3"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/menu_slideshow" />
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/menu_monPanier" />
+                <ImageView
+                    android:id="@+id/catalogue_image"
+                    android:layout_width="@dimen/dashboard_card_icon_size"
+                    android:layout_height="@dimen/dashboard_card_icon_size"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/ic_delivery_box"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/button5"
+                <View
+                    android:id="@+id/divider_catalogue"
+                    android:layout_width="@dimen/dashboard_card_divider_width"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginStart="@dimen/dashboard_card_divider_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintStart_toEndOf="@id/catalogue_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/catalogue_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dashboard_card_title_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:text="Catalogue"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dashboard_card_title_size"
+                    app:layout_constraintStart_toEndOf="@id/divider_catalogue"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/commandes_card"
+            android:layout_width="@dimen/dashboard_card_width"
+            android:layout_height="@dimen/dashboard_card_height"
+            android:layout_margin="@dimen/_10sdp"
+            android:checkable="true"
+            android:clickable="true"
+            android:elevation="@dimen/_8sdp"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:contentPadding="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_line">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button" />
-        </LinearLayout>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/commandes_image"
+                    android:layout_width="@dimen/dashboard_card_icon_size"
+                    android:layout_height="@dimen/dashboard_card_icon_size"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/ic_checklist"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/divider_sales"
+                    android:layout_width="@dimen/dashboard_card_divider_width"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginStart="@dimen/dashboard_card_divider_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintStart_toEndOf="@id/commandes_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sales_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dashboard_card_title_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:text="Commandes"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dashboard_card_title_size"
+                    app:layout_constraintStart_toEndOf="@id/divider_sales"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/panier_card"
+            android:layout_width="@dimen/dashboard_card_width"
+            android:layout_height="@dimen/dashboard_card_height"
+            android:layout_margin="@dimen/_10sdp"
+            android:checkable="true"
+            android:clickable="true"
+            android:elevation="@dimen/_8sdp"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:contentPadding="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idCatalogue">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/client_image"
+                    android:layout_width="@dimen/dashboard_card_icon_size"
+                    android:layout_height="@dimen/dashboard_card_icon_size"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/ic_social_care"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/client_products"
+                    android:layout_width="@dimen/dashboard_card_divider_width"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginStart="@dimen/dashboard_card_divider_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintStart_toEndOf="@id/client_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/idTextMonPanier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dashboard_card_title_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:textColor="@color/black"
+                    android:text="Mon panier"
+                    android:textSize="@dimen/dashboard_card_title_size"
+                    app:layout_constraintStart_toEndOf="@id/client_products"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/organisme_card"
+            android:layout_width="@dimen/dashboard_card_width"
+            android:layout_height="@dimen/dashboard_card_height"
+            android:layout_margin="@dimen/_10sdp"
+            android:checkable="true"
+            android:clickable="true"
+            android:elevation="@dimen/_8sdp"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:contentPadding="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idCatalogue">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/idContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/organisme_image"
+                    android:layout_width="@dimen/dashboard_card_icon_size"
+                    android:layout_height="@dimen/dashboard_card_icon_size"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/ic_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/divider_inventory"
+                    android:layout_width="@dimen/dashboard_card_divider_width"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginStart="@dimen/dashboard_card_divider_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintStart_toEndOf="@id/organisme_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/idTextContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dashboard_card_title_start_margin"
+                    android:layout_marginTop="@dimen/dashboard_card_divider_top_margin"
+                    android:text="Contact"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dashboard_card_title_size"
+                    app:layout_constraintStart_toEndOf="@id/divider_inventory"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

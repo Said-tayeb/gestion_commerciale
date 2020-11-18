@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.safesoftapplication.vM.modifierPsw.ModifierPswVM" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.modifierPsw.ModifierPswFragment">
+
+
+        <EditText
+            android:id="@+id/editpsw"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Nouveau"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/editConfPsw"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Confirmer"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.clicValider()}"
+            android:text="Valider" />
+    </LinearLayout>
+</layout>
