@@ -81,7 +81,7 @@ class NetModule {
             })
             .cache(cache)
 
-//        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG)
         client.addInterceptor(loggingInterceptor)
 
         return client.build()
@@ -102,8 +102,11 @@ class NetModule {
         @Named("normal_client") okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(gson))
+
+            .baseUrl("http://192.168.1.200:8080/")
+
             .baseUrl("http://192.168.1.52/")
+
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -118,7 +121,7 @@ class NetModule {
     ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("http://192.168.1.52/api/")
+            .baseUrl("http://192.168.1.200:8080/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
