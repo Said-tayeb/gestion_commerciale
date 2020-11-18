@@ -3,7 +3,6 @@ package com.example.safesoftapplication.backend.api.bdLocal.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import io.reactivex.Completable
 
 @Dao
 interface ClientDao {
@@ -48,7 +47,7 @@ interface ClientDao {
      * recuperer les informations d'un client connecter
      */
     @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")
-        fun checkLogged(): LiveData<ClientEntity>
+        suspend fun checkLogged(): ClientEntity?
 
     /**
      * ajouter un client a la base de donnees local

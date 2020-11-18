@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 class InscriptionVM @ViewModelInject constructor(
     val clientDao : ClientDao,
     application : Application
-//    @Assisted savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application)
 {
     var loginClient : String =""
@@ -23,6 +22,7 @@ class InscriptionVM @ViewModelInject constructor(
     var emailClient : String = ""
     var nomClient : String = ""
     var prenomClient : String = ""
+    var telephoneClient : String = ""
     var essai = "dddddddddd"
 
     private val _client = MutableLiveData<ClientEntity>()
@@ -38,9 +38,7 @@ class InscriptionVM @ViewModelInject constructor(
             _message.value = ""
         }
     }
-//    private val _succes = MutableLiveData<Boolean>(false)
-//    val succes : LiveData<Boolean>
-//        get() = _succes
+
     var succes = false
 
     /**
@@ -50,16 +48,6 @@ class InscriptionVM @ViewModelInject constructor(
         clientDao.ajoutClient(client)
     }
 
-    //passer les informations du client a l'activity inscription
-//    val client : LiveData<ClientEntity> = TODO()
-
-    /**
-     *inscrir et ajouter un client a la base de donnees distante et local
-     */
-//    fun ajoutClient(client: ClientEntity) : Boolean {
-//        repositoryInscription.ajoutClient(client)
-//        return true
-//    }
 
     /**
      * verifier l'existance de l'utilisateur  dans la base de donnees
@@ -94,6 +82,7 @@ class InscriptionVM @ViewModelInject constructor(
                                 emailClient,
                                 nomClient,
                                 prenomClient,
+                                telephoneClient,
                                 1
                             )
                             ajoutClient(newclient)

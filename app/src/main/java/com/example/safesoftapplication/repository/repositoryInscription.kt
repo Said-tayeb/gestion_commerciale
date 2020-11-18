@@ -14,7 +14,7 @@ class repositoryInscription @Inject constructor(
     /**
      * recuperer les informations d'un client authentifié
      */
-    fun checkLogged() = clientDao.checkLogged()
+//    fun checkLogged() = clientDao.checkLogged()
 
     /**
      * ajout d'un client a la base de donnees local

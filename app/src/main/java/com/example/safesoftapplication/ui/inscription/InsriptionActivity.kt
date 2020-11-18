@@ -22,10 +22,10 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var binding: ActivityInsriptionBinding
     private val viewModel: InscriptionVM by viewModels()
 //    val inscriptionServices by lazy {
-//        AppelRetrofit.getClient(BASE_URL)?.create(InscriptionServices::class.java)
-//    }
-//    var disposable: Disposable? = null
-//    private var myCompositeDisposable: CompositeDisposable? = null
+////        AppelRetrofit.getClient(BASE_URL)?.create(InscriptionServices::class.java)
+////    }
+////    var disposable: Disposable? = null
+////    private var myCompositeDisposable: CompositeDisposable? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_insription)
@@ -34,37 +34,37 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
          * gestion d'évenement pour le bouton
          */
         binding.btnEnregistrer.setOnClickListener{
-            even()
+//            even()
         }
     }
 
     /**
      * gestion d'evenement pour le bouton inscription
      */
-    fun even(){
-        var loginClient = binding.editTextLoginInscription.text.toString()
-        var pswClient = binding.editTextPasswordInscription.text.toString()
-        var cPswClient = binding.editTextConfirmePassword.text.toString()
-        var emailClient = binding.editTextEmail.text.toString()
-        var nomClient = binding.editTextNomonCompte.text.toString()
-        var prenomClient = binding.editTextPrenom.text.toString()
-        if (loginClient == "" || pswClient == "" || cPswClient == "" || emailClient == "" || nomClient == "" || prenomClient == ""){
-            longToast("vous devez remplir tous les champs")
-        }else{
-            if (cPswClient == pswClient){
-                var clientEntity = ClientEntity(1,loginClient, pswClient, emailClient, nomClient, prenomClient, 1 )
-                Log.d("viewModel", "=========" + viewModel.essai)
-                if (true){
-                    longToast("Vous avez bien inscrit")
-                    startActivity<AccueilActivity>()
-                }else{
-                    longToast("utilisateur déja exitant")
-                }
-            }else{
-                longToast("verifier votre mot de passe")
-            }
-        }
-    }
+//    fun even(){
+//        var loginClient = binding.editTextLoginInscription.text.toString()
+//        var pswClient = binding.editTextPasswordInscription.text.toString()
+//        var cPswClient = binding.editTextConfirmePassword.text.toString()
+//        var emailClient = binding.editTextEmail.text.toString()
+//        var nomClient = binding.editTextNomonCompte.text.toString()
+//        var prenomClient = binding.editTextPrenom.text.toString()
+//        if (loginClient == "" || pswClient == "" || cPswClient == "" || emailClient == "" || nomClient == "" || prenomClient == ""){
+//            longToast("vous devez remplir tous les champs")
+//        }else{
+//            if (cPswClient == pswClient){
+//                var clientEntity = ClientEntity(1,loginClient, pswClient, emailClient, nomClient, prenomClient, " )
+//                Log.d("viewModel", "=========" + viewModel.essai)
+//                if (true){
+//                    longToast("Vous avez bien inscrit")
+//                    startActivity<AccueilActivity>()
+//                }else{
+//                    longToast("utilisateur déja exitant")
+//                }
+//            }else{
+//                longToast("verifier votre mot de passe")
+//            }
+//        }
+//    }
 //    fun ajoutClient(){
 //        disposable = inscriptionServices?.ajoutClient(loginClient, pswClient, nomClient, prenomClient, emailClient,
 //            adresseClient, codePostalClient)

@@ -1,21 +1,16 @@
 package com.example.safesoftapplication.ui.contacts
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.backend.api.bdLocal.entity.InfosOrganismeEntity
@@ -23,7 +18,6 @@ import com.example.safesoftapplication.databinding.FragmentContactsBinding
 import com.example.safesoftapplication.vM.contactVM.ContactVM
 import com.example.safesoftapplication.vM.contactVM.ContactVMFactory
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.jar.Manifest
 
 
 @AndroidEntryPoint
@@ -42,6 +36,7 @@ class ContactsFragment : Fragment() {
 
         //referance a l application
         val application = requireNotNull(this.activity).application
+
         //referance a notre source de donnees
         val dataSource = BaseDonneesLocal.getInstance(application).infosOrganismeDao()
         //créez une instance du viewModelFactory
@@ -57,14 +52,17 @@ class ContactsFragment : Fragment() {
 //        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
         binding.viewModel = viewModel
         //viewModel.ajoutInfos()
+
          //recuperer les informations
-        viewModel.recupInfosOrganisme()
+        viewModel.recup()
         viewModel.infosOrganisme.observe(viewLifecycleOwner, Observer<InfosOrganismeEntity> {
-            binding.idAddresseOrganisme.text = "Adresse : "+it.adresseOrganisme
-            binding.idCodePostalOrganisme.text = "Code postal : "+it.codePostalOrganisme
-            binding.idEmailOrganisme.text = "Email : "+it.emailOrganisme
-            binding.idNomOrganisme.text = "Nom : "+it.nomOrganisme
-            binding.idTelephoneOrganisme.text = "Téléphone : "+it.telephoneOrganisme
+            if(it != null) {
+                binding.idAddresseOrganisme.text = "Adresse : " + it.adresseOrganisme
+                binding.idCodePostalOrganisme.text = "Code postal : " + it.codePostalOrganisme
+                binding.idEmailOrganisme.text = "Email : " + it.emailOrganisme
+                binding.idNomOrganisme.text = "Nom : " + it.nomOrganisme
+                binding.idTelephoneOrganisme.text = "Téléphone : " + it.telephoneOrganisme
+            }
 
         })
 //        binding.viewModel.infosOrganisme.observe(viewLifecycleOwner, Observer<InfosOrganismeEntity>{

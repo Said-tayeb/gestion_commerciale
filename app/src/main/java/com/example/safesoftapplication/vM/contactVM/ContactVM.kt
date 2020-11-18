@@ -26,6 +26,13 @@ class ContactVM @ViewModelInject constructor(
     val adresseOrganismeV  : String = "Mohammadia, Mohammadia Mall, Alger, Algérie"
     val codePostalOrganismeV   : String = "16058"
 
+    var infosOrganismeEntityInit = InfosOrganismeEntity(
+        0,"aucun","aucun","","aucun","aucun"
+    )
+
+    fun init(){
+        _infosOrganisme.value = infosOrganismeEntityInit
+    }
 //    var nomOrganisme  : String = "Nom : "+nomOrganismeV
 //    var emailOrganisme  : String = "Email : "+emailOrganismeV
 //    var telephoneOrganisme  : String = "Téléphone : "+telephoneOrganismeV
@@ -57,7 +64,7 @@ class ContactVM @ViewModelInject constructor(
      */
     suspend fun recupInfosOrganismeDataBase() : InfosOrganismeEntity{
         var infosOrganismeEntity = dataBase.recupInfosOrganisme()
-        Log.d("baseDonnees", "______"+ infosOrganismeEntity.nomOrganisme)
+        //Log.d("baseDonnees", "______"+ infosOrganismeEntity.nomOrganisme)
         return infosOrganismeEntity
     }
 
@@ -67,6 +74,13 @@ class ContactVM @ViewModelInject constructor(
     fun recupInfosOrganisme(){
         viewModelScope.launch {
             _infosOrganisme.value = recupInfosOrganismeDataBase()
+        }
+    }
+
+    fun recup(){
+        recupInfosOrganisme()
+        if(infosOrganisme.value?.nomOrganisme == null){
+            _infosOrganisme.value = infosOrganismeEntityInit
         }
     }
 

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a06b142fddc40cd77c98fdbfef55b2cf",
+    "identityHash": "88aeaef803c9bb401afb9d00d65a2a64",
     "entities": [
       {
         "tableName": "clients",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idClient` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginClient` TEXT NOT NULL, `pswClient` TEXT NOT NULL, `emailClient` TEXT NOT NULL, `nomClient` TEXT NOT NULL, `prenomClient` TEXT NOT NULL, `LOGGED` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idClient` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginClient` TEXT NOT NULL, `pswClient` TEXT NOT NULL, `emailClient` TEXT NOT NULL, `nomClient` TEXT NOT NULL, `prenomClient` TEXT NOT NULL, `telephoneClient` TEXT, `LOGGED` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "idClient",
@@ -43,6 +43,12 @@
             "columnName": "prenomClient",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "telephoneClient",
+            "columnName": "telephoneClient",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "LOGGED",
@@ -215,7 +221,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a06b142fddc40cd77c98fdbfef55b2cf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '88aeaef803c9bb401afb9d00d65a2a64')"
     ]
   }
 }

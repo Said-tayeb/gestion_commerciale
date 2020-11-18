@@ -23,7 +23,7 @@
 
             <EditText
                 android:id="@+id/idLogin"
-                android:layout_width="250dp"
+                android:layout_width="@dimen/_180sdp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
@@ -34,7 +34,7 @@
 
             <EditText
                 android:id="@+id/idPSW"
-                android:layout_width="250dp"
+                android:layout_width="@dimen/_180sdp"
                 android:layout_height="wrap_content"
                 android:ems="10"
 
@@ -54,19 +54,18 @@
 
             <Button
                 android:id="@+id/btnLogin"
-                android:layout_width="200dp"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="wrap_content"
-                android:text="@string/strBtnLogin"
-                android:onClick="@{() -> viewModel.clicLogin()}"/>
-
+                android:onClick="@{() -> viewModel.clicLogin()}"
+                android:text="@string/strBtnLogin" />
 
 
             <Button
                 android:id="@+id/btnInscription"
-                android:layout_width="200dp"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="wrap_content"
-                android:text="@string/strBtnInscription"
-                android:onClick="@{() -> viewModel.clicInscription()}"/>
+                android:onClick="@{() -> viewModel.clicInscription()}"
+                android:text="@string/strBtnInscription" />
 
         </LinearLayout>
 

@@ -26,25 +26,22 @@ class HomeFragment : Fragment() {
             R.layout.fragment_home, container, false
         )
 
-        binding.button.setOnClickListener {
+        binding.idCatalogue.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogueFragment)
         }
 
-        binding.button2.setOnClickListener {
+        binding.commandesCard.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_nav_home_to_nav_mesCommandes)
         }
 
-        binding.button3.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_nav_home_to_nav_monCompte)
-        }
-
-        binding.button4.setOnClickListener {
+        binding.panierCard.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_nav_home_to_nav_monPanier)
         }
 
-        binding.button5.setOnClickListener {
+        binding.organismeCard.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_nav_home_to_nav_contacts)
         }
+
         return binding.root
     }
 
