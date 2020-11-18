@@ -23,16 +23,25 @@ class CatalogueFragment : Fragment() {
     private lateinit var viewModel: CatalogueVM
     private lateinit var binding: FragmentGalleryBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentGalleryBinding>(inflater,
-            R.layout.fragment_gallery,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate<FragmentGalleryBinding>(
+            inflater,
+            R.layout.fragment_gallery, container, false
+        )
 
         viewModel = ViewModelProvider(this).get(CatalogueVM::class.java)
 
         viewModel.getProduit().observe(viewLifecycleOwner, Observer {
-            when(it.state){
-                ResourceState.LOADING -> Log.d("TAG", "onCreateView: Loading");
-                ResourceState.SUCCESS -> Log.d("TAG", "onCreateView: sucess");
+            when (it.state) {
+                ResourceState.LOADING -> Log.d("TAG", "onCreateView: Loading")
+                ResourceState.SUCCESS -> {
+                    Log.d("TAG","data size is: ${it.data?.size}")
+                    Log.d("TAG", "onCreateView: sucess")
+                }
                 ResourceState.ERROR -> {
                     Log.d("TAG", "onCreateView: error")
                     it.exception?.printStackTrace()
@@ -41,8 +50,10 @@ class CatalogueFragment : Fragment() {
             }
         })
 
+
         binding.button6.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_catalogueFragment_to_detailsProduitFragment)
+            view?.findNavController()
+                ?.navigate(R.id.action_catalogueFragment_to_detailsProduitFragment)
         }
         return binding.root
     }

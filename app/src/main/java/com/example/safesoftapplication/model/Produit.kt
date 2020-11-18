@@ -9,7 +9,8 @@ data class Produit(
         val prixProduit : Float,
         val descriptionProduit : String,
         val categorieProduit : String,
-        val stockProduit : Int
+        val stockProduit : Int,
+        val imageProduit : String
 ){
 
 
