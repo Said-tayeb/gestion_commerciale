@@ -1,4 +1,4 @@
-package com.example.safesoftapplication.ui.modifierPsw
+package com.example.safesoftapplication.ui.modifCompte
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,53 +12,67 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
-import com.example.safesoftapplication.databinding.FragmentMesCommandesBinding
-import com.example.safesoftapplication.databinding.FragmentModifierPswBinding
-import com.example.safesoftapplication.vM.modifierPsw.ModifierPswVM
-import com.example.safesoftapplication.vM.modifierPsw.ModifierPswVMFactory
+import com.example.safesoftapplication.databinding.FragmentModifCompteBinding
+import com.example.safesoftapplication.databinding.FragmentSlideshowBinding
+import com.example.safesoftapplication.vM.modifiCompte.ModifCompteVM
+import com.example.safesoftapplication.vM.modifiCompte.ModifCompteVMFactory
 import com.example.safesoftapplication.vM.monCompteVM.MonCompteVMFactory
 import com.example.safesoftapplication.vM.monCompteVM.MonCompteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ModifierPswFragment : Fragment() {
+class ModifCompteFragment : Fragment() {
 
-    private lateinit var binding: FragmentModifierPswBinding
+    private lateinit var binding: FragmentModifCompteBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentModifierPswBinding>(inflater,
-            R.layout.fragment_modifier_psw,container,false)
+        binding = DataBindingUtil.inflate<FragmentModifCompteBinding>(inflater,
+            R.layout.fragment_modif_compte,container,false)
 
         //referance a l application
         val application = requireNotNull(this.activity).application
         //referance a notre source de donnees
         val dataSource = BaseDonneesLocal.getInstance(application).clientDao()
         //créez une instance du viewModelFactory
-        val viewModelFactory = ModifierPswVMFactory(dataSource, application)
+        val viewModelFactory = ModifCompteVMFactory(dataSource, application)
         //intance de view model (referance a notre view model)
         val viewModel =
             ViewModelProvider(
-                this, viewModelFactory).get(ModifierPswVM::class.java)
+                this, viewModelFactory).get(ModifCompteVM::class.java)
         //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
         binding.setLifecycleOwner(this)
-        //initialiser le viewModel
-//        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
+
         binding.viewModel = viewModel
 
         viewModel.message.observe(viewLifecycleOwner, Observer {
             if (it != ""){
-                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
                 viewModel.succes.observe(viewLifecycleOwner, Observer { newSucces ->
                     if (newSucces) {
                         view?.findNavController()
-                            ?.navigate(R.id.action_modifierPswFragment_to_monCompteFragment)
+                            ?.navigate(R.id.action_modifCompteFragment_to_monCompteFragment)
                     }
                 })
-
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
         })
 
+        //recuperer le compte de client
+
+//        viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
+//
+//        })
+
+        //gestion de clic bouton valider
+//        binding.btnEnregistrer.setOnClickListener {
+//            eventModifCompte()
+//        }
+
         return binding.root
     }
+
+    private fun eventModifCompte() {
+
+    }
+
 
 }

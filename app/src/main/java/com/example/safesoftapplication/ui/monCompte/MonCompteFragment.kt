@@ -39,26 +39,44 @@ class MonCompteFragment : Fragment() {
                 this, viewModelFactory).get(MonCompteViewModel::class.java)
         //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
         binding.setLifecycleOwner(this)
-        //initialiser le viewModel
-//        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
+
         binding.vm = viewModel
 
-        viewModel.recupClient()
-//        viewModel.client.observe(viewLifecycleOwner, Observer<ClientEntity> {
-//
-//        })
+        //recuperer le compte de client
+        viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
+            if(it == null){
+                view?.findNavController()?.navigate(R.id.action_nav_monCompte_to_loginFragment)
+            }else{
+                Log.d("baseDonnees", "________telephone"+ it.telephoneClient)
+                binding.apply {
+                    editNomClient.text = it.nomClient
+                    editTextEmailClient.text = it.emailClient
+                    editPrenomClient.text = it.prenomClient
+                    if (it.telephoneClient != null){
+                        editTelClient.text = it.telephoneClient
+                    }else{
+                        editTelClient.text = "aucun"
+                    }
+                    editLoginClient.text = it.loginClient
+                    invalidateAll()
+                }
+            }
+            //gestion de clic bouton modifier compte
+            binding.btnModifierCompte.setOnClickListener {
+                eventModifCompte()
+            }
 
-        //gestion de clic bouton modifier compte
-        binding.btnModifierCompte.setOnClickListener {
-            
-        }
-        //gestion de clic bouton modifier mot de passe
-        binding.btnModifierpsw.setOnClickListener {
-            eventModifPsw()
-            Log.d("clic", "_________clic")
-        }
+            //gestion de clic bouton modifier mot de passe
+            binding.btnModifierpsw.setOnClickListener {
+                eventModifPsw()
+            }
+        })
 
         return binding.root
+    }
+
+    private fun eventModifCompte() {
+        view?.findNavController()?.navigate(R.id.action_monCompteFragment_to_modifCompteFragment)
     }
 
     /**
@@ -67,4 +85,5 @@ class MonCompteFragment : Fragment() {
     private fun eventModifPsw() {
         view?.findNavController()?.navigate(R.id.action_monCompteFragment_to_modifierPswFragment)
     }
+
 }

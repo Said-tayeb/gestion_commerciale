@@ -55,10 +55,14 @@
         tools:layout="@layout/fragment_slideshow" >
         <action
             android:id="@+id/action_nav_monCompte_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_monCompteFragment_to_modifierPswFragment"
             app:destination="@id/modifierPswFragment" />
+        <action
+            android:id="@+id/action_monCompteFragment_to_modifCompteFragment"
+            app:destination="@id/modifCompteFragment" />
     </fragment>
     <fragment
         android:id="@+id/monPanierFragment"
@@ -77,12 +81,12 @@
     <fragment
         android:id="@+id/detailsAchatFragment"
         android:name="com.example.safesoftapplication.ui.detailsAchat.DetailsAchatFragment"
-        android:label="fragment_details_achat"
+        android:label="Détails achat"
         tools:layout="@layout/fragment_details_achat" />
     <fragment
         android:id="@+id/detailsProduitFragment"
         android:name="com.example.safesoftapplication.ui.detailsProduit.DetailsProduitFragment"
-        android:label="fragment_details_produit"
+        android:label="Détails produit"
         tools:layout="@layout/fragment_details_produit" >
         <action
             android:id="@+id/action_detailsProduitFragment_to_loginFragment"
@@ -91,7 +95,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.safesoftapplication.ui.authentification.LoginFragment"
-        android:label="fragment_login"
+        android:label="Connexion"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_inscriptionFragment"
@@ -105,7 +109,7 @@
     <fragment
         android:id="@+id/inscriptionFragment"
         android:name="com.example.safesoftapplication.ui.inscription.InscriptionFragment"
-        android:label="InscriptionFragment" >
+        android:label="Inscription" >
         <action
             android:id="@+id/action_inscriptionFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment"
@@ -115,5 +119,20 @@
     <fragment
         android:id="@+id/modifierPswFragment"
         android:name="com.example.safesoftapplication.ui.modifierPsw.ModifierPswFragment"
-        android:label="ModifierPswFragment" />
+        android:label="Modifier mot de passe" >
+        <action
+            android:id="@+id/action_modifierPswFragment_to_monCompteFragment"
+            app:destination="@id/monCompteFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifCompteFragment"
+        android:name="com.example.safesoftapplication.ui.modifCompte.ModifCompteFragment"
+        android:label="Modifier mon compte"
+        tools:layout="@layout/fragment_modif_compte" >
+        <action
+            android:id="@+id/action_modifCompteFragment_to_monCompteFragment"
+            app:destination="@id/monCompteFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
 </navigation>

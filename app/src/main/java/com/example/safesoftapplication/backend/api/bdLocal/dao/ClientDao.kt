@@ -11,13 +11,13 @@ interface ClientDao {
      * recuperer les informations d'un client par rapport a son login
      */
     @Query("select * from clients where loginClient = :loginClient")
-    fun recupClientsByLogin(loginClient: String): LiveData<ClientEntity>
+        fun recupClientsByLogin(loginClient: String): LiveData<ClientEntity>
 
     /**
      * recuperer tous les clients
      */
-    @Query("select * from clients limit 1 ")
-        suspend fun recupToutClients(): List<ClientEntity>
+    @Query("select * from clients ")
+        suspend fun recupToutClients(): List<ClientEntity>?
 
     /**
      * recuperer les informations d'un client
@@ -41,13 +41,19 @@ interface ClientDao {
      * modifier les informations du client
      */
     @Update
-        fun modifierClient(client : ClientEntity)
+        suspend fun modifierClient(client : ClientEntity)
 
     /**
      * recuperer les informations d'un client connecter
      */
     @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")
-        suspend fun checkLogged(): ClientEntity?
+        fun checkLogged(): LiveData<ClientEntity>
+
+    /**
+     * recuperer les informations d'un client connecter
+     */
+    @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")
+        suspend fun recupByLoged(): ClientEntity
 
     /**
      * ajouter un client a la base de donnees local
@@ -62,5 +68,6 @@ interface ClientDao {
         suspend fun logged(loginClient: String)
 
     @Query("update clients set LOGGED = 0 where LoginClient = :loginClient")
-    suspend fun loggout(loginClient: String)
+        suspend fun loggout(loginClient: String)
+
 }

@@ -29,17 +29,17 @@ class CatalogueFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CatalogueVM::class.java)
 
-        viewModel.getProduit().observe(viewLifecycleOwner, Observer {
-            when(it.state){
-                ResourceState.LOADING -> Log.d("TAG", "onCreateView: Loading");
-                ResourceState.SUCCESS -> Log.d("TAG", "onCreateView: sucess");
-                ResourceState.ERROR -> {
-                    Log.d("TAG", "onCreateView: error")
-                    it.exception?.printStackTrace()
-                }
-
-            }
-        })
+//        viewModel.getProduit().observe(viewLifecycleOwner, Observer {
+//            when(it.state){
+//                ResourceState.LOADING -> Log.d("TAG", "onCreateView: Loading");
+//                ResourceState.SUCCESS -> Log.d("TAG", "onCreateView: sucess");
+//                ResourceState.ERROR -> {
+//                    Log.d("TAG", "onCreateView: error")
+//                    it.exception?.printStackTrace()
+//                }
+//
+//            }
+//        })
 
         binding.button6.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_catalogueFragment_to_detailsProduitFragment)

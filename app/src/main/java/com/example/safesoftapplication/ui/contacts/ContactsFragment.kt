@@ -51,7 +51,8 @@ class ContactsFragment : Fragment() {
         //initialiser le viewModel
 //        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
         binding.viewModel = viewModel
-        //viewModel.ajoutInfos()
+
+//        viewModel.ajoutInfos()
 
          //recuperer les informations
         viewModel.recup()

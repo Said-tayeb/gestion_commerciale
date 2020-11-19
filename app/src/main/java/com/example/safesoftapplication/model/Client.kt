@@ -3,12 +3,12 @@ package com.example.safesoftapplication.model
 import java.util.*
 
 data class Client(
-    val idClient: Int,
-    val loginClient: String,
-    val pswClient: String,
-    val emailClient: String,
-    val nomClient: String,
-    val prenomClient: String
+    var idClient: Int,
+    var loginClient: String,
+    var pswClient: String,
+    var emailClient: String,
+    var nomClient: String,
+    var prenomClient: String
 ){
 
 }

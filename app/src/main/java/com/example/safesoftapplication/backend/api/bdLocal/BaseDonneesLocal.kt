@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.safesoftapplication.backend.api.bdLocal.dao.CatalogueDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.InfosOrganismeDao
@@ -50,8 +51,15 @@ abstract class BaseDonneesLocal : RoomDatabase()  {
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-                    INSTANCE = instance
-                    Log.d("baseDonnees", "la base de donnees a ete creer")
+                    val callback = object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            db.execSQL("INSERT INTO infosOrganismes VALUES ('Safe Soft', 'saf@gmail.com','0655365148', 'Mohammadia, Mohammadia Mall, Alger, Algérie', '16058');")
+
+                            INSTANCE = instance
+                            Log.d("baseDonnees", "la base de donnees a ete creer")
+                        }
+                    }
                 }
                 return instance
             }

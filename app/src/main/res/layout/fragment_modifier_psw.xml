@@ -23,7 +23,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Nouveau"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="@={viewModel.pswClient}" />
 
         <EditText
             android:id="@+id/editConfPsw"
@@ -32,7 +33,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Confirmer"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="@={viewModel.confPswClient}" />
 
         <Button
             android:id="@+id/button"
