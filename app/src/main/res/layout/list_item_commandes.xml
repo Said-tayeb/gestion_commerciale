@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/idCatalogue"
+        android:layout_width="435dp"
+        android:layout_height="125dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:elevation="@dimen/_8sdp"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:contentPadding="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_line">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/catalogue_image"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/dashboard_card_icon_size"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/ic_checklist"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewdatCommande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="8dp"
+                android:text="date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.150"
+                app:layout_constraintStart_toEndOf="@+id/catalogue_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDateExp"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textViewdatCommande"
+                app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande" />
+
+            <TextView
+                android:id="@+id/textViewPrix"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textViewDateExp"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateExp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

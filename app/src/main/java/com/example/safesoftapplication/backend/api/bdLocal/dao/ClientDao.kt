@@ -35,7 +35,7 @@ interface ClientDao {
      * deconnecter un client
      */
     @Query("UPDATE clients SET LOGGED = 0")
-        fun logOut()
+        suspend fun logOut()
 
     /**
      * modifier les informations du client

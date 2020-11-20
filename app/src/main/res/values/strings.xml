@@ -37,4 +37,6 @@
     <string name="strMotDePasse">Mot de passe</string>
     <string name="strNumeroDeTelephone">Numero de telephone</string>
     <string name="strGetAllQuery">SELECT * FROM clients</string>
+    <string name="strMenuDeconnecter">Déconnecter</string>
+    <string name="strItemDeconnexion">Déconnexion</string>
 </resources>

@@ -6,9 +6,11 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
+import kotlinx.coroutines.launch
 
 
 class MonCompteViewModel@ViewModelInject constructor(
@@ -38,6 +40,15 @@ class MonCompteViewModel@ViewModelInject constructor(
     fun recupClient(){
         _client.value = recupClientDatabase().value
         Log.d("baseDonnees", "_____"+ client.value?.nomClient)
+    }
+
+    /**
+     * changer le champ LOGGED de la table client a 0
+     */
+    fun logoutDB(){
+        viewModelScope.launch {
+            clientDao.logOut()
+        }
     }
 
     /**

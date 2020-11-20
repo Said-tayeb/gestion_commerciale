@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
+import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.databinding.FragmentMesCommandesBinding
+import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVM
+import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVMFactory
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MesCommandesFragment : Fragment() {
@@ -22,8 +24,23 @@ class MesCommandesFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentMesCommandesBinding>(inflater,
             R.layout.fragment_mes_commandes,container,false)
 
-        binding.button7.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_nav_mesCommandes_to_detailsAchatFragment)
+        //referance a l application
+        val application = requireNotNull(this.activity).application
+        //referance a notre source de donnees
+        val dataSource = BaseDonneesLocal.getInstance(application).commandesDao()
+        //créez une instance du viewModelFactory
+        val viewModelFactory = MesCommandesVMFactory(dataSource, application)
+        //intance de view model (referance a notre view model)
+        val viewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(MesCommandesVM::class.java)
+        //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
+        binding.setLifecycleOwner(this)
+
+        binding.viewModel = viewModel
+
+        binding.idCatalogue.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_mesCommandesFragment_to_catalogueFragment)
         }
 
         return binding.root

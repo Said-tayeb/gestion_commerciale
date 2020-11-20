@@ -6,10 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.safesoftapplication.backend.api.bdLocal.dao.CatalogueDao
-import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
-import com.example.safesoftapplication.backend.api.bdLocal.dao.InfosOrganismeDao
-import com.example.safesoftapplication.backend.api.bdLocal.dao.PanierDao
+import com.example.safesoftapplication.backend.api.bdLocal.dao.*
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.InfosOrganismeEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
@@ -33,6 +30,8 @@ abstract class BaseDonneesLocal : RoomDatabase()  {
     abstract  fun infosOrganismeDao() : InfosOrganismeDao
 
     abstract fun panierDao() : PanierDao
+
+    abstract fun commandesDao() : CommandesDao
 
     companion object {
 
