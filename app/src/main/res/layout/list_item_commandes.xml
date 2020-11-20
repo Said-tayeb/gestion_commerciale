@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/idCatalogue"
-        android:layout_width="435dp"
-        android:layout_height="125dp"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
         android:layout_margin="@dimen/_10sdp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
@@ -30,8 +30,8 @@
             <ImageView
                 android:id="@+id/catalogue_image"
                 android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/dashboard_card_icon_size"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:src="@drawable/ic_checklist"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +44,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="8dp"
                 android:text="date"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.150"
                 app:layout_constraintStart_toEndOf="@+id/catalogue_image"
@@ -54,16 +55,18 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textViewdatCommande"
                 app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande" />
 
             <TextView
-                android:id="@+id/textViewPrix"
+                android:id="@+id/textViewPrixCommande"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textViewDateExp"

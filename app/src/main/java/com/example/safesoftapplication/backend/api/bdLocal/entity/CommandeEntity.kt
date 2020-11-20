@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "commandes")
+@Entity(tableName = "commandes", indices = [Index(value = ["idCommande"], unique = true)])
 data class CommandeEntity (
     @PrimaryKey(autoGenerate = true) val idCommande: Int,
     @ColumnInfo(name = "idClient") val idClient : Int,

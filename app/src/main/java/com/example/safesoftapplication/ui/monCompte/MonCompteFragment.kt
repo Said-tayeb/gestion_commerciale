@@ -30,7 +30,8 @@ class MonCompteFragment : Fragment() {
         //referance a l application
         val application = requireNotNull(this.activity).application
         //referance a notre source de donnees
-        val dataSource = BaseDonneesLocal.getInstance(application).clientDao()
+        val  instance = BaseDonneesLocal.getInstance(application)
+        val dataSource = instance.clientDao()
         //créez une instance du viewModelFactory
         val viewModelFactory = MonCompteVMFactory(dataSource, application)
         //intance de view model (referance a notre view model)

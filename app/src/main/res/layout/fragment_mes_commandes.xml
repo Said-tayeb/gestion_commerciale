@@ -8,14 +8,18 @@
             name="viewModel"
             type="com.example.safesoftapplication.vM.mesCommandes.MesCommandesVM" />
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.mesCommandes.MesCommandesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRcyclerViewCommandes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/idCatalogue"

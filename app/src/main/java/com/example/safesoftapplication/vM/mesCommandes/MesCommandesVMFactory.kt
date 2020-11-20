@@ -9,12 +9,13 @@ import com.example.safesoftapplication.vM.authVM.AuthentifivationVM
 
 class MesCommandesVMFactory(
     private val commandesDao: CommandesDao,
+    private val clientDao: ClientDao,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MesCommandesVM::class.java)) {
-            return MesCommandesVM(commandesDao, application) as T
+            return MesCommandesVM(commandesDao, clientDao, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -46,7 +46,8 @@
             app:destination="@id/detailsAchatFragment" />
         <action
             android:id="@+id/action_nav_mesCommandes_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_mesCommandesFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />

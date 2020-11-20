@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
@@ -27,9 +28,11 @@ class MesCommandesFragment : Fragment() {
         //referance a l application
         val application = requireNotNull(this.activity).application
         //referance a notre source de donnees
-        val dataSource = BaseDonneesLocal.getInstance(application).commandesDao()
+        val instace = BaseDonneesLocal.getInstance(application)
+        val commandeDao = instace.commandesDao()
+        val clientDao = instace.clientDao()
         //créez une instance du viewModelFactory
-        val viewModelFactory = MesCommandesVMFactory(dataSource, application)
+        val viewModelFactory = MesCommandesVMFactory(commandeDao, clientDao, application)
         //intance de view model (referance a notre view model)
         val viewModel =
             ViewModelProvider(
@@ -39,9 +42,29 @@ class MesCommandesFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.idCatalogue.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_mesCommandesFragment_to_catalogueFragment)
-        }
+        viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
+            if(it == null){
+                view?.findNavController()?.navigate(R.id.action_nav_mesCommandes_to_loginFragment)
+            }else{
+                //creation de l'adapteur
+                val adapter = MesCommandesAdapter()
+
+                //Associez le adapteravec le RecyclerView
+                binding.idRcyclerViewCommandes.adapter = adapter
+
+                //observer la liste des commandes
+                viewModel.commandeTest.observe(viewLifecycleOwner, Observer {
+                    //affecter la valeur a l'adapteur
+                    it?.let {
+                        adapter.data = it
+                    }
+                })
+
+                binding.idCatalogue.setOnClickListener {
+                    view?.findNavController()?.navigate(R.id.action_mesCommandesFragment_to_catalogueFragment)
+                }
+            }
+        })
 
         return binding.root
     }
