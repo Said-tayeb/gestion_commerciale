@@ -50,6 +50,11 @@ interface ClientDao {
         fun checkLogged(): LiveData<ClientEntity>
 
     /**
+     * recuperer l identifiant  du client connecter
+     */
+    @Query("SELECT idClient FROM clients WHERE LOGGED = 1 LIMIT 1")
+        suspend fun recupIdClient(): Int
+    /**
      * recuperer les informations d'un client connecter
      */
     @Query("SELECT * FROM clients WHERE LOGGED = 1 LIMIT 1")

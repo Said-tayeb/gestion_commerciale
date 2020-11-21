@@ -1,25 +1,18 @@
 package com.example.safesoftapplication.ui.monPanier
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
-import com.example.safesoftapplication.databinding.FragmentHomeBinding
-import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
 import com.example.safesoftapplication.databinding.FragmentMonPanierBinding
-import com.example.safesoftapplication.ui.mesCommandes.CommandeListener
-import com.example.safesoftapplication.ui.mesCommandes.MesCommandesAdapter
-import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVM
-import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVMFactory
 import com.example.safesoftapplication.vM.panier.MonPanierVM
 import com.example.safesoftapplication.vM.panier.MonPanierVMFactory
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MonPanierFragment : Fragment() {
 
     private lateinit var binding: FragmentMonPanierBinding
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate<FragmentMonPanierBinding>(
@@ -52,13 +44,12 @@ class MonPanierFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-//        viewModel.ajoutCommande()
 
         //verifier c'est l'utilisateur a déja authentifier
         viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
-            if(it == null){
+            if (it == null) {
                 view?.findNavController()?.navigate(R.id.action_nav_monPanier_to_loginFragment)
-            }else{
+            } else {
                 //creation de l'adapteur
 //                val adapter = MesCommandesAdapter(CommandeListener { idCommande ->
 //                    Log.d("baseDonnees", "_______clic")
@@ -76,14 +67,31 @@ class MonPanierFragment : Fragment() {
 //                    }
 //                })
 
+                val adapter = MonPanierAdapter()
+
+                binding.idRcyclerViewPanier.adapter = adapter
+
+//                viewModel.ajoutProduitPanier()
+                viewModel.recupBD()
+
+                viewModel.panier.observe(viewLifecycleOwner, Observer {
+
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
+
                 //gestionaire de clic de bouton ajouter
                 binding.idCatalogue.setOnClickListener {
-                    view?.findNavController()?.navigate(R.id.action_monPanierFragment_to_catalogueFragment)
+                    view?.findNavController()
+                        ?.navigate(R.id.action_monPanierFragment_to_catalogueFragment)
                 }
             }
         })
 
+        val manager = GridLayoutManager(activity, 2)
+        binding.idRcyclerViewPanier.layoutManager = manager
+
         return binding.root
     }
-
 }

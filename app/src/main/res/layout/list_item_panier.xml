@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="panier"
+            type="com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity"/>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -44,37 +49,38 @@
                     android:id="@+id/idPrixProduit"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginEnd="16dp"
                     android:textAlignment="center"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageProduit" />
-<!--                <ImageView-->
-<!--                    android:id="@+id/catalogue_image"-->
-<!--                    android:layout_width="@dimen/_50sdp"-->
-<!--                    android:layout_height="@dimen/_80sdp"-->
-<!--                    android:layout_marginTop="@dimen/_5sdp"-->
-<!--                    android:src="@drawable/ic_checklist"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/catalogue_image"-->
+                <!--                    android:layout_width="@dimen/_50sdp"-->
+                <!--                    android:layout_height="@dimen/_80sdp"-->
+                <!--                    android:layout_marginTop="@dimen/_5sdp"-->
+                <!--                    android:src="@drawable/ic_checklist"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textViewdatCommande"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:layout_marginTop="@dimen/_8sdp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:text="date"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:layout_constraintEnd_toEndOf="@id/catalogue_image"-->
-<!--                    app:layout_constraintHorizontal_bias="0.150"-->
-<!--                    app:layout_constraintStart_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="@id/catalogue_image" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textViewdatCommande"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="8dp"-->
+                <!--                    android:layout_marginTop="@dimen/_8sdp"-->
+                <!--                    android:layout_marginEnd="8dp"-->
+                <!--                    android:text="date"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@id/catalogue_image"-->
+                <!--                    app:layout_constraintHorizontal_bias="0.150"-->
+                <!--                    app:layout_constraintStart_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="@id/catalogue_image" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
