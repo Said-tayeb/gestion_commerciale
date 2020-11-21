@@ -1,81 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/idCatalogue"
+    <data>
+        <variable
+            name="commande"
+            type="com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity"/>
+        <variable
+            name="clickListener"
+            type="com.example.safesoftapplication.ui.mesCommandes.CommandeListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:checkable="true"
-        android:clickable="true"
-        android:elevation="@dimen/_8sdp"
-        android:focusable="true"
-        app:cardCornerRadius="@dimen/_8sdp"
-        app:contentPadding="@dimen/_5sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_line">
+        android:layout_height="wrap_content"
+        >
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/idCatalogue"
             android:layout_width="match_parent"
-            android:layout_height="102dp"
-            android:layout_gravity="center">
+            android:layout_height="105dp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:elevation="@dimen/_8sdp"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:contentPadding="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_line"
+            android:onClick="@{() -> clickListener.onClick(commande)}">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="102dp"
+                android:layout_gravity="center">
+                <ImageView
+                    android:id="@+id/catalogue_image"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/ic_checklist"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textViewdatCommande"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="8dp"
+                    android:text="date"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.150"
+                    app:layout_constraintStart_toEndOf="@+id/catalogue_image"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/catalogue_image"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/ic_checklist"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textViewDateExp"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewdatCommande"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande" />
 
-            <TextView
-                android:id="@+id/textViewdatCommande"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="8dp"
-                android:text="date"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.150"
-                app:layout_constraintStart_toEndOf="@+id/catalogue_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewDateExp"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewdatCommande"
-                app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande" />
-
-            <TextView
-                android:id="@+id/textViewPrixCommande"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewDateExp"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDateExp" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textViewPrixCommande"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDateExp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDateExp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

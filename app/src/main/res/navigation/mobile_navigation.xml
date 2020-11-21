@@ -80,7 +80,11 @@
         tools:layout="@layout/fragment_mon_panier" >
         <action
             android:id="@+id/action_nav_monPanier_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_monPanierFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"

@@ -7,17 +7,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.safesoftapplication.backend.api.bdLocal.dao.*
-import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import com.example.safesoftapplication.backend.api.bdLocal.entity.InfosOrganismeEntity
-import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
-import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
+import com.example.safesoftapplication.backend.api.bdLocal.entity.*
 
 @Database(
             entities = [
             ClientEntity::class,
             ProduitEntity::class,
             InfosOrganismeEntity::class,
-            PanierEntity::class],
+            PanierEntity::class,
+            CommandeEntity::class],
             version = 1
 )
 

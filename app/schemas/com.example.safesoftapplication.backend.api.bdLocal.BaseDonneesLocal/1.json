@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "88aeaef803c9bb401afb9d00d65a2a64",
+    "identityHash": "4c5ec61a238a56ef5a1c232a7b02c7d7",
     "entities": [
       {
         "tableName": "clients",
@@ -216,12 +216,68 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "commandes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCommande` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idClient` INTEGER NOT NULL, `idProduit` INTEGER NOT NULL, `dateCommande` TEXT NOT NULL, `dateExpCommande` TEXT NOT NULL, `quantiteProduit` INTEGER NOT NULL, `prixTotalCommande` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idCommande",
+            "columnName": "idCommande",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idClient",
+            "columnName": "idClient",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idProduit",
+            "columnName": "idProduit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateCommande",
+            "columnName": "dateCommande",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateExpCommande",
+            "columnName": "dateExpCommande",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantiteProduit",
+            "columnName": "quantiteProduit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prixTotalCommande",
+            "columnName": "prixTotalCommande",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idCommande"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '88aeaef803c9bb401afb9d00d65a2a64')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4c5ec61a238a56ef5a1c232a7b02c7d7')"
     ]
   }
 }

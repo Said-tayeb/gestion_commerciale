@@ -1,34 +1,48 @@
 package com.example.safesoftapplication.ui.mesCommandes
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
+import com.example.safesoftapplication.databinding.ListItemCommandesBinding
 
-class MesCommandesAdapter : RecyclerView.Adapter<MesCommandesAdapter.ViewHolder>() {
+class MesCommandesAdapter(val clickListener: CommandeListener)
+    : ListAdapter<CommandeEntity, MesCommandesAdapter.ViewHolder>(MesCommandesDiffCallback()) {
 
-    var data =  listOf<CommandeEntity>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    /**
+     * classe de mis à jour de recycler view
+     */
+    class MesCommandesDiffCallback : DiffUtil.ItemCallback<CommandeEntity>() {
+        override fun areItemsTheSame(oldItem: CommandeEntity, newItem: CommandeEntity): Boolean {
+            return oldItem.idCommande == newItem.idCommande
         }
+
+        override fun areContentsTheSame(oldItem: CommandeEntity, newItem: CommandeEntity): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    //changement de la liste
+//    var data =  listOf<CommandeEntity>()
+//        set(value) {
+//            field = value
+//            notifyDataSetChanged()
+//        }
 
     /**
      * renvoyer la longueur de la liste au recyclerView
      */
-    override fun getItemCount() = data.size
+//    override fun getItemCount() = data.size
 
     /**
      * afficher les donnees d'un element d'une liste a la position specifier
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         //le item de la position
-        val item = data[position]
-        holder.bind(item)
+        val item = getItem(position)!!
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     /**
@@ -39,10 +53,7 @@ class MesCommandesAdapter : RecyclerView.Adapter<MesCommandesAdapter.ViewHolder>
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val dateCommande: TextView = itemView.findViewById(R.id.textViewdatCommande)
-        val datExpCommande: TextView = itemView.findViewById(R.id.textViewDateExp)
-        val prixCommande: TextView = itemView.findViewById(R.id.textViewPrixCommande)
+    class ViewHolder private constructor(val binding: ListItemCommandesBinding) : RecyclerView.ViewHolder(binding.root){
 
         companion object {
 
@@ -51,10 +62,8 @@ class MesCommandesAdapter : RecyclerView.Adapter<MesCommandesAdapter.ViewHolder>
              */
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(R.layout.list_item_commandes, parent, false)
-
-                return ViewHolder(view)
+                val binding = ListItemCommandesBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
@@ -62,16 +71,24 @@ class MesCommandesAdapter : RecyclerView.Adapter<MesCommandesAdapter.ViewHolder>
          * definition des donnees
          */
         fun bind(
-            item: CommandeEntity
+            item: CommandeEntity,
+            clickListener: CommandeListener
         ) {
             //une référence à la resourcespour cette vue
             val res = itemView.context.resources
-
+            binding.clickListener = clickListener
             //deffinition des donnees
-            dateCommande.text = "Date de la commande : " + item.dateCommande.toString()
-            datExpCommande.text = "Date d'experation : " + item.dateExpCommande.toString()
-            prixCommande.text = "Prix Total : " + item.prixTotalCommande.toString() + " Da"
+            binding.textViewdatCommande.text = "Date de la commande : " + item.dateCommande.toString()
+            binding.textViewDateExp.text = "Date d'experation : " + item.dateExpCommande.toString()
+            binding.textViewPrixCommande.text = "Prix Total : " + item.prixTotalCommande.toString() + " Da"
+            //binding.executePendingBindings()
         }
     }
+}
 
+/**
+ *classe pour gerer les clics
+ */
+class CommandeListener(val clickListener: (idCommande: Int) -> Unit) {
+    fun onClick(commandeEntity: CommandeEntity) = clickListener(commandeEntity.idCommande)
 }
