@@ -2,7 +2,7 @@ package com.example.safesoftapplication.backend.api.api.reponses.catalogueRespon
 
 import com.google.gson.annotations.SerializedName
 
-class produitsResponse(
+data class produitsResponse(
     @SerializedName("idProduit")
     val idProduit: Int,
     @SerializedName("titreProduit")

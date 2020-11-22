@@ -23,20 +23,6 @@
     <string name="strLogin">Login</string>
 
 
-    <string name="title_activity_accueil">AccueilActivity</string>
-    <string name="title_activity_accuei">AccueiActivity</string>
-    <string name="title_activity_main">MainActivity</string>
-
-    <string name="menu_home">Accueil</string>
-    <string name="menu_gallery">Catalogue</string>
-    <string name="menu_slideshow">Mon Compte</string>
-    <string name="menu_contacts">Contacts</string>
-    <string name="menu_mesCommandes">Mes commandes</string>
-    <string name="menu_monPanier">Mon panier</string>
-    <string name="strEnregistrer">Enregistrer</string>
-    <string name="strMotDePasse">Mot de passe</string>
-    <string name="strNumeroDeTelephone">Numero de telephone</string>
-    <string name="strGetAllQuery">SELECT * FROM clients</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -49,6 +35,18 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_accueil">AccueilActivity</string>
+    <string name="title_activity_accuei">AccueiActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_mesCommandes">Mes commandes</string>
+    <string name="menu_monPanier">Mon panier</string>
+    <string name="strEnregistrer">Enregistrer</string>
+    <string name="strMotDePasse">Mot de passe</string>
+    <string name="strNumeroDeTelephone">Numero de telephone</string>
+    <string name="strGetAllQuery">SELECT * FROM clients</string>
     <string name="catalogue">Catalogue</string>
     <string name="commande">Commande</string>
     <string name="client">Client</string>
@@ -75,4 +73,5 @@
     <string name="reserver">Résérvations</string>
     <string name="nom">Nom :</string>
     <string name="prenom">Prénom :</string>
+    <string name="cataloguevide">Catalogue vide</string>
 </resources>
