@@ -32,19 +32,20 @@
 
                 <TextView
                     android:id="@+id/idNomClient"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Nom : " />
+                    android:text="Nom : "
+                    android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editNomClient"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="@{vm.client.nomClient}"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -56,19 +57,20 @@
 
                 <TextView
                     android:id="@+id/idPrenomClient"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Prenom : " />
+                    android:text="Prenom : "
+                    android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editPrenomClient"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="@{vm.client.prenomClient}" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,19 +81,20 @@
 
                 <TextView
                     android:id="@+id/idTelephoneClient"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Téléphone : " />
+                    android:text="Téléphone : "
+                    android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editTelClient"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="phone"
-                    android:text="@{vm.client.telephoneClient}"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -103,19 +106,20 @@
 
                 <TextView
                     android:id="@+id/idEmailClient"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Email : " />
+                    android:text="Email : "
+                    android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editTextEmailClient"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textEmailAddress"
-                    android:text="@{vm.client.emailClient}"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -127,19 +131,20 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Login : " />
+                    android:text="Login : "
+                    android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/editLoginClient"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="@{vm.client.loginClient}" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

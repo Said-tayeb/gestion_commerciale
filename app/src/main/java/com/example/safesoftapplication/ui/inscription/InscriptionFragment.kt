@@ -19,6 +19,7 @@ import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
 import com.example.safesoftapplication.vM.authVM.AuthentificationVMFactory
 import com.example.safesoftapplication.vM.authVM.AuthentifivationVM
 import com.example.safesoftapplication.vM.inscriptionVM.InscriptionVMFactory
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,6 +32,11 @@ class InscriptionFragment : Fragment() {
          binding = DataBindingUtil.inflate<FragmentInscriptionBinding>(inflater,
             R.layout.fragment_inscription,container,false)
 
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            "Créer un compte",
+            Snackbar.LENGTH_SHORT // How long to display the message.
+        ).show()
         //referance a l application
         val application = requireNotNull(this.activity).application
         //referance a notre source de donnees
@@ -49,12 +55,15 @@ class InscriptionFragment : Fragment() {
 
         //gestion de button enregistrer
         viewModel.message.observe(viewLifecycleOwner, Observer<String>{ newMessage ->
-
             if (newMessage != ""){
                 if (viewModel.succes){
                     view?.findNavController()?.navigate(R.id.action_inscriptionFragment_to_catalogueFragment)
                 }
-                Toast.makeText(context, newMessage, Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    newMessage,
+                    Snackbar.LENGTH_LONG // How long to display the message.
+                ).show()
 //                if (viewModel.succes){
 //                    view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogueFragment)
 //                }

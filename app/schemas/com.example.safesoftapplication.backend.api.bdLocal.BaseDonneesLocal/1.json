@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "88aeaef803c9bb401afb9d00d65a2a64",
+    "identityHash": "d0de3f88c8caf9b6293cd6fd18027e5d",
     "entities": [
       {
         "tableName": "clients",
@@ -77,7 +77,7 @@
       },
       {
         "tableName": "produits",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idProduit` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `titreProduit` TEXT NOT NULL, `prixProduit` REAL NOT NULL, `descriptionProduit` TEXT NOT NULL, `categorieProduit` TEXT NOT NULL, `stockProduit` REAL DEFAULT 0)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idProduit` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `titreProduit` TEXT NOT NULL, `prixProduit` REAL NOT NULL, `descriptionProduit` TEXT NOT NULL, `categorieProduit` TEXT NOT NULL, `stockProduit` REAL DEFAULT 0, `imageProduit` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "idProduit",
@@ -115,6 +115,12 @@
             "affinity": "REAL",
             "notNull": false,
             "defaultValue": "0"
+          },
+          {
+            "fieldPath": "imageProduit",
+            "columnName": "imageProduit",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -187,7 +193,7 @@
       },
       {
         "tableName": "paniers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPanier` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginClient` INTEGER NOT NULL, `pswClient` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPanier` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idClient` INTEGER NOT NULL, `idProduit` INTEGER NOT NULL, `prixProduit` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "idPanier",
@@ -197,14 +203,20 @@
           },
           {
             "fieldPath": "idClient",
-            "columnName": "loginClient",
+            "columnName": "idClient",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "idProduit",
-            "columnName": "pswClient",
+            "columnName": "idProduit",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prixProduit",
+            "columnName": "prixProduit",
+            "affinity": "REAL",
             "notNull": true
           }
         ],
@@ -216,12 +228,68 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "commandes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCommande` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idClient` INTEGER NOT NULL, `idProduit` INTEGER NOT NULL, `dateCommande` TEXT NOT NULL, `dateExpCommande` TEXT NOT NULL, `quantiteProduit` INTEGER NOT NULL, `prixTotalCommande` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idCommande",
+            "columnName": "idCommande",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idClient",
+            "columnName": "idClient",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idProduit",
+            "columnName": "idProduit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateCommande",
+            "columnName": "dateCommande",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateExpCommande",
+            "columnName": "dateExpCommande",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantiteProduit",
+            "columnName": "quantiteProduit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prixTotalCommande",
+            "columnName": "prixTotalCommande",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idCommande"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '88aeaef803c9bb401afb9d00d65a2a64')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd0de3f88c8caf9b6293cd6fd18027e5d')"
     ]
   }
 }

@@ -2,6 +2,7 @@ package com.example.safesoftapplication.ui.inscription
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -34,7 +35,6 @@ class InsriptionActivity : AppCompatActivity(), AnkoLogger {
          * gestion d'évenement pour le bouton
          */
         binding.btnEnregistrer.setOnClickListener{
-//            even()
         }
     }
 

@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 class AuthentifivationVM @ViewModelInject constructor(
      val dataBase : ClientDao,
      application: Application
-//     @Assisted savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application){
 
     var loginClient : String = ""
@@ -89,6 +88,15 @@ class AuthentifivationVM @ViewModelInject constructor(
     }
 
     /**
+     * changer le champ LOGGED de la table client à 1
+     */
+    fun logged(loginClient: String){
+        viewModelScope.launch {
+            dataBase.logged(loginClient)
+        }
+    }
+
+    /**
      * gestion d'evenement de clic sur le bouton login
      */
     fun clicLogin(){
@@ -102,6 +110,7 @@ class AuthentifivationVM @ViewModelInject constructor(
                 if (client.value?.loginClient == null){
                     _messageLogin.value = "Erreur d'authentification"
                 }else{
+                    dataBase.logged(loginClient)
                     _messageLogin.value = "Bonjour " + client.value?.prenomClient
                     _trouver.value = true
                 }

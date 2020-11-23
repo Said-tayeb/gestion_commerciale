@@ -48,7 +48,6 @@ class InscriptionVM @ViewModelInject constructor(
         clientDao.ajoutClient(client)
     }
 
-
     /**
      * verifier l'existance de l'utilisateur  dans la base de donnees
      */
@@ -85,13 +84,15 @@ class InscriptionVM @ViewModelInject constructor(
                                 telephoneClient,
                                 1
                             )
-                            ajoutClient(newclient)
+                            try {
+                                ajoutClient(newclient)
+                                succes = true
+                                _message.value = "Vous avez bien inscrit"
+                            }catch (e : Exception){
+                                _message.value = "nom d'utilisateur déja utilisé, Vous dever choisir un autre"
+                            }
                         }
-                        succes = true
-                        _message.value = "Vous avez bien inscrit"
-
                     }
-
                 }
             }
         }

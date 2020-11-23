@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="@dimen/_100sdp" />
+            app:layout_constraintGuide_begin="@dimen/_50sdp" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/idCatalogue"
