@@ -1,5 +1,6 @@
 package com.example.safesoftapplication.ui.modifCompte
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -45,12 +46,12 @@ class ModifCompteFragment : Fragment() {
 
         viewModel.message.observe(viewLifecycleOwner, Observer {
             if (it != ""){
-                viewModel.succes.observe(viewLifecycleOwner, Observer { newSucces ->
-                    if (newSucces) {
-                        view?.findNavController()
-                            ?.navigate(R.id.action_modifCompteFragment_to_monCompteFragment)
-                    }
-                })
+                    viewModel.succes.observe(viewLifecycleOwner, Observer { newSucces ->
+                        if (newSucces) {
+                            view?.findNavController()
+                                ?.navigate(R.id.action_modifCompteFragment_to_monCompteFragment)
+                        }
+                    })
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
         })

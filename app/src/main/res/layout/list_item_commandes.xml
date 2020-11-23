@@ -57,7 +57,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.150"
                     app:layout_constraintStart_toEndOf="@+id/catalogue_image"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:dateCommande="@{commande}"/>
 
                 <TextView
                     android:id="@+id/textViewDateExp"
@@ -68,7 +69,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textViewdatCommande"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewdatCommande"
+                    app:dateExpCommande="@{commande}"/>
 
                 <TextView
                     android:id="@+id/textViewPrixCommande"
@@ -79,7 +81,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textViewDateExp"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDateExp" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDateExp"
+                    app:prixCommande="@{commande}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

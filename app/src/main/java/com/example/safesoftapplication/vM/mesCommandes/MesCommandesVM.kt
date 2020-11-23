@@ -23,6 +23,10 @@ class MesCommandesVM @ViewModelInject constructor(
 //
 //    val mesCommandes = commandesDao.recupToutCommandes()
 
+    private val  _navigation = MutableLiveData<Int>()
+    val  navigation : LiveData<Int>
+        get() = _navigation
+
     //test
     val commandes1 = CommandeEntity(0, 1, 1, "11/12/2000","11/02/2001", 16, 9000 )
     val commandes2 = CommandeEntity(0, 1, 2, "02/05/2005", "02/05/2005", 3, 5500 )
@@ -64,5 +68,13 @@ class MesCommandesVM @ViewModelInject constructor(
 //        })
 //        return a
         return clientDao.checkLogged()
+    }
+
+    fun onNavigationToDetailsAchat(){
+        _navigation.value = null
+    }
+
+    fun commandeClic(idCommande : Int){
+        _navigation.value = idCommande
     }
 }

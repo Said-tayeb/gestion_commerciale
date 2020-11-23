@@ -105,10 +105,9 @@ class ModifCompteVM @ViewModelInject constructor(
                         1
                     )
                     Log.d("baseDonnees", "________"+ newClient.telephoneClient)
-
-                    modifClient(newClient)
-                    _message.value = "votre compte a été modifier avec sucèe"
-                    _succes.value = true
+                        modifClient(newClient)
+                        _message.value = "votre compte a été modifier avec sucèe"
+                        _succes.value = true
                 }
 
             }catch (e : Exception){
@@ -117,4 +116,5 @@ class ModifCompteVM @ViewModelInject constructor(
 
         }
     }
+
 }

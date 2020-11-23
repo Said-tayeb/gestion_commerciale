@@ -95,7 +95,11 @@
         android:id="@+id/detailsAchatFragment"
         android:name="com.example.safesoftapplication.ui.detailsAchat.DetailsAchatFragment"
         android:label="Détails achat"
-        tools:layout="@layout/fragment_details_achat" />
+        tools:layout="@layout/fragment_details_achat" >
+        <argument
+            android:name="idCommande"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/detailsProduitFragment"
         android:name="com.example.safesoftapplication.ui.detailsProduit.DetailsProduitFragment"

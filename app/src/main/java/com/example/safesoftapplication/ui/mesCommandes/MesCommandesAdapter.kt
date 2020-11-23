@@ -76,12 +76,10 @@ class MesCommandesAdapter(val clickListener: CommandeListener)
         ) {
             //une référence à la resourcespour cette vue
             val res = itemView.context.resources
+            binding.commande = item
             binding.clickListener = clickListener
             //deffinition des donnees
-            binding.textViewdatCommande.text = "Date de la commande : " + item.dateCommande.toString()
-            binding.textViewDateExp.text = "Date d'experation : " + item.dateExpCommande.toString()
-            binding.textViewPrixCommande.text = "Prix Total : " + item.prixTotalCommande.toString() + " Da"
-            //binding.executePendingBindings()
+            binding.executePendingBindings()
         }
     }
 }

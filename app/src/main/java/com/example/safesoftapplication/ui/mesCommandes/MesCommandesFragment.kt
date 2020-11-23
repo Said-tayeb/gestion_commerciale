@@ -11,13 +11,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.databinding.FragmentMesCommandesBinding
 import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVM
 import com.example.safesoftapplication.vM.mesCommandes.MesCommandesVMFactory
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class MesCommandesFragment : Fragment() {
@@ -55,7 +55,17 @@ class MesCommandesFragment : Fragment() {
                 //creation de l'adapteur
                 val adapter = MesCommandesAdapter(CommandeListener { idCommande ->
                     Log.d("baseDonnees", "_______clic")
-                    Toast.makeText(context, "${idCommande}", Toast.LENGTH_LONG).show()
+                    viewModel.commandeClic(idCommande)
+                    viewModel.navigation.observe(viewLifecycleOwner, Observer {
+                        it?.let {
+                            Toast.makeText(context, "${it}", Toast.LENGTH_LONG).show()
+                            this.findNavController().navigate(
+                                MesCommandesFragmentDirections
+                                    .actionNavMesCommandesToDetailsAchatFragment(it))
+                            viewModel.onNavigationToDetailsAchat()
+                        }
+                    })
+
                 })
 
                 //Associez le adapter avec le RecyclerView

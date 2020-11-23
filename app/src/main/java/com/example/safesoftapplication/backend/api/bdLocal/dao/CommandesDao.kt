@@ -17,6 +17,11 @@ interface CommandesDao {
     fun recupToutCommandes(): LiveData<List<CommandeEntity>>
 
     /**
+     * recuperer une commande par son id
+     */
+    @Query("select * from commandes where idCommande = :idCommande ")
+    fun recupCommande(idCommande : Int): LiveData<CommandeEntity>
+    /**
      * ajouter une commande a la base de donnees local
      */
     @Insert
