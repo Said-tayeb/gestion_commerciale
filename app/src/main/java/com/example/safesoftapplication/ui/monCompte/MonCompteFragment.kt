@@ -118,8 +118,6 @@ class MonCompteFragment : Fragment() {
         return NavigationUI.
         onNavDestinationSelected(item,requireView().findNavController())
                 || super.onOptionsItemSelected(item)
-
-
     }
 
 }

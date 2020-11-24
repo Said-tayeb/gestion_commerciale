@@ -1,18 +1,22 @@
 package com.example.safesoftapplication.ui.monPanier
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.databinding.FragmentMonPanierBinding
+import com.example.safesoftapplication.ui.catalogue.CatalogueFragmentDirections
 import com.example.safesoftapplication.vM.panier.MonPanierVM
 import com.example.safesoftapplication.vM.panier.MonPanierVMFactory
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +50,8 @@ class MonPanierFragment : Fragment() {
 
 
         //verifier si l'utilisateur s'est déja authentifier
-        viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
-            if (it == null) {
+        viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer { client ->
+            if (client == null) {
                 view?.findNavController()?.navigate(R.id.action_nav_monPanier_to_loginFragment)
             } else {
                 //creation de l'adapteur
@@ -67,14 +71,26 @@ class MonPanierFragment : Fragment() {
 //                    }
 //                })
 
-                val adapter = MonPanierAdapter()
+                val adapter = MonPanierAdapter(PanierListener { idProduit ->
+                    Log.d("baseDonnees", "______"+ idProduit)
+                    viewModel.clicProduit(idProduit)
+                    viewModel.navigateToDetailsProduit.observe(viewLifecycleOwner, Observer {
+                        it?.let {
+                            Toast.makeText(context, "${it}", Toast.LENGTH_LONG).show()
+                            this.findNavController().navigate(
+                                MonPanierFragmentDirections
+                                    .actionMonPanierFragmentToDetailsProduitFragment(it))
+                            viewModel.ProduitDetailsNavgated()
+                        }
+                    })
+                })
 
                 binding.idRcyclerViewPanier.adapter = adapter
 
 //                viewModel.ajoutProduitPanier()
                 viewModel.recupBD()
 
-                viewModel.panier.observe(viewLifecycleOwner, Observer {
+                viewModel.recupToutProdPanier(client.idClient).observe(viewLifecycleOwner, Observer {
 
                     it?.let {
                         adapter.submitList(it)

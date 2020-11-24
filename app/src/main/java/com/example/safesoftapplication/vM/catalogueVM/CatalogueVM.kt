@@ -7,16 +7,11 @@ import com.example.safesoftapplication.vM.BaseViewModel
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.safesoftapplication.backend.api.api.reponses.catalogueResponse.produitsResponse
 import com.example.safesoftapplication.backend.api.bdLocal.dao.CatalogueDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 import com.example.safesoftapplication.repository.CatalogueRepository
 import com.example.safesoftapplication.utils.Resource
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.launch
-import java.lang.Exception
-
 
 class CatalogueVM @ViewModelInject constructor(
     val catalogueRepo: CatalogueRepository,
@@ -44,7 +39,6 @@ class CatalogueVM @ViewModelInject constructor(
     fun ProduitDetailsNavgated(){
         _navigateToDetailsProduit.value = null
     }
-
 
 //    fun affiche() {
 //        val data = getProduit()
@@ -80,4 +74,5 @@ class CatalogueVM @ViewModelInject constructor(
                     Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
                 }.observeOn(Schedulers.io()).subscribe()
     }
+
 }

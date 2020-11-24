@@ -2,7 +2,6 @@ package com.example.safesoftapplication.ui.monPanier
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
 import com.example.safesoftapplication.databinding.ListItemPanierBinding
 
 
-class MonPanierAdapter : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(MonPaniertDiffCallback()) {
+class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(MonPaniertDiffCallback()) {
 
     class MonPaniertDiffCallback : DiffUtil.ItemCallback<PanierEntity>() {
         override fun areItemsTheSame(oldItem: PanierEntity, newItem: PanierEntity): Boolean {
@@ -25,7 +24,7 @@ class MonPanierAdapter : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
 
@@ -37,11 +36,19 @@ class MonPanierAdapter : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(
     class ViewHolder private constructor( val binding: ListItemPanierBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(
-            item: PanierEntity
+            item: PanierEntity,
+            clickListener: PanierListener
         ) {
             val res = itemView.context.resources
-            binding.idPrixProduit.text = item.prixProduit.toString() + "DA"
+            binding.panier = item
             binding.imageProduit.setImageResource(R.drawable.ic_checklist)
+//            Picasso
+//                .get()
+//                .load(item.imageProduit)
+//                .placeholder(R.drawable.ic_delivery_box)
+//                .error(R.drawable.ic_no_item)
+//                .fit()
+//                .into(binding.imageProduit)
         }
 
         companion object {
@@ -53,4 +60,11 @@ class MonPanierAdapter : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(
             }
         }
     }
+}
+
+/**
+ *classe pour gerer les clics
+ */
+class PanierListener(val clickListener: (idProduit: Int) -> Unit) {
+    fun onClick(panierEntity: PanierEntity) = clickListener(panierEntity.idProduit)
 }

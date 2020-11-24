@@ -49,7 +49,7 @@ class CatalogueAdapter(val clickListener: ProduitListener)  :
             Picasso
                 .get()
                 .load(item.imageProduit)
-//                .placeholder(R.drawable.ic_delivery_box)
+                .placeholder(R.drawable.ic_delivery_box)
                 .error(R.drawable.ic_no_item)
                 .fit()
                 .into(binding.imageProduit)

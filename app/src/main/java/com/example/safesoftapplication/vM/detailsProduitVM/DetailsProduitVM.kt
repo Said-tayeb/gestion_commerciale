@@ -14,6 +14,7 @@ import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class DetailsProduitVM @ViewModelInject constructor(
     val produitDao: CatalogueDao,
@@ -25,6 +26,14 @@ class DetailsProduitVM @ViewModelInject constructor(
     private val _client = MutableLiveData<ClientEntity>()
     val client : LiveData<ClientEntity>
         get() = _client
+
+    private val _existPanier = MutableLiveData<Boolean>(false)
+    val existPanier : LiveData<Boolean>
+        get() = _existPanier
+
+    private val _message = MutableLiveData<String>("")
+    val message : LiveData<String>
+        get() = _message
 
     /**
      * recuperer les informations d'un client
@@ -39,13 +48,26 @@ class DetailsProduitVM @ViewModelInject constructor(
     /**
      * ajout d'un produit au panier d'un client
      */
-    fun ajout(produitEntity: ProduitEntity, clientEntity: ClientEntity){
+    fun ajoutProduitPanier(produitEntity: ProduitEntity, clientEntity: ClientEntity){
         var panierEntity = PanierEntity(0,clientEntity.idClient, produitEntity.idProduit, produitEntity.prixProduit)
         viewModelScope.launch {
-            panierDao.ajoutProdPanier(panierEntity)
+            try {
+                panierDao.ajoutProdPanier(panierEntity)
+                _message.value = "Le produit à été ajouté à votre panier"
+            }catch (e : Exception){
+                _message.value = "Echec d'ajout"
+            }
         }
     }
 
+    /**
+     * recuperer un produit du panier du client
+     */
+    fun recuProduitPanier(idProduit: Int, idClient : Int) = panierDao.recupProduitPanier(idProduit,idClient)
+
+    /**
+     * ajouter la commande a la base de donnnees
+     */
     fun ajoutCommande(produitEntity: ProduitEntity, clientEntity: ClientEntity){
         var commandeEntity = CommandeEntity(
             0,
@@ -56,6 +78,23 @@ class DetailsProduitVM @ViewModelInject constructor(
             0,
             0
         )
+        viewModelScope.launch {
 
+        }
+    }
+
+    fun RenitMessage(){
+        _message.value = ""
+    }
+
+    /**
+     * gestion devenement sur le clic du bouton ajout au panier
+     */
+    fun clicbtnAjoutPanier(idProduit: Int){
+
+    }
+
+    fun verifierPanier(idProduit: Int) : Boolean{
+        TODO()
     }
 }
