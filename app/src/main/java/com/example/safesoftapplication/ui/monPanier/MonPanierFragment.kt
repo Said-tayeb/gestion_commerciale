@@ -45,7 +45,7 @@ class MonPanierFragment : Fragment() {
         binding.viewModel = viewModel
 
 
-        //verifier c'est l'utilisateur a déja authentifier
+        //verifier si l'utilisateur s'est déja authentifier
         viewModel.recupClientDatabase().observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 view?.findNavController()?.navigate(R.id.action_nav_monPanier_to_loginFragment)

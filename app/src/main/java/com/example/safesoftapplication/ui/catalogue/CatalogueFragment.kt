@@ -7,51 +7,65 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.databinding.FragmentGalleryBinding
-import com.example.safesoftapplication.utils.Resource
-import com.example.safesoftapplication.utils.ResourceState
-import com.example.safesoftapplication.vM.CatalogueVM
+import com.example.safesoftapplication.repository.CatalogueRepository
+import com.example.safesoftapplication.ui.monPanier.MonPanierAdapter
+import com.example.safesoftapplication.vM.catalogueVM.CatalogueVM
+import com.example.safesoftapplication.vM.catalogueVM.CatalogueVMFactory
+import com.example.safesoftapplication.vM.panier.MonPanierVM
+import com.example.safesoftapplication.vM.panier.MonPanierVMFactory
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CatalogueFragment : Fragment() {
 
-    private lateinit var viewModel: CatalogueVM
+    private  val viewModel: CatalogueVM by viewModels()
     private lateinit var binding: FragmentGalleryBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentGalleryBinding>(inflater,
-            R.layout.fragment_gallery,container,false)
 
-        viewModel = ViewModelProvider(this).get(CatalogueVM::class.java)
 
-//        viewModel.getProduit().observe(viewLifecycleOwner, Observer {
-//            when(it.state){
-//                ResourceState.LOADING -> Log.d("TAG", "onCreateView: Loading");
-//                ResourceState.SUCCESS -> Log.d("TAG", "onCreateView: sucess");
-//                ResourceState.ERROR -> {
-//                    Log.d("TAG", "onCreateView: error")
-//                    it.exception?.printStackTrace()
-//                }
-//
-//            }
-//        })
 
-        binding.button6.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_catalogueFragment_to_detailsProduitFragment)
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+
+    ): View? {
+        binding = DataBindingUtil.inflate<FragmentGalleryBinding>(
+            inflater,
+            R.layout.fragment_gallery, container, false
+        )
+
+
         return binding.root
     }
 
-//    galleryViewModel =
-//            ViewModelProvider(this).get(GalleryViewModel::class.java)
-//        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_gallery)
-//        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        val adapter = CatalogueAdapter()
+        binding.idRcyclerViewCatlogue.adapter = adapter
+
+        viewModel.getProduit()
+        viewModel.getAllProduits().observe(viewLifecycleOwner, Observer {
+            Log.d("TAAAAAAAAAG","uccess ${it.data}")
+            if (it.data?.isNotEmpty() == true) {
+                Log.d("donnes", "OUI OUI OUI ")
+                adapter.submitList(it.data)
+            }
+        })
+
+        val manager = GridLayoutManager(activity, 2)
+        binding.idRcyclerViewCatlogue.layoutManager = manager
+
+    }
 }

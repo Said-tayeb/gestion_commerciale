@@ -1,10 +1,20 @@
 package com.example.safesoftapplication.backend.api.api.reponses.catalogueResponse
 
-class produitsResponse (
-    val idProduit : Int,
-    val titreProduit : String,
-    val prixProduit : Float,
-    val descriptionProduit : String,
-    val categorieProduit : String,
-    val stockProduit : Int
+import com.google.gson.annotations.SerializedName
+
+data class produitsResponse(
+    @SerializedName("idProduit")
+    val idProduit: Int,
+    @SerializedName("titreProduit")
+    val titreProduit: String,
+    @SerializedName("prixProduit")
+    val prixProduit: Float,
+    @SerializedName("descriptionProduit")
+    val descriptionProduit: String,
+    @SerializedName("categorieProduit")
+    val categorieProduit: String,
+    @SerializedName("stockProduit")
+    val stockProduit: Int,
+    @SerializedName("imageProduit")
+    val imageProduit: String
 )

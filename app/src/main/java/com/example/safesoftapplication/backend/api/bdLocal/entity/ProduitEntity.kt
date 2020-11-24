@@ -12,5 +12,6 @@ data class ProduitEntity(
     @ColumnInfo(name = "prixProduit") val prixProduit: Double,
     @ColumnInfo(name = "descriptionProduit") val descriptionProduit: String,
     @ColumnInfo(name = "categorieProduit") val categorieProduit: String,
-    @ColumnInfo(name = "stockProduit", defaultValue = "0") val stockProduit: Double? = null
+    @ColumnInfo(name = "stockProduit", defaultValue = "0") val stockProduit: Double? = null,
+    @ColumnInfo(name = "imageProduit") val imageProduit: String
     )
