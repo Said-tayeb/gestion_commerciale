@@ -19,12 +19,15 @@ class ModifCompteVM @ViewModelInject constructor(
 ) : AndroidViewModel(application)
 {
 
-
     var nomClient = ""
     var prenomClient = ""
     var emailClient = ""
     var loginClient = ""
     var telClient = ""
+
+    private var _clic = MutableLiveData<Boolean>(false)
+    val clic : LiveData<Boolean>
+        get() = _clic
 
     private var _message = MutableLiveData<String>("")
     val message : LiveData<String>
@@ -113,8 +116,13 @@ class ModifCompteVM @ViewModelInject constructor(
             }catch (e : Exception){
                 _message.value = "nom d'utilisateur d'éja existant"
             }
-
         }
     }
 
+    /**
+     *function qy
+     */
+    fun clicBtnModifCommande(){
+        _clic.value = true
+    }
 }
