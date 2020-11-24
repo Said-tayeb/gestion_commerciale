@@ -7,17 +7,27 @@ import com.example.safesoftapplication.vM.BaseViewModel
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.safesoftapplication.backend.api.api.reponses.catalogueResponse.produitsResponse
+import com.example.safesoftapplication.backend.api.bdLocal.dao.CatalogueDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 import com.example.safesoftapplication.repository.CatalogueRepository
 import com.example.safesoftapplication.utils.Resource
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class CatalogueVM @ViewModelInject constructor(
     val catalogueRepo: CatalogueRepository,
+    val catalogueDao: CatalogueDao,
 
     ) : BaseViewModel() {
+
+    private val _navigateToDetailsProduit = MutableLiveData<Int>()
+    val navigateToDetailsProduit : LiveData<Int>
+        get() = _navigateToDetailsProduit
+
 
     // Récupère les donnes du Dao:
     fun getAllProduits(): LiveData<Resource<List<ProduitEntity>>> {
@@ -27,6 +37,13 @@ class CatalogueVM @ViewModelInject constructor(
         return data
     }
 
+    fun clicProduit(idProduit : Int){
+        _navigateToDetailsProduit.value = idProduit
+    }
+
+    fun ProduitDetailsNavgated(){
+        _navigateToDetailsProduit.value = null
+    }
 
 
 //    fun affiche() {
@@ -40,9 +57,9 @@ class CatalogueVM @ViewModelInject constructor(
 //        return data
 //    }
 
+    fun recupProduit() = catalogueDao.recupProduit()
     // Récupère les données du serveur et es ajoute a la base de donnée locale
     fun getProduit() {
-        try{
             val resulut = catalogueRepo.getAllProduitsServeur().subscribeOn(Schedulers.io())
                 .flatMapCompletable {
                     catalogueRepo.insertDBserver(it.map {
@@ -62,13 +79,5 @@ class CatalogueVM @ViewModelInject constructor(
                 }.doOnComplete {
                     Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
                 }.observeOn(Schedulers.io()).subscribe()
-        }catch (e : Exception){
-            
-        }
-
     }
-
-
-
-
 }

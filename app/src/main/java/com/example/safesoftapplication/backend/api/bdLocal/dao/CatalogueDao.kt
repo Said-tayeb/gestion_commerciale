@@ -25,4 +25,7 @@ interface CatalogueDao {
 
     @Insert
     fun addProduits(vararg providers: ProduitEntity): Completable
+
+    @Query("SELECT * FROM produits limit 1")
+        fun recupProduit(): LiveData<ProduitEntity>
 }

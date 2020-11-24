@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safesoftapplication.R
+import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 import com.example.safesoftapplication.databinding.FragmentElementCatalogueBinding
 import com.squareup.picasso.Picasso
 import java.io.File
 
-class CatalogueAdapter  : ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder>(CataloguetDiffCallback()) {
+class CatalogueAdapter(val clickListener: ProduitListener)  :
+    ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder>(CataloguetDiffCallback()) {
 
     class CataloguetDiffCallback : DiffUtil.ItemCallback<ProduitEntity>() {
         override fun areItemsTheSame(oldItem: ProduitEntity, newItem: ProduitEntity): Boolean {
@@ -26,7 +28,7 @@ class CatalogueAdapter  : ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
 
@@ -38,10 +40,12 @@ class CatalogueAdapter  : ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder
     class ViewHolder private constructor( val binding: FragmentElementCatalogueBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(
-            item: ProduitEntity
+            item: ProduitEntity,
+            clickListener: ProduitListener
         ) {
+            binding.produit = item
+            binding.clickListener = clickListener
             val res = itemView.context.resources
-            binding.idPrixProduit.text = item.prixProduit.toString() + " DA"
             Picasso
                 .get()
                 .load(item.imageProduit)
@@ -61,4 +65,11 @@ class CatalogueAdapter  : ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder
             }
         }
     }
+}
+
+/**
+ *classe pour gerer les clics
+ */
+class ProduitListener(val clickListener: (idProduit: Int) -> Unit) {
+    fun onClick(produitEntity: ProduitEntity) = clickListener(produitEntity.idProduit)
 }

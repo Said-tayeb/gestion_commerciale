@@ -1,8 +1,9 @@
-package com.example.safesoftapplication.ui.mesCommandes
+package com.example.safesoftapplication.utils
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
+import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 
 @BindingAdapter("dateCommande")
 fun TextView.setDateCommande(item : CommandeEntity){
@@ -18,4 +19,9 @@ fun TextView.setDateExp(item : CommandeEntity){
 @BindingAdapter("prixCommande")
 fun TextView.setPrixCommande(item : CommandeEntity){
     text = "Prix total : " + item.prixTotalCommande.toString() + " Da"
+}
+
+@BindingAdapter("prixProduit")
+fun TextView.setPrixProdui(item : ProduitEntity){
+    text = item.prixProduit.toString() + " Da"
 }
