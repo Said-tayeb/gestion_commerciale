@@ -9,7 +9,6 @@ import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
 import com.example.safesoftapplication.databinding.ListItemPanierBinding
 
-
 class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(MonPaniertDiffCallback()) {
 
     class MonPaniertDiffCallback : DiffUtil.ItemCallback<PanierEntity>() {
@@ -42,6 +41,7 @@ class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdap
             val res = itemView.context.resources
             binding.panier = item
             binding.imageProduit.setImageResource(R.drawable.ic_checklist)
+            binding.clickListener = clickListener
 //            Picasso
 //                .get()
 //                .load(item.imageProduit)
