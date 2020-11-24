@@ -28,12 +28,14 @@
             app:cardCornerRadius="@dimen/_8sdp"
             app:contentPadding="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_line">
+            app:layout_constraintTop_toBottomOf="@+id/top_line"
+            >
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500">
 
                 <ImageView
                     android:id="@+id/catalogue_image"
@@ -88,7 +90,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500">
 
                 <ImageView
                     android:id="@+id/commandes_image"
@@ -97,7 +100,8 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:src="@drawable/ic_checklist"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <View
                     android:id="@+id/divider_sales"
@@ -142,7 +146,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500">
 
                 <ImageView
                     android:id="@+id/client_image"
@@ -195,7 +200,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/idContact"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500">
 
                 <ImageView
                     android:id="@+id/organisme_image"

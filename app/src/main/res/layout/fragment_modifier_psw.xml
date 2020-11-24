@@ -24,7 +24,8 @@
             android:gravity="center"
             android:hint="Nouveau"
             android:inputType="textPassword"
-            android:text="@={viewModel.pswClient}" />
+            android:text="@={viewModel.pswClient}"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/editConfPsw"
@@ -34,13 +35,15 @@
             android:gravity="center"
             android:hint="Confirmer"
             android:inputType="textPassword"
-            android:text="@={viewModel.confPswClient}" />
+            android:text="@={viewModel.confPswClient}"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/button"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.clicValider()}"
-            android:text="Valider" />
+            android:text="Valider"
+            android:textColor="@color/black"/>
     </LinearLayout>
 </layout>

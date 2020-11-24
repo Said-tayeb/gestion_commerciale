@@ -26,7 +26,8 @@
             app:cardCornerRadius="@dimen/_8sdp"
             app:contentPadding="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_line">
+            app:layout_constraintTop_toBottomOf="@+id/top_line"
+            app:cardBackgroundColor="#FF9800">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="135dp"
@@ -35,8 +36,8 @@
 
                 <ImageView
                     android:id="@+id/imageProduit"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="60dp"
+                    android:layout_width="142dp"
+                    android:layout_height="66dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"

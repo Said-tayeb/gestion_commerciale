@@ -36,7 +36,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Nom : "
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/editNomClient"
@@ -45,7 +46,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -61,7 +63,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Prenom : "
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/editPrenomClient"
@@ -70,7 +73,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -85,7 +89,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Téléphone : "
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/editTelClient"
@@ -94,7 +99,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="phone"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -110,7 +116,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Email : "
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/editTextEmailClient"
@@ -119,7 +126,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textEmailAddress"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -135,7 +143,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Login : "
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/editLoginClient"
@@ -144,7 +153,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -155,8 +165,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_100sdp"
                 android:layout_weight="1"
+                android:text="Modifier"
 
-                android:text="Modifier" />
+                android:textColor="@color/black" />
 <!--            android:onClick="@{() -> vm.clicModifierCompte()}"-->
 
             <Button
@@ -165,7 +176,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Changer mot de passe" />
+                android:text="Changer mot de passe"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </ScrollView>
