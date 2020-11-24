@@ -30,8 +30,6 @@ class CatalogueFragment : Fragment() {
     private lateinit var binding: FragmentGalleryBinding
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

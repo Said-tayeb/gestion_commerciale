@@ -42,26 +42,29 @@ class CatalogueVM @ViewModelInject constructor(
 
     // Récupère les données du serveur et es ajoute a la base de donnée locale
     fun getProduit() {
-        val resulut = catalogueRepo.getAllProduitsServeur().subscribeOn(Schedulers.io())
-            .flatMapCompletable {
-                catalogueRepo.insertDBserver(it.map {
-                    ProduitEntity(
-                        it.idProduit,
-                        it.titreProduit,
-                        it.prixProduit.toDouble(),
-                        it.descriptionProduit,
-                        it.categorieProduit,
-                        it.stockProduit.toDouble(),
-                        it.imageProduit
-                    )
-                }.toTypedArray())
-            }.onErrorComplete {
-                it.printStackTrace()
-                false
-            }.doOnComplete {
-                Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
-            }.observeOn(Schedulers.io()).subscribe()
-
+        try{
+            val resulut = catalogueRepo.getAllProduitsServeur().subscribeOn(Schedulers.io())
+                .flatMapCompletable {
+                    catalogueRepo.insertDBserver(it.map {
+                        ProduitEntity(
+                            it.idProduit,
+                            it.titreProduit,
+                            it.prixProduit.toDouble(),
+                            it.descriptionProduit,
+                            it.categorieProduit,
+                            it.stockProduit.toDouble(),
+                            it.imageProduit
+                        )
+                    }.toTypedArray())
+                }.onErrorComplete {
+                    it.printStackTrace()
+                    false
+                }.doOnComplete {
+                    Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
+                }.observeOn(Schedulers.io()).subscribe()
+        }catch (e : Exception){
+            
+        }
 
     }
 

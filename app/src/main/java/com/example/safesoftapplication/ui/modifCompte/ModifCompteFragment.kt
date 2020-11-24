@@ -68,7 +68,6 @@ class ModifCompteFragment : Fragment() {
 //            eventModifCompte()
 //        }
 
-
         return binding.root
     }
 
