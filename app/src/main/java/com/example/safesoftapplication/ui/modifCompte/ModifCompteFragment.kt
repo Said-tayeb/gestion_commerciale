@@ -44,6 +44,7 @@ class ModifCompteFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+
         viewModel.message.observe(viewLifecycleOwner, Observer {
             if (it != ""){
                     viewModel.succes.observe(viewLifecycleOwner, Observer { newSucces ->
