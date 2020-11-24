@@ -35,9 +35,11 @@ class DetailsProduitFragment : Fragment() {
         //referance a l application
         val application = requireNotNull(this.activity).application
         //referance a notre source de donnees
-        val dataSource = BaseDonneesLocal.getInstance(application).produitDao()
+        val produitDao = BaseDonneesLocal.getInstance(application).produitDao()
+        val clientDao= BaseDonneesLocal.getInstance(application).clientDao()
+        val panierDao= BaseDonneesLocal.getInstance(application).panierDao()
         //créez une instance du viewModelFactory
-        val viewModelFactory = DetailsProduitVMFactory(dataSource, application)
+        val viewModelFactory = DetailsProduitVMFactory(produitDao,clientDao,panierDao, application)
         //intance de view model (referance a notre view model)
         val viewModel =
             ViewModelProvider(
@@ -46,6 +48,7 @@ class DetailsProduitFragment : Fragment() {
         binding.setLifecycleOwner(this)
         //initialiser le viewModel
 //        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
+
         binding.viewModel = viewModel
 
 
