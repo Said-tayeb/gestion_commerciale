@@ -77,5 +77,6 @@
     <string name="strMenuDeconnecter">Déconnecter</string>
     <string name="strItemDeconnexion">Déconnexion</string>
     <string name="strcommander">Commander</string>
+    <string name="strsafesoft">SafeSoft</string>
 
 </resources>

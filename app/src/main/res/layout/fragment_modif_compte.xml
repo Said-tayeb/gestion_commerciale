@@ -30,7 +30,8 @@
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Nouveau nom :" />
+                    android:text="Nouveau nom :"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextNomonCompte"
@@ -41,7 +42,8 @@
                     android:gravity="center"
                     android:hint="Nouveau nom"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.nomClient}" />
+                    android:text="@={viewModel.nomClient}"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -55,7 +57,8 @@
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Nouveau prenom :" />
+                    android:text="Nouveau prenom :"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextPrenom"
@@ -66,7 +69,8 @@
                     android:gravity="center"
                     android:hint="Nouveau prenom"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.prenomClient}" />
+                    android:text="@={viewModel.prenomClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -79,7 +83,8 @@
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Nouveau telephone :" />
+                    android:text="Nouveau telephone :"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextPhone"
@@ -90,7 +95,8 @@
                     android:gravity="center"
                     android:hint="Numero"
                     android:inputType="phone"
-                    android:text="@={viewModel.telClient}" />
+                    android:text="@={viewModel.telClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -103,7 +109,8 @@
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Nouveau email :" />
+                    android:text="Nouveau email :"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextEmail"
@@ -114,7 +121,8 @@
                     android:gravity="center"
                     android:hint=" Nouvel email"
                     android:inputType="textEmailAddress"
-                    android:text="@={viewModel.emailClient}" />
+                    android:text="@={viewModel.emailClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -127,7 +135,8 @@
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Nouveau login" />
+                    android:text="Nouveau login"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextLoginInscription"
@@ -138,7 +147,8 @@
                     android:gravity="center"
                     android:hint="nouveau login"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.loginClient}" />
+                    android:text="@={viewModel.loginClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -152,7 +162,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> viewModel.clicEnrg()}"
-                    android:text="Enregistrer" />
+                    android:text="Enregistrer"
+                    android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

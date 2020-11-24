@@ -31,7 +31,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/strNom" />
+                    android:text="@string/strNom"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextNomonCompte"
@@ -40,7 +41,8 @@
                     android:ems="10"
                     android:hint="@string/strNom"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.nomClient}"/>
+                    android:text="@={viewModel.nomClient}"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -54,7 +56,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/strPrenom" />
+                    android:text="@string/strPrenom"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextPrenom"
@@ -63,7 +66,8 @@
                     android:ems="10"
                     android:hint="@string/strPrenom"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.prenomClient}"/>
+                    android:text="@={viewModel.prenomClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/strEmail" />
+                    android:text="@string/strEmail"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextEmail"
@@ -85,7 +90,8 @@
                     android:ems="10"
                     android:hint="Adresse email"
                     android:inputType="textEmailAddress"
-                    android:text="@={viewModel.emailClient}"/>
+                    android:text="@={viewModel.emailClient}"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,7 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Login" />
+                    android:text="Login"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextLoginInscription"
@@ -107,7 +114,8 @@
                     android:ems="10"
                     android:hint="Login"
                     android:inputType="textPersonName"
-                    android:text="@={viewModel.loginClient}"/>
+                    android:text="@={viewModel.loginClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +128,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="mot de passe" />
+                    android:text="mot de passe"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextPasswordInscription"
@@ -129,7 +138,8 @@
                     android:ems="10"
                     android:hint="Mot de passe"
                     android:inputType="textPassword"
-                    android:text="@={viewModel.pswClient}"/>
+                    android:text="@={viewModel.pswClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -142,7 +152,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Confirmer" />
+                    android:text="Confirmer"
+                    android:textColor="@color/white"/>
 
                 <EditText
                     android:id="@+id/editTextConfirmePassword"
@@ -151,7 +162,8 @@
                     android:ems="10"
                     android:hint="Confirmer le mot de passe"
                     android:inputType="textPassword"
-                    android:text="@={viewModel.cPswClient}"/>
+                    android:text="@={viewModel.cPswClient}"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -165,7 +177,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enregistrer"
-                    android:onClick="@{() -> viewModel.clicBtnInscription()}"/>
+                    android:onClick="@{() -> viewModel.clicBtnInscription()}"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
         </LinearLayout>

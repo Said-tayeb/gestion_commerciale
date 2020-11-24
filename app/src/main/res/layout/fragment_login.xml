@@ -30,14 +30,15 @@
                 android:gravity="center"
                 android:hint="@string/strLogin"
                 android:inputType="textPersonName"
-                android:text="@={viewModel.loginClient}" />
+                android:text="@={viewModel.loginClient}"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/idPSW"
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:hint="@string/strPassword"
                 android:inputType="textPassword"

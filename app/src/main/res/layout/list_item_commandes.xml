@@ -36,7 +36,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="102dp"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:background="#FF9800">
                 <ImageView
                     android:id="@+id/catalogue_image"
                     android:layout_width="@dimen/_50sdp"
