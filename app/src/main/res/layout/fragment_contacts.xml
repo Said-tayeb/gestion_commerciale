@@ -42,7 +42,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@={viewModel.nomOrganisme}"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:id="@+id/idAddresseOrganisme"
@@ -50,7 +51,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:text="@={viewModel.adresseOrganisme}"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:id="@+id/idCodePostalOrganisme"
@@ -58,7 +60,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:text="@={viewModel.codePostalOrganisme}"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:id="@+id/idEmailOrganisme"
@@ -66,7 +69,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:text="@={viewModel.emailOrganisme}"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:id="@+id/idTelephoneOrganisme"
@@ -74,7 +78,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:text="@={viewModel.telephoneOrganisme}"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,8 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/stat_sys_phone_call_on_hold"
-            />
+            app:srcCompat="@android:drawable/stat_sys_phone_call" />
 <!--        android:onClick="@{() -> viewModel.eventTelephone()}"-->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

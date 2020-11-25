@@ -36,28 +36,31 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="135dp"
-                android:layout_height="wrap_content"
+                android:layout_height="144dp"
                 android:layout_gravity="center"
-                android:onClick="@{() -> clickListener.onClick(produit)}">
+                android:background="@color/purple_500"
+                android:onClick="@{() -> clickListener.onClick(produit)}"
+                >
 
                 <ImageView
                     android:id="@+id/imageProduit"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="124dp"
+                    android:layout_height="101dp"
+                    android:background="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.454"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.28"
                     tools:srcCompat="@drawable/ic_checklist" />
 
                 <TextView
                     android:id="@+id/idPrixProduit"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="20dp"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -66,7 +69,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageProduit"
-                    app:prixProduit="@{produit}"/>
+                    app:layout_constraintVertical_bias="1.0"
+                    app:prixProduit="@{produit}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
