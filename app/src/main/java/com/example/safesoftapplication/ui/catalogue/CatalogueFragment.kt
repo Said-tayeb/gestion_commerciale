@@ -14,13 +14,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.databinding.FragmentGalleryBinding
+import com.example.safesoftapplication.ui.generics.BaseFragment
 import com.example.safesoftapplication.vM.catalogueVM.CatalogueVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CatalogueFragment : Fragment() {
+class CatalogueFragment : BaseFragment() {
 
-    private  val viewModel: CatalogueVM by viewModels()
+    private val viewModel: CatalogueVM by viewModels()
     private lateinit var binding: FragmentGalleryBinding
 
 
@@ -50,7 +51,8 @@ class CatalogueFragment : Fragment() {
                 it?.let {
                     this.findNavController().navigate(
                         CatalogueFragmentDirections
-                            .actionCatalogueFragmentToDetailsProduitFragment(it))
+                            .actionCatalogueFragmentToDetailsProduitFragment(it)
+                    )
                     viewModel.ProduitDetailsNavgated()
                 }
             })
@@ -58,11 +60,16 @@ class CatalogueFragment : Fragment() {
         binding.idRcyclerViewCatlogue.adapter = adapter
 
         viewModel.recupProduit().observe(viewLifecycleOwner, Observer {
-            if (it == null){
-                viewModel.getProduit()
+            if (it == null) {
+                if (isDataConnected())
+                    viewModel.getProduit()
+                else
+
+                    toast(message = "Verifiez votre connexion conexion")
+
             }
             viewModel.getAllProduits().observe(viewLifecycleOwner, Observer {
-                Log.d("TAAAAAAAAAG","uccess ${it.data}")
+                Log.d("TAAAAAAAAAG", "uccess ${it.data}")
                 if (it.data?.isNotEmpty() == true) {
                     Log.d("donnes", "OUI OUI OUI ")
                     adapter.submitList(it.data)

@@ -20,7 +20,7 @@ class CatalogueVM @ViewModelInject constructor(
     ) : BaseViewModel() {
 
     private val _navigateToDetailsProduit = MutableLiveData<Int>()
-    val navigateToDetailsProduit : LiveData<Int>
+    val navigateToDetailsProduit: LiveData<Int>
         get() = _navigateToDetailsProduit
 
 
@@ -32,11 +32,11 @@ class CatalogueVM @ViewModelInject constructor(
         return data
     }
 
-    fun clicProduit(idProduit : Int){
+    fun clicProduit(idProduit: Int) {
         _navigateToDetailsProduit.value = idProduit
     }
 
-    fun ProduitDetailsNavgated(){
+    fun ProduitDetailsNavgated() {
         _navigateToDetailsProduit.value = null
     }
 
@@ -52,27 +52,30 @@ class CatalogueVM @ViewModelInject constructor(
 //    }
 
     fun recupProduit() = catalogueDao.recupProduit()
+
     // Récupère les données du serveur et es ajoute a la base de donnée locale
     fun getProduit() {
-            val resulut = catalogueRepo.getAllProduitsServeur().subscribeOn(Schedulers.io())
-                .flatMapCompletable {
-                    catalogueRepo.insertDBserver(it.map {
-                        ProduitEntity(
-                            it.idProduit,
-                            it.titreProduit,
-                            it.prixProduit.toDouble(),
-                            it.descriptionProduit,
-                            it.categorieProduit,
-                            it.stockProduit.toDouble(),
-                            it.imageProduit
-                        )
-                    }.toTypedArray())
-                }.onErrorComplete {
-                    it.printStackTrace()
-                    false
-                }.doOnComplete {
-                    Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
-                }.observeOn(Schedulers.io()).subscribe()
+        val result = catalogueRepo.getAllProduitsServeur().subscribeOn(Schedulers.io())
+            .flatMapCompletable {
+                catalogueRepo.insertDBserver(it.map {
+                    ProduitEntity(
+                        it.idProduit,
+                        it.titreProduit,
+                        it.prixProduit.toDouble(),
+                        it.descriptionProduit,
+                        it.categorieProduit,
+                        it.stockProduit.toDouble(),
+                        it.imageProduit
+                    )
+                }.toTypedArray())
+            }.onErrorComplete {
+                it.printStackTrace()
+                false
+            }.doOnComplete {
+                Log.d("TAAAAAAAAAG", "getProduit: succeeeeeeeeeeeeessssss")
+            }.observeOn(Schedulers.io())
+            .doOnError { it.printStackTrace() }
+            .subscribe()
     }
 
 }

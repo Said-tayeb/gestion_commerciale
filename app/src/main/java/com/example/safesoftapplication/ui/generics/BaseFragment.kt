@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.safesoftapplication.ui.generics.adapter.BaseFragmentAdapter
 import com.example.safesoftapplication.utils.Resource
 import com.example.safesoftapplication.utils.ResourceState
+import java.io.IOException
 
 abstract class BaseFragment : Fragment() {
     private val TAG = BaseFragment::class.simpleName
@@ -50,5 +51,18 @@ abstract class BaseFragment : Fragment() {
         setUp()
         setUpViews()
         setUpObservers()
+    }
+
+    fun isDataConnected(): Boolean {
+        try {
+            val process = Runtime.getRuntime().exec("ping -c 1 8.8.8.8")
+            val returnVal = process.waitFor()
+            return returnVal == 0
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        return false
     }
 }
