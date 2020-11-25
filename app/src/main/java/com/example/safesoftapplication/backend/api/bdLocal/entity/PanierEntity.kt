@@ -10,5 +10,6 @@ data class PanierEntity(
     @PrimaryKey(autoGenerate = true) val idPanier: Int,
     @ColumnInfo(name = "idClient") val idClient : Int,
     @ColumnInfo(name = "idProduit") val idProduit : Int,
-    @ColumnInfo(name = "prixProduit") val prixProduit: Double
+    @ColumnInfo(name = "prixProduit") val prixProduit: Double,
+    @ColumnInfo(name = "imageProduit") val imageProduit: String
 )

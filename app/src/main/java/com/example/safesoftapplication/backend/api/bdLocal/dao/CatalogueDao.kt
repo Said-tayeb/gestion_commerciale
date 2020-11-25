@@ -23,8 +23,14 @@ interface CatalogueDao {
     @Query("select * from produits where idProduit = :idProduit ")
         fun recupProduit(idProduit: Int): LiveData<ProduitEntity>
 
+    /**
+     * recuperer un produit par son id
+     */
+    @Query("select * from produits where idProduit = :idProduit ")
+        suspend fun recupProduitEnt(idProduit: Int): ProduitEntity
+
     @Insert
-    fun addProduits(vararg providers: ProduitEntity): Completable
+        fun addProduits(vararg providers: ProduitEntity): Completable
 
     @Query("SELECT * FROM produits limit 1")
         fun recupProduit(): LiveData<ProduitEntity>

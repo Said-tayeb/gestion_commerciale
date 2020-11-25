@@ -38,17 +38,17 @@ class MonPanierVM @ViewModelInject constructor(
     fun recupToutProduits() : LiveData<List<PanierEntity>>{
         TODO()
     }
-    /**
-     * ajout d'un produit au panier
-     */
-    fun ajoutProduitPanier(){
-        var panier1 = PanierEntity(0,1, 1 , 9000.0)
-        var panier2 = PanierEntity(0,1, 2 , 3000.0)
-        viewModelScope.launch {
-            panierDao.ajoutProdPanier(panier1)
-            panierDao.ajoutProdPanier(panier2)
-        }
-    }
+//    /**
+//     * ajout d'un produit au panier
+//     */
+//    fun ajoutProduitPanier(){
+//        var panier1 = PanierEntity(0,1, 1 , 9000.0)
+//        var panier2 = PanierEntity(0,1, 2 , 3000.0)
+//        viewModelScope.launch {
+//            panierDao.ajoutProdPanier(panier1)
+//            panierDao.ajoutProdPanier(panier2)
+//        }
+//    }
 
     /**
      * recuperer tous id client connecter

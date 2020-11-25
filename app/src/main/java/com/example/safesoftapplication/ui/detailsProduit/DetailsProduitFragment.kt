@@ -21,7 +21,9 @@ import com.example.safesoftapplication.vM.detailsProduitVM.DetailsProduitVMFacto
 import com.example.safesoftapplication.vM.monCompteVM.MonCompteVMFactory
 import com.example.safesoftapplication.vM.monCompteVM.MonCompteViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_details_produit.view.*
 
 @AndroidEntryPoint
 class DetailsProduitFragment : Fragment() {
@@ -54,32 +56,63 @@ class DetailsProduitFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        viewModel.recupProduit(args.idProduit).observe(viewLifecycleOwner, Observer { produit ->
+            binding.apply {
+                txtTitreProduit.text = produit.titreProduit
+                txtCategorieProduit.text = produit.categorieProduit
+                txtPrixProduit.text = produit.prixProduit.toString() + " Da"
+                txtDescriptionProduit.text = produit.descriptionProduit
+                Picasso
+                    .get()
+                    .load(produit.imageProduit)
+                    .placeholder(R.drawable.ic_delivery_box)
+                    .error(R.drawable.ic_no_item)
+                    .fit()
+                    .into(imageProduit)
+            }
+        })
+
 
         binding.btnAjoutPanier.setOnClickListener {
             viewModel.recupClient().observe(viewLifecycleOwner, Observer { newClient ->
-                viewModel.recuProduitPanier(args.idProduit, newClient.idClient).observe(viewLifecycleOwner, Observer { newProduit ->
-                    Log.d("baseDonnees", "_______idProduit = " + newProduit)
-                    if(newProduit != null){
-                        Snackbar.make(
-                            requireActivity().findViewById(android.R.id.content),
-                            "Vous avez déjà ajouté ce produit à votre panier",
-                            Snackbar.LENGTH_SHORT // How long to display the message.
-                        ).show()
-                    }else{
-                        viewModel.recupProduit(args.idProduit).observe(viewLifecycleOwner, Observer { produitAjout ->
-                            viewModel.ajoutProduitPanier(produitAjout, newClient)
-                            viewModel.message.observe(viewLifecycleOwner, Observer {
-                                Snackbar.make(
-                                    requireActivity().findViewById(android.R.id.content),
-                                    it,
-                                    Snackbar.LENGTH_SHORT // How long to display the message.
-                                ).show()
-                            })
-
-                        })
-                    }
+                if (newClient == null){
+                    view?.findNavController()?.navigate(R.id.action_detailsProduitFragment_to_loginFragment)
+                }else{
+                    viewModel.ajoutProduitPanier(newClient, args.idProduit)
+                }
+                viewModel.message.observe(viewLifecycleOwner, Observer {newMessage ->
+                    Snackbar.make(
+                        requireActivity().findViewById(android.R.id.content),
+                        newMessage,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 })
+                viewModel.renitMessage()
             })
+
+//            viewModel.recupClient().observe(viewLifecycleOwner, Observer { newClient ->
+//                if (newClient == null){
+//                    view?.findNavController()?.navigate(R.id.action_detailsProduitFragment_to_loginFragment)
+//                }else{
+//
+//                    viewModel.RecupProduitEntPanier(args.idProduit, newClient.idClient)
+//                    if (!viewModel.existPanier){
+//                        Log.d("baseDonnees", "ags : " + args.idProduit)
+//                        viewModel.recupProduitEnt(args.idProduit)
+//                        viewModel.ajoutProduitPanier( newClient)
+//                    }
+//                    viewModel.changeExist()
+//                    Log.d("baseDonnees", "ags : " + args.idProduit)
+//                    viewModel.message.observe(viewLifecycleOwner, Observer { newMessage ->
+//                        Snackbar.make(
+//                            requireActivity().findViewById(android.R.id.content),
+//                            newMessage,
+//                            Snackbar.LENGTH_SHORT
+//                        ).show()
+//                        viewModel.renitMessage()
+//                    })
+//                }
+//            })
         }
 
         binding.btnCommander.setOnClickListener {

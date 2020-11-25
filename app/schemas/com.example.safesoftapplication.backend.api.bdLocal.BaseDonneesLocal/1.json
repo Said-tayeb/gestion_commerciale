@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d0de3f88c8caf9b6293cd6fd18027e5d",
+    "identityHash": "b1d9bf161a77fb4567354bbc854c2b16",
     "entities": [
       {
         "tableName": "clients",
@@ -193,7 +193,7 @@
       },
       {
         "tableName": "paniers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPanier` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idClient` INTEGER NOT NULL, `idProduit` INTEGER NOT NULL, `prixProduit` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPanier` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idClient` INTEGER NOT NULL, `idProduit` INTEGER NOT NULL, `prixProduit` REAL NOT NULL, `imageProduit` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "idPanier",
@@ -217,6 +217,12 @@
             "fieldPath": "prixProduit",
             "columnName": "prixProduit",
             "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageProduit",
+            "columnName": "imageProduit",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -289,7 +295,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd0de3f88c8caf9b6293cd6fd18027e5d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b1d9bf161a77fb4567354bbc854c2b16')"
     ]
   }
 }

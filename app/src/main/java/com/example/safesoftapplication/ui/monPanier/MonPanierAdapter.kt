@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
 import com.example.safesoftapplication.databinding.ListItemPanierBinding
+import com.squareup.picasso.Picasso
 
 class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdapter<PanierEntity, MonPanierAdapter.ViewHolder>(MonPaniertDiffCallback()) {
 
@@ -26,8 +27,6 @@ class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdap
         holder.bind(item, clickListener)
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
@@ -42,13 +41,13 @@ class MonPanierAdapter constructor(val clickListener: PanierListener) : ListAdap
             binding.panier = item
             binding.imageProduit.setImageResource(R.drawable.ic_checklist)
             binding.clickListener = clickListener
-//            Picasso
-//                .get()
-//                .load(item.imageProduit)
-//                .placeholder(R.drawable.ic_delivery_box)
-//                .error(R.drawable.ic_no_item)
-//                .fit()
-//                .into(binding.imageProduit)
+            Picasso
+                .get()
+                .load(item.imageProduit)
+                .placeholder(R.drawable.ic_delivery_box)
+                .error(R.drawable.ic_no_item)
+                .fit()
+                .into(binding.imageProduit)
         }
 
         companion object {

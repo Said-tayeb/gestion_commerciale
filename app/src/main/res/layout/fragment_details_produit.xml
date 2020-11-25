@@ -42,24 +42,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/Titre_prod"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="@string/Titre"
+                        android:text="@string/strNom"
                         android:textSize="@dimen/_15sdp" />
 
                     <TextView
-                        android:id="@+id/Titre_prod_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtTitreProduit"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="@string/Titre"
                         android:textSize="@dimen/_15sdp" />
                 </LinearLayout>
 
@@ -69,20 +69,18 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/Categ_prod"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/categorie"
                         android:textSize="@dimen/_15sdp" />
 
                     <TextView
-                        android:id="@+id/categ_prod_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtCategorieProduit"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="@string/Titre"
                         android:textSize="@dimen/_15sdp" />
                 </LinearLayout>
 
@@ -92,44 +90,18 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/Stock_prod"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/stock"
-                        android:textSize="@dimen/_15sdp" />
-
-                    <TextView
-                        android:id="@+id/stock_prod_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:text="@string/Titre"
-                        android:textSize="@dimen/_15sdp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/prix_prod"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/prix"
                         android:textSize="@dimen/_15sdp" />
 
                     <TextView
-                        android:id="@+id/prix_prod_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtPrixProduit"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="@string/Titre"
                         android:textSize="@dimen/_15sdp" />
 
                 </LinearLayout>
@@ -140,20 +112,18 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/descript_prod"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/description"
                         android:textSize="@dimen/_15sdp" />
 
                     <TextView
-                        android:id="@+id/descript_prod_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtDescriptionProduit"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="@string/Titre"
                         android:textSize="@dimen/_15sdp" />
                 </LinearLayout>
             </LinearLayout>
@@ -198,8 +168,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:text="@string/strcommander"
-
                         />
+<!--                    android:onClick="@{() -> viewModel.clicCommander()}"-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -215,7 +185,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_shopping_cart"
-                        app:fabSize="auto" />
+                        app:fabSize="auto"
+                        />
+<!--                    android:onClick="@{() -> viewModel.clicBtnAjoutPanier()}"-->
 
                 </LinearLayout>
             </LinearLayout>
