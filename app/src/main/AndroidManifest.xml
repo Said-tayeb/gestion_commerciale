@@ -3,36 +3,45 @@
     package="com.example.safesoftapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL__PHONE"/>
+    <uses-permission android:name="android.permission.CALL__PHONE" />
 
     <application
         android:name=".SafeApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="Gestion comerciale"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.SafeSoftApplication">
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
+        android:theme="@style/Theme.SafeSoftApplication"
+        android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".AccueilActivity"
-            android:label="@string/title_activity_accueil"
-            android:theme="@style/Theme.SafeSoftApplication.NoActionBar" >
+            android:name=".ui.SplashScreen"
+            android:theme="@style/Theme.SafeSoftApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.inscription.InsriptionActivity" />
-        <activity android:name=".ui.authentification.LoginActivity">
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".AccueilActivity"
+            android:label="@string/title_activity_accueil"
+            android:theme="@style/Theme.SafeSoftApplication.NoActionBar">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
+
+        <activity android:name=".ui.inscription.InsriptionActivity" />
+        <activity android:name=".ui.authentification.LoginActivity"/>
     </application>
 
 </manifest>
