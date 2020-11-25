@@ -18,6 +18,12 @@ interface PanierDao {
         fun recupTousPanier(idClient : Int): LiveData<List<PanierEntity>>
 
     /**
+     * recuperer un produit du panier d' un client
+     */
+    @Query("select * from paniers where idClient = :idClient and idProduit = :idProduit limit 1")
+        fun recupProduitPanier(idProduit : Int, idClient : Int): LiveData<PanierEntity>
+
+    /**
      * ajouter un produit au panier d'un client
      */
     @Insert

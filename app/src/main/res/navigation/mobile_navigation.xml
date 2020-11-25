@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_monPanierFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />
+        <action
+            android:id="@+id/action_monPanierFragment_to_detailsProduitFragment"
+            app:destination="@id/detailsProduitFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
@@ -111,6 +114,10 @@
         <argument
             android:name="idProduit"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsProduitFragment_to_monPanierFragment"
+            app:destination="@id/monPanierFragment"
+            app:popUpTo="@id/detailsProduitFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

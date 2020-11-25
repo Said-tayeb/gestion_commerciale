@@ -4,11 +4,13 @@ import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.PanierDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
+import com.example.safesoftapplication.model.Client
 import kotlinx.coroutines.launch
 
 class MonPanierVM @ViewModelInject constructor(
@@ -17,6 +19,9 @@ class MonPanierVM @ViewModelInject constructor(
     application: Application
 ) : AndroidViewModel(application)
 {
+    private val _navigateToDetailsProduit = MutableLiveData<Int>()
+    val navigateToDetailsProduit : LiveData<Int>
+        get() = _navigateToDetailsProduit
 
     var idClient : Int = 0
 
@@ -27,7 +32,12 @@ class MonPanierVM @ViewModelInject constructor(
         return clientDao.checkLogged()
     }
 
-
+    /**
+     * recuperer les informations d'un produit
+     */
+    fun recupToutProduits() : LiveData<List<PanierEntity>>{
+        TODO()
+    }
     /**
      * ajout d'un produit au panier
      */
@@ -49,6 +59,16 @@ class MonPanierVM @ViewModelInject constructor(
         }
     }
 
-    val panier = panierDao.recupTousPanier(1)
+    fun recupToutProdPanier(idClient: Int) : LiveData<List<PanierEntity>> {
+        return panierDao.recupTousPanier(idClient)
+    }
+
+    fun clicProduit(idProduit : Int){
+        _navigateToDetailsProduit.value = idProduit
+    }
+
+    fun ProduitDetailsNavgated(){
+        _navigateToDetailsProduit.value = null
+    }
 
 }

@@ -7,7 +7,11 @@
         <variable
             name="panier"
             type="com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity"/>
+        <variable
+            name="clickListener"
+            type="com.example.safesoftapplication.ui.monPanier.PanierListener" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,7 +31,8 @@
             app:contentPadding="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_line"
-            app:cardBackgroundColor="#FF9800">
+            app:cardBackgroundColor="#FF9800"
+            android:onClick="@{() -> clickListener.onClick(panier)}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="135dp"
@@ -59,7 +64,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageProduit" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageProduit"
+                    app:prixProduitPanier="@{panier}"/>
                 <!--                <ImageView-->
                 <!--                    android:id="@+id/catalogue_image"-->
                 <!--                    android:layout_width="@dimen/_50sdp"-->
