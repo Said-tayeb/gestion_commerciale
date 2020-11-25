@@ -2,6 +2,7 @@ package com.example.safesoftapplication.backend.api.bdLocal.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
@@ -30,10 +31,22 @@ interface PanierDao {
         suspend fun recupProduitEntPanier(idProduit : Int, idClient : Int): PanierEntity?
 
     /**
+     * supprimer un produit du panier d' un client
+     */
+    @Query("delete from paniers where idProduit = :idProduit")
+        suspend fun supProduitPanierById(idProduit : Int)
+
+    /**
      * ajouter un produit au panier d'un client
      */
     @Insert
         suspend fun ajoutProdPanier(panier : PanierEntity)
+
+    /**
+     * supprimer un produit au panier d'un client
+     */
+    @Delete
+        suspend fun supProduitPanier(panier : PanierEntity)
 
 
 }
