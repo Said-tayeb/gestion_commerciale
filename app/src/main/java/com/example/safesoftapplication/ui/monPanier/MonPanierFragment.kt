@@ -25,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MonPanierFragment : Fragment() {
 
+
     private lateinit var binding: FragmentMonPanierBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -115,6 +116,7 @@ class MonPanierFragment : Fragment() {
         })
 
         val manager = GridLayoutManager(activity, 2)
+
         binding.idRcyclerViewPanier.layoutManager = manager
 
         return binding.root

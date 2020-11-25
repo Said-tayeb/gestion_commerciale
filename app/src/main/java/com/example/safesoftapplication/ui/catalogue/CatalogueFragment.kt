@@ -72,6 +72,5 @@ class CatalogueFragment : Fragment() {
 
         val manager = GridLayoutManager(activity, 2)
         binding.idRcyclerViewCatlogue.layoutManager = manager
-
     }
 }
