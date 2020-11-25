@@ -12,6 +12,7 @@ import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
 import com.example.safesoftapplication.model.Client
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MonPanierVM @ViewModelInject constructor(
     val panierDao: PanierDao,
@@ -22,6 +23,10 @@ class MonPanierVM @ViewModelInject constructor(
     private val _navigateToDetailsProduit = MutableLiveData<Int>()
     val navigateToDetailsProduit : LiveData<Int>
         get() = _navigateToDetailsProduit
+
+    private val _messageDelete = MutableLiveData<String>()
+    val messageDelete : LiveData<String>
+        get() = _messageDelete
 
     var idClient : Int = 0
 
@@ -69,6 +74,17 @@ class MonPanierVM @ViewModelInject constructor(
 
     fun ProduitDetailsNavgated(){
         _navigateToDetailsProduit.value = null
+    }
+
+    fun supProduitPanier(idProduit: Int){
+        viewModelScope.launch {
+            try {
+                panierDao.supProduitPanierById(idProduit)
+                _messageDelete.value = "Le produit à été retiré de votre"
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+        }
     }
 
 }

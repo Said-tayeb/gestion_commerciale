@@ -19,6 +19,7 @@ import com.example.safesoftapplication.databinding.FragmentMonPanierBinding
 import com.example.safesoftapplication.ui.catalogue.CatalogueFragmentDirections
 import com.example.safesoftapplication.vM.panier.MonPanierVM
 import com.example.safesoftapplication.vM.panier.MonPanierVMFactory
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -76,12 +77,20 @@ class MonPanierFragment : Fragment() {
                     viewModel.clicProduit(idProduit)
                     viewModel.navigateToDetailsProduit.observe(viewLifecycleOwner, Observer {
                         it?.let {
-                            Toast.makeText(context, "${it}", Toast.LENGTH_LONG).show()
                             this.findNavController().navigate(
                                 MonPanierFragmentDirections
                                     .actionMonPanierFragmentToDetailsProduitFragment(it))
                             viewModel.ProduitDetailsNavgated()
                         }
+                    })
+                }, PanierListenerDelete { idProduit ->
+                    viewModel.supProduitPanier(idProduit)
+                    viewModel.messageDelete.observe(viewLifecycleOwner, Observer { newMessage ->
+                        Snackbar.make(
+                            requireActivity().findViewById(android.R.id.content),
+                            newMessage,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     })
                 })
 

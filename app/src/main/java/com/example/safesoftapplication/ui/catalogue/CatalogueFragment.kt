@@ -48,7 +48,6 @@ class CatalogueFragment : Fragment() {
             viewModel.clicProduit(idProduit)
             viewModel.navigateToDetailsProduit.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    Toast.makeText(context, "${it}", Toast.LENGTH_LONG).show()
                     this.findNavController().navigate(
                         CatalogueFragmentDirections
                             .actionCatalogueFragmentToDetailsProduitFragment(it))

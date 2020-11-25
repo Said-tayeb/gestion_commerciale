@@ -10,6 +10,9 @@
         <variable
             name="clickListener"
             type="com.example.safesoftapplication.ui.monPanier.PanierListener" />
+        <variable
+            name="clickListenerDelelte"
+            type="com.example.safesoftapplication.ui.monPanier.PanierListenerDelete" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,10 +37,23 @@
             app:cardBackgroundColor="#FF9800"
             android:onClick="@{() -> clickListener.onClick(panier)}">
 
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_delete"
+                tools:ignore="MissingConstraints"
+                android:onClick="@{() -> clickListenerDelelte.onClick(panier)}"
+                />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
+
+
 
                 <ImageView
                     android:id="@+id/imageProduit"
@@ -50,6 +66,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@drawable/ic_checklist" />
+
+
 
                 <TextView
                     android:id="@+id/idPrixProduit"
@@ -66,6 +84,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageProduit"
                     app:prixProduitPanier="@{panier}"/>
+
+
                 <!--                <ImageView-->
                 <!--                    android:id="@+id/catalogue_image"-->
                 <!--                    android:layout_width="@dimen/_50sdp"-->
