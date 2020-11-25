@@ -14,19 +14,19 @@
             android:title="@string/menu_gallery" />
         <item
             android:id="@+id/mesCommandesFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_commande"
             android:title="@string/menu_mesCommandes" />
         <item
             android:id="@+id/monCompteFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_compte"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/monPanierFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_panier"
             android:title="@string/menu_monPanier" />
         <item
             android:id="@+id/contactsFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_info_24"
             android:title="@string/menu_contacts" />
 
     </group>
