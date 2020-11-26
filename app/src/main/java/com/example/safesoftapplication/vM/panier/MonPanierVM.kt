@@ -10,7 +10,6 @@ import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.PanierDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
-import com.example.safesoftapplication.model.Client
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -28,6 +27,10 @@ class MonPanierVM @ViewModelInject constructor(
     val messageDelete : LiveData<String>
         get() = _messageDelete
 
+    private val _messageSupToutPanier = MutableLiveData<String>()
+    val messageSupToutPanier : LiveData<String>
+        get() = _messageSupToutPanier
+
     var idClient : Int = 0
 
     /**
@@ -43,17 +46,6 @@ class MonPanierVM @ViewModelInject constructor(
     fun recupToutProduits() : LiveData<List<PanierEntity>>{
         TODO()
     }
-//    /**
-//     * ajout d'un produit au panier
-//     */
-//    fun ajoutProduitPanier(){
-//        var panier1 = PanierEntity(0,1, 1 , 9000.0)
-//        var panier2 = PanierEntity(0,1, 2 , 3000.0)
-//        viewModelScope.launch {
-//            panierDao.ajoutProdPanier(panier1)
-//            panierDao.ajoutProdPanier(panier2)
-//        }
-//    }
 
     /**
      * recuperer tous id client connecter
@@ -87,4 +79,22 @@ class MonPanierVM @ViewModelInject constructor(
         }
     }
 
+    /**
+     * suprrimer tout les produit du panier d'un client
+     */
+    fun supToutPanier(){
+        viewModelScope.launch {
+//            try {
+                var idClient = clientDao.recupIdClient()
+                panierDao.supToutPanier(idClient)
+                _messageSupToutPanier.value = "Votre panier est vide"
+//            }catch (e : Exception){
+//                _messageSupToutPanier.value = "Erreur"
+//            }
+        }
+    }
+
+    fun renitMessageSupTout(){
+        _messageSupToutPanier.value = ""
+    }
 }

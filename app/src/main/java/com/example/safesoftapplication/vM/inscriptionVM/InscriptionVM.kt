@@ -1,14 +1,10 @@
 package com.example.safesoftapplication.vM.inscriptionVM
 
 import android.app.Application
-import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
-import com.example.safesoftapplication.repository.repositoryInscription
 import kotlinx.coroutines.launch
 
 class InscriptionVM @ViewModelInject constructor(
@@ -23,7 +19,6 @@ class InscriptionVM @ViewModelInject constructor(
     var nomClient : String = ""
     var prenomClient : String = ""
     var telephoneClient : String = ""
-    var essai = "dddddddddd"
 
     private val _client = MutableLiveData<ClientEntity>()
     val client :LiveData<ClientEntity>

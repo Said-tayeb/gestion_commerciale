@@ -21,10 +21,6 @@ class AuthentifivationVM @ViewModelInject constructor(
     val client : LiveData<ClientEntity>
         get() = _client
 
-    private val _verifierChamps = MutableLiveData<Boolean>()
-    val verifierChamps : LiveData<Boolean>
-        get() = _verifierChamps
-
     private val _messageLogin = MutableLiveData<String>("")
     val messageLogin : LiveData<String>
     get() = _messageLogin
@@ -84,15 +80,6 @@ class AuthentifivationVM @ViewModelInject constructor(
             return true
         }else{
             return false
-        }
-    }
-
-    /**
-     * changer le champ LOGGED de la table client à 1
-     */
-    fun logged(loginClient: String){
-        viewModelScope.launch {
-            dataBase.logged(loginClient)
         }
     }
 

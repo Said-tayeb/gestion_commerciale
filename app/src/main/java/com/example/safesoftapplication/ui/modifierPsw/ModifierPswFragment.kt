@@ -12,12 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.safesoftapplication.R
 import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
-import com.example.safesoftapplication.databinding.FragmentMesCommandesBinding
 import com.example.safesoftapplication.databinding.FragmentModifierPswBinding
 import com.example.safesoftapplication.vM.modifierPsw.ModifierPswVM
 import com.example.safesoftapplication.vM.modifierPsw.ModifierPswVMFactory
-import com.example.safesoftapplication.vM.monCompteVM.MonCompteVMFactory
-import com.example.safesoftapplication.vM.monCompteVM.MonCompteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +39,6 @@ class ModifierPswFragment : Fragment() {
         //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
         binding.setLifecycleOwner(this)
         //initialiser le viewModel
-//        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
         binding.viewModel = viewModel
 
         viewModel.message.observe(viewLifecycleOwner, Observer {
@@ -60,5 +56,4 @@ class ModifierPswFragment : Fragment() {
 
         return binding.root
     }
-
 }

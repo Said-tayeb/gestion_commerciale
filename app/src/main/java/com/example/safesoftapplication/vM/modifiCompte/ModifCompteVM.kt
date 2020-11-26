@@ -11,7 +11,6 @@ import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import kotlin.math.log
 
 class ModifCompteVM @ViewModelInject constructor(
     val clientDao : ClientDao,
@@ -24,10 +23,6 @@ class ModifCompteVM @ViewModelInject constructor(
     var emailClient = ""
     var loginClient = ""
     var telClient = ""
-
-    private var _clic = MutableLiveData<Boolean>(false)
-    val clic : LiveData<Boolean>
-        get() = _clic
 
     private var _message = MutableLiveData<String>("")
     val message : LiveData<String>
@@ -53,18 +48,6 @@ class ModifCompteVM @ViewModelInject constructor(
 
     suspend fun recupToutClientsBaseDonnees() = clientDao.recupToutClients()
 
-    /**
-     * verifier l'existance ou non d'un username dans la base de donnees
-     */
-    suspend fun verifierLogin() : Boolean{
-        var bool = true
-        var listClients : List<ClientEntity>
-        viewModelScope.launch {
-            listClients = recupToutClientsBaseDonnees()!!
-            bool =false
-        }
-        return true
-    }
 
     /**
      * gestionaire de clic sur le bouton modifier client
@@ -119,10 +102,4 @@ class ModifCompteVM @ViewModelInject constructor(
         }
     }
 
-    /**
-     *function qy
-     */
-    fun clicBtnModifCommande(){
-        _clic.value = true
-    }
 }

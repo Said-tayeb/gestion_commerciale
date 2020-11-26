@@ -29,17 +29,11 @@ class DetailsProduitVM @ViewModelInject constructor(
     val client : LiveData<ClientEntity>
         get() = _client
 
-//    private val _existPanier = MutableLiveData<Boolean>(null)
-//    val existPanier : LiveData<Boolean>
-//        get() = _existPanier
-
     var existPanier = true
 
     private val _message = MutableLiveData<String>("")
     val message : LiveData<String>
         get() = _message
-
-//    lateinit var produit : ProduitEntity
 
     /**
      * recuperer les informations d'un client
@@ -51,11 +45,6 @@ class DetailsProduitVM @ViewModelInject constructor(
      */
     fun recupProduit(idProduit : Int) = produitDao.recupProduit(idProduit)
 
-//    fun recupProduitEnt(idProduit: Int){
-//        viewModelScope.launch {
-//            produit = produitDao.recupProduitEnt(idProduit)
-//        }
-//    }
 
     /**
      * ajout d'un produit au panier d'un client
@@ -122,10 +111,6 @@ class DetailsProduitVM @ViewModelInject constructor(
 
     fun renitMessage(){
         _message.value = ""
-    }
-
-    fun changeExist(){
-        existPanier = true
     }
 
     /**

@@ -36,6 +36,9 @@ interface PanierDao {
     @Query("delete from paniers where idProduit = :idProduit")
         suspend fun supProduitPanierById(idProduit : Int)
 
+    @Query("delete from paniers where idClient = :idClient")
+        suspend fun supToutPanier(idClient : Int)
+
     /**
      * ajouter un produit au panier d'un client
      */

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.databinding.FragmentInscriptionBinding
 import com.example.safesoftapplication.databinding.FragmentRechercheBinding
 import dagger.hilt.android.AndroidEntryPoint
 

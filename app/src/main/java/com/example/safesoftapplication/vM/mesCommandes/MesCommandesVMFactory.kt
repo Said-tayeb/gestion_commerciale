@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.CommandesDao
-import com.example.safesoftapplication.vM.authVM.AuthentifivationVM
 
 class MesCommandesVMFactory(
     private val commandesDao: CommandesDao,

@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import com.example.safesoftapplication.backend.api.bdLocal.dao.CatalogueDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.CommandesDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
-import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 
 class DetailsCommandeVM @ViewModelInject constructor(
     val commandesDao: CommandesDao,
@@ -21,13 +20,4 @@ class DetailsCommandeVM @ViewModelInject constructor(
     fun recupCommande(idCommande : Int) : LiveData<CommandeEntity>{
         return commandesDao.recupCommande(idCommande)
     }
-
-    /**
-     * recuperer les informations d'un produit de la base de doonees local
-     */
-    fun recupProduit(idProduit : Int) : LiveData<ProduitEntity>{
-        return produitDao.recupProduit(idProduit)
-    }
-
-
 }

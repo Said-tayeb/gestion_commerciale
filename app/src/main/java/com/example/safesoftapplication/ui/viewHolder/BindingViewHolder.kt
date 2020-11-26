@@ -11,7 +11,6 @@ class BindingViewHolder<T : ViewDataBinding>(item: View) :
     RecyclerView.ViewHolder(item) {
     var binding: T? = DataBindingUtil.bind(item)
 
-
     fun setClickListeners(
         position: Int,
         normalClickListener: OnItemClickListener?,

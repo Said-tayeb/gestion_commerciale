@@ -1,7 +1,6 @@
 package com.example.safesoftapplication.vM.contactVM
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -39,15 +38,6 @@ class ContactVM @ViewModelInject constructor(
         0,"aucun","aucun","","aucun","aucun"
     )
 
-    fun init(){
-        _infosOrganisme.value = infosOrganismeEntityInit
-    }
-//    var nomOrganisme  : String = "Nom : "+nomOrganismeV
-//    var emailOrganisme  : String = "Email : "+emailOrganismeV
-//    var telephoneOrganisme  : String = "Téléphone : "+telephoneOrganismeV
-//    var adresseOrganisme  : String = "Adressse : "+adresseOrganismeV
-//    var codePostalOrganisme   : String = "Code postal : "+codePostalOrganismeV
-
     var nomOrganisme  : String = "Nom : "+infosOrganisme.value?.nomOrganisme
     var emailOrganisme  : String = "Email : "+ infosOrganisme.value?.emailOrganisme
     var telephoneOrganisme  : String = "Téléphone : "+ infosOrganisme.value?.telephoneOrganisme
@@ -62,12 +52,6 @@ class ContactVM @ViewModelInject constructor(
         adresseOrganismeV,
         codePostalOrganismeV
     )
-
-    fun ajoutInfos(){
-        viewModelScope.launch {
-            dataBase.ajoutInfosOrganisme(infosOrganismeEntity)
-        }
-    }
 
     /**
      * recuperer les donnees de la base de donnes
@@ -88,18 +72,6 @@ class ContactVM @ViewModelInject constructor(
     }
 
     fun recup(){
-//        recupInfosOrganisme()
-//        if(infosOrganisme.value?.nomOrganisme == null){
-//            _infosOrganisme.value = infosOrganismeEntityInit
-//        }
         _infosOrganisme.value = infosOrganismeDefault
     }
-
-    /**
-     * gestion d'evenement pour le bouton telephoner
-     */
-    fun eventTelephone(){
-
-    }
-
 }

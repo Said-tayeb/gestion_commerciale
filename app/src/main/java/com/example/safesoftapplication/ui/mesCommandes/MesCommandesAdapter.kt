@@ -24,18 +24,6 @@ class MesCommandesAdapter(val clickListener: CommandeListener)
         }
     }
 
-    //changement de la liste
-//    var data =  listOf<CommandeEntity>()
-//        set(value) {
-//            field = value
-//            notifyDataSetChanged()
-//        }
-
-    /**
-     * renvoyer la longueur de la liste au recyclerView
-     */
-//    override fun getItemCount() = data.size
-
     /**
      * afficher les donnees d'un element d'une liste a la position specifier
      */
