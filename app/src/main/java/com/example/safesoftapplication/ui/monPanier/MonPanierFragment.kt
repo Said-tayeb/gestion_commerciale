@@ -25,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MonPanierFragment : Fragment() {
 
-
     private lateinit var binding: FragmentMonPanierBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,22 +56,6 @@ class MonPanierFragment : Fragment() {
                 view?.findNavController()?.navigate(R.id.action_nav_monPanier_to_loginFragment)
             } else {
                 //creation de l'adapteur
-//                val adapter = MesCommandesAdapter(CommandeListener { idCommande ->
-//                    Log.d("baseDonnees", "_______clic")
-//                    Toast.makeText(context, "${idCommande}", Toast.LENGTH_LONG).show()
-//                })
-//
-//                //Associez le adapter avec le RecyclerView
-//                binding.idRcyclerViewCommandes.adapter = adapter
-//
-//                //observer la liste des commandes
-//                viewModel.recupToutCommandes().observe(viewLifecycleOwner, Observer {
-//                    //affecter la valeur a l'adapteur
-//                    it?.let {
-//                        adapter.submitList(it)
-//                    }
-//                })
-
                 val adapter = MonPanierAdapter(PanierListener { idProduit ->
                     Log.d("baseDonnees", "______"+ idProduit)
                     viewModel.clicProduit(idProduit)
@@ -97,7 +80,6 @@ class MonPanierFragment : Fragment() {
 
                 binding.idRcyclerViewPanier.adapter = adapter
 
-//                viewModel.ajoutProduitPanier()
                 viewModel.recupBD()
 
                 viewModel.recupToutProdPanier(client.idClient).observe(viewLifecycleOwner, Observer {
