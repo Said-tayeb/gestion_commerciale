@@ -33,6 +33,8 @@ class MonPanierVM @ViewModelInject constructor(
 
     var idClient : Int = 0
 
+
+
     /**
      * verifier si le client et connecter ou non
      */
@@ -60,41 +62,47 @@ class MonPanierVM @ViewModelInject constructor(
         return panierDao.recupTousPanier(idClient)
     }
 
-    fun clicProduit(idProduit : Int){
-        _navigateToDetailsProduit.value = idProduit
-    }
-
-    fun ProduitDetailsNavgated(){
-        _navigateToDetailsProduit.value = null
-    }
-
     fun supProduitPanier(idProduit: Int){
         viewModelScope.launch {
             try {
                 panierDao.supProduitPanierById(idProduit)
-                _messageDelete.value = "Le produit à été retiré de votre"
+                _messageDelete.value = "Le produit à été retiré de votre panier"
             }catch (e : Exception){
+                _messageDelete.value = "erreur"
                 e.printStackTrace()
             }
         }
     }
+
 
     /**
      * suprrimer tout les produit du panier d'un client
      */
     fun supToutPanier(){
         viewModelScope.launch {
-//            try {
+            try {
                 var idClient = clientDao.recupIdClient()
                 panierDao.supToutPanier(idClient)
                 _messageSupToutPanier.value = "Votre panier est vide"
-//            }catch (e : Exception){
-//                _messageSupToutPanier.value = "Erreur"
-//            }
+            }catch (e : Exception){
+                _messageSupToutPanier.value = "Erreur"
+            }
         }
     }
 
     fun renitMessageSupTout(){
-        _messageSupToutPanier.value = ""
+        _messageSupToutPanier.value = null
+    }
+
+    fun renitMessageDelete(){
+        _messageDelete.value = null
+    }
+
+    fun clicProduit(idProduit : Int){
+        _navigateToDetailsProduit.value = idProduit
+    }
+
+    fun ProduitDetailsNavgated(){
+        _navigateToDetailsProduit.value = null
     }
 }

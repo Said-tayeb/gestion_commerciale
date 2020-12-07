@@ -18,6 +18,7 @@ import com.example.safesoftapplication.vM.monCompteVM.MonCompteVMFactory
 import com.example.safesoftapplication.vM.monCompteVM.MonCompteViewModel
 import com.example.safesoftapplication.vM.panier.MonPanierVM
 import com.example.safesoftapplication.vM.panier.MonPanierVMFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,13 +68,28 @@ class MonPanierFragment : Fragment() {
                         }
                     })
                 }, PanierListenerDelete { idProduit ->
-                    viewModel.supProduitPanier(idProduit)
+                    context?.let { it1 ->
+                        MaterialAlertDialogBuilder(it1)
+                            .setTitle("Alert")
+                            .setMessage("Vous voulez bien retiré ce produit de votre panier?")
+
+                            .setNegativeButton("Non") { dialog, which ->
+                            }
+
+                            .setPositiveButton("Oui") { dialog, which ->
+                                viewModel.supProduitPanier(idProduit)
+                            }
+                            .show()
+                    }
                     viewModel.messageDelete.observe(viewLifecycleOwner, Observer { newMessage ->
-                        Snackbar.make(
-                            requireActivity().findViewById(android.R.id.content),
-                            newMessage,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        if (newMessage != null){
+                            Snackbar.make(
+                                requireActivity().findViewById(android.R.id.content),
+                                newMessage,
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            viewModel.renitMessageDelete()
+                        }
                     })
                 })
 
@@ -99,49 +115,61 @@ class MonPanierFragment : Fragment() {
 
         binding.idRcyclerViewPanier.layoutManager = manager
 
-//        setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
 
         return binding.root
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.panier_menu, menu)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.panier_menu, menu)
+    }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        //referance a l application
-//        val application = requireNotNull(this.activity).application
-//        //referance a notre source de donnees
-//        val instace = BaseDonneesLocal.getInstance(application)
-//        val panierDao = instace.panierDao()
-//        val clientDao = instace.clientDao()
-//        //créez une instance du viewModelFactory
-//        val viewModelFactory = MonPanierVMFactory(panierDao, clientDao, application)
-//        //intance de view model (referance a notre view model)
-//        val viewModel =
-//            ViewModelProvider(
-//                this, viewModelFactory).get(MonPanierVM::class.java)
-//        //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
-//        binding.setLifecycleOwner(this)
-//        when (item.itemId) {
-//            R.id.itemSup -> {
-//                var message : String
-//                try {
-//                    viewModel.supToutPanier()
-//                    message = "Votre panier est vide"
-//                }catch (e : Exception){
-//                    message ="erreur"
-//                }
-//                    Snackbar.make(
-//                        requireActivity().findViewById(android.R.id.content),
-//                        message,
-//                        Snackbar.LENGTH_SHORT // How long to display the message.
-//                    ).show()
-//                    viewModel.renitMessageSupTout()
-//            }
-//        }
-//        return true
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //referance a l application
+        val application = requireNotNull(this.activity).application
+        //referance a notre source de donnees
+        val instace = BaseDonneesLocal.getInstance(application)
+        val panierDao = instace.panierDao()
+        val clientDao = instace.clientDao()
+        //créez une instance du viewModelFactory
+        val viewModelFactory = MonPanierVMFactory(panierDao, clientDao, application)
+        //intance de view model (referance a notre view model)
+        val viewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(MonPanierVM::class.java)
+        //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
+        binding.setLifecycleOwner(this)
+        when (item.itemId) {
+            R.id.itemSup -> {
+                context?.let { it1 ->
+                    MaterialAlertDialogBuilder(it1)
+                        .setTitle("Alert")
+                        .setMessage("Vous voulez bien vidé votre panier?")
+
+                        .setNegativeButton("Non") { dialog, which ->
+                        }
+
+                        .setPositiveButton("Oui") { dialog, which ->
+                            viewModel.supToutPanier()
+                        }
+                        .show()
+                }
+                viewModel.messageSupToutPanier.observe(viewLifecycleOwner, Observer { newMessage ->
+                    if (newMessage != null){
+                        Snackbar.make(
+                            requireActivity().findViewById(android.R.id.content),
+                            newMessage,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.renitMessageSupTout()
+                    }
+                })
+            }
+        }
+        return NavigationUI.
+        onNavDestinationSelected(item,requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+    }
 
 }
