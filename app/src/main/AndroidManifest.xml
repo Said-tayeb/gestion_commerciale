@@ -40,8 +40,8 @@
 <!--            </intent-filter>-->
         </activity>
 
-        <activity android:name=".ui.inscription.InsriptionActivity" />
-        <activity android:name=".ui.authentification.LoginActivity"/>
+<!--        <activity android:name=".ui.inscription.InsriptionActivity" />-->
+<!--        <activity android:name=".ui.authentification.LoginActivity"/>-->
     </application>
 
 </manifest>
