@@ -2,8 +2,6 @@ package com.example.safesoftapplication.vM.catalogueVM
 
 import android.util.Log
 import com.example.safesoftapplication.vM.BaseViewModel
-
-
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,7 +24,6 @@ class CatalogueVM @ViewModelInject constructor(
 
     // Récupère les donnes du Dao:
     fun getAllProduits(): LiveData<Resource<List<ProduitEntity>>> {
-
         val data = MutableLiveData<Resource<List<ProduitEntity>>>()
         enqueue(catalogueRepo.getAllProduits(), data)
         return data
@@ -39,17 +36,6 @@ class CatalogueVM @ViewModelInject constructor(
     fun ProduitDetailsNavgated() {
         _navigateToDetailsProduit.value = null
     }
-
-//    fun affiche() {
-//        val data = getProduit()
-//        Log.d("data", "mes data  :" + data.value?.data?.get(0)?.idProduit)
-//    }
-
-//    private fun saveProduct(vararg products: ProduitEntity): LiveData<Resource<Int>> {
-//        val data = MutableLiveData<Resource<Int>>()
-//        enqueue(catalogueRepo.insertDBserver(products), data)
-//        return data
-//    }
 
     fun recupProduit() = catalogueDao.recupProduit()
 
@@ -77,5 +63,4 @@ class CatalogueVM @ViewModelInject constructor(
             .doOnError { it.printStackTrace() }
             .subscribe()
     }
-
 }

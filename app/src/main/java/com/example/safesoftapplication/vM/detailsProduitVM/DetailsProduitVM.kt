@@ -1,6 +1,7 @@
 package com.example.safesoftapplication.vM.detailsProduitVM
 
 import android.app.Application
+import android.text.TextUtils.isEmpty
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
@@ -24,22 +25,33 @@ class DetailsProduitVM @ViewModelInject constructor(
     application: Application
 ) : AndroidViewModel(application){
 
+    private val _produit = MutableLiveData<ProduitEntity>()
+    val produit : LiveData<ProduitEntity>
+        get() = _produit
+
+    var quantiteProduit : String = "0"
+    private val _prixTotal = MutableLiveData<Double>(0.0)
+    val prixTotal : LiveData<Double>
+        get() = _prixTotal
 
     private val _client = MutableLiveData<ClientEntity>()
     val client : LiveData<ClientEntity>
         get() = _client
 
-//    private val _existPanier = MutableLiveData<Boolean>(null)
-//    val existPanier : LiveData<Boolean>
-//        get() = _existPanier
-
     var existPanier = true
 
-    private val _message = MutableLiveData<String>("")
+    private val _message = MutableLiveData<String>()
     val message : LiveData<String>
         get() = _message
 
-//    lateinit var produit : ProduitEntity
+    /**
+     * initialiser le produit
+     */
+    fun initProduit(idProduit: Int){
+        viewModelScope.launch {
+            _produit.value = produitDao.recupProduitEnt(idProduit)
+        }
+    }
 
     /**
      * recuperer les informations d'un client
@@ -51,11 +63,6 @@ class DetailsProduitVM @ViewModelInject constructor(
      */
     fun recupProduit(idProduit : Int) = produitDao.recupProduit(idProduit)
 
-//    fun recupProduitEnt(idProduit: Int){
-//        viewModelScope.launch {
-//            produit = produitDao.recupProduitEnt(idProduit)
-//        }
-//    }
 
     /**
      * ajout d'un produit au panier d'un client
@@ -74,7 +81,7 @@ class DetailsProduitVM @ViewModelInject constructor(
                 }
 
             }catch (e : Exception){
-
+                _message.value = "Erreur"
             }
         }
     }
@@ -103,7 +110,7 @@ class DetailsProduitVM @ViewModelInject constructor(
     }
 
     /**
-     *
+     *recuprere le produit du panier du client
      */
     fun RecupProduitEntPanier(idProduit: Int, idClient : Int){
         viewModelScope.launch {
@@ -120,25 +127,31 @@ class DetailsProduitVM @ViewModelInject constructor(
         }
     }
 
+    /**
+     * calculer le prix total de la commande
+     */
+    fun calculPrixTotal() : LiveData<Double> {
+        _prixTotal.value = produit.value!!.prixProduit * Integer.parseInt(quantiteProduit)
+        return prixTotal
+    }
+
+    fun verifierQuantite() : Boolean{
+        if( Integer.parseInt(quantiteProduit) == 0 ){
+            return false
+        }else{
+            return true
+        }
+    }
+
+    /**
+     * renitialiser le message
+     */
     fun renitMessage(){
-        _message.value = ""
+        _message.value = null
     }
 
-    fun changeExist(){
-        existPanier = true
+    fun setMessageNegative(){
+        _message.value = "Le produit n'a pas été ajouter a votre panier"
     }
 
-    /**
-     * gestion d'evenement pour le clic Ajout panier
-     */
-    fun clicBtnAjoutPanier() {
-
-    }
-
-    /**
-     * gestion d'evenement pour le clic faire une commande
-     */
-    fun clicCommander(){
-
-    }
 }

@@ -62,11 +62,6 @@ class MesCommandesVM @ViewModelInject constructor(
      * verifier si le client et connecter ou non
      */
     fun recupClientDatabase() : LiveData<ClientEntity>{
-//        var a = MutableLiveData<ClientEntity>()
-//       clientDao.checkLogged().observeForever({
-//           a.value = it
-//        })
-//        return a
         return clientDao.checkLogged()
     }
 

@@ -4,11 +4,11 @@ import android.content.Intent
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -18,16 +18,14 @@ import com.example.safesoftapplication.backend.api.bdLocal.BaseDonneesLocal
 import com.example.safesoftapplication.databinding.FragmentDetailsProduitBinding
 import com.example.safesoftapplication.vM.detailsProduitVM.DetailsProduitVM
 import com.example.safesoftapplication.vM.detailsProduitVM.DetailsProduitVMFactory
-import com.example.safesoftapplication.vM.monCompteVM.MonCompteVMFactory
-import com.example.safesoftapplication.vM.monCompteVM.MonCompteViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_details_produit.view.*
+import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 
 @AndroidEntryPoint
 class DetailsProduitFragment : Fragment() {
-    private  val viewModel: DetailsProduitVM by viewModels()
 
     private lateinit var binding: FragmentDetailsProduitBinding
 
@@ -51,8 +49,9 @@ class DetailsProduitFragment : Fragment() {
                 this, viewModelFactory).get(DetailsProduitVM::class.java)
         //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
         binding.setLifecycleOwner(this)
-        //initialiser le viewModel
-//        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
+        binding.lifecycleOwner = viewLifecycleOwner
+        //initialiser le produit
+        viewModel.initProduit(args.idProduit)
 
         binding.viewModel = viewModel
 
@@ -72,51 +71,65 @@ class DetailsProduitFragment : Fragment() {
             }
         })
 
-
         binding.btnAjoutPanier.setOnClickListener {
             viewModel.recupClient().observe(viewLifecycleOwner, Observer { newClient ->
                 if (newClient == null){
                     view?.findNavController()?.navigate(R.id.action_detailsProduitFragment_to_loginFragment)
                 }else{
-                    viewModel.ajoutProduitPanier(newClient, args.idProduit)
+                    context?.let { it1 ->
+                        MaterialAlertDialogBuilder(it1)
+                            .setTitle("Ajout au panier?")
+                            .setMessage("Vous voulez bien ajouter ce produit à votre panier?")
+                            .setNeutralButton("Annuler") { dialog, which ->
+                            }
+                            .setNegativeButton("Non") { dialog, which ->
+                                viewModel.setMessageNegative()
+                            }
+                            .setPositiveButton("Oui") { dialog, which ->
+                                viewModel.ajoutProduitPanier(newClient, args.idProduit)
+                            }
+                            .show()
+                    }
                 }
                 viewModel.message.observe(viewLifecycleOwner, Observer {newMessage ->
-                    Snackbar.make(
-                        requireActivity().findViewById(android.R.id.content),
-                        newMessage,
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    if(newMessage != null){
+                        Snackbar.make(
+                            requireActivity().findViewById(android.R.id.content),
+                            newMessage,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.renitMessage()
+                    }
                 })
-                viewModel.renitMessage()
             })
-
-//            viewModel.recupClient().observe(viewLifecycleOwner, Observer { newClient ->
-//                if (newClient == null){
-//                    view?.findNavController()?.navigate(R.id.action_detailsProduitFragment_to_loginFragment)
-//                }else{
-//
-//                    viewModel.RecupProduitEntPanier(args.idProduit, newClient.idClient)
-//                    if (!viewModel.existPanier){
-//                        Log.d("baseDonnees", "ags : " + args.idProduit)
-//                        viewModel.recupProduitEnt(args.idProduit)
-//                        viewModel.ajoutProduitPanier( newClient)
-//                    }
-//                    viewModel.changeExist()
-//                    Log.d("baseDonnees", "ags : " + args.idProduit)
-//                    viewModel.message.observe(viewLifecycleOwner, Observer { newMessage ->
-//                        Snackbar.make(
-//                            requireActivity().findViewById(android.R.id.content),
-//                            newMessage,
-//                            Snackbar.LENGTH_SHORT
-//                        ).show()
-//                        viewModel.renitMessage()
-//                    })
-//                }
-//            })
         }
 
         binding.btnCommander.setOnClickListener {
+            if(binding.editTextNumber != null){
+                if (viewModel.verifierQuantite()){
+                    viewModel.calculPrixTotal().observe(viewLifecycleOwner, Observer { newPrix ->
+                        context?.let { it1 ->
+                            MaterialAlertDialogBuilder(it1)
+                                .setTitle("Alert")
+                                .setMessage("Vous voulez bien acheter ce produit?/nPrix total :  "+ newPrix + " DA")
+                                .setNeutralButton("Non") { dialog, which ->
 
+                                }
+                                .setPositiveButton("Oui") { dialog, which ->
+
+                                }
+                                .show()
+                        }
+                    })
+                }else{
+                    Snackbar.make(
+                        requireActivity().findViewById(android.R.id.content),
+                        "Vous devez d'abord choisir une quantité",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                Log.d("baseDonnees", "______"+viewModel.quantiteProduit)
+            }
         }
 
         binding.btnContact.setOnClickListener {
@@ -133,14 +146,13 @@ class DetailsProduitFragment : Fragment() {
         }
 
         setHasOptionsMenu(true)
-
         return binding.root
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.panier_menu, menu)
+        inflater.inflate(R.menu.details_produit_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

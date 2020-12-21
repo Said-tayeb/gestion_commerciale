@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
-import com.example.safesoftapplication.vM.contactVM.ContactVM
 
 class ModifierPswVMFactory (
     private val dataSource: ClientDao,

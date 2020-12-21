@@ -18,8 +18,6 @@ class CatalogueRecyclerAdapter @Inject constructor() :
         holder: BindingViewHolder<FragmentElementCatalogueBinding>,
         position: Int
     ) {
-//        if (getItemViewType(position) != emptyView)
-//            holder.binding?.produit = getItem(position)
         super.onBindViewHolder(holder, position)
     }
 

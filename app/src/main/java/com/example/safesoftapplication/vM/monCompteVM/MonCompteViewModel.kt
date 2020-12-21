@@ -1,13 +1,11 @@
 package com.example.safesoftapplication.vM.monCompteVM
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import kotlinx.coroutines.launch
@@ -26,20 +24,7 @@ class MonCompteViewModel@ViewModelInject constructor(
      * recuperer le client de la base de donnees
      */
     fun recupClientDatabase() : LiveData<ClientEntity>{
-//        var a = MutableLiveData<ClientEntity>()
-//       clientDao.checkLogged().observeForever({
-//           a.value = it
-//        })
-//        return a
         return clientDao.checkLogged()
-    }
-
-    /**
-     * affecter les donnnes a la live data variable
-     */
-    fun recupClient(){
-        _client.value = recupClientDatabase().value
-        Log.d("baseDonnees", "_____"+ client.value?.nomClient)
     }
 
     /**
@@ -51,10 +36,4 @@ class MonCompteViewModel@ViewModelInject constructor(
         }
     }
 
-    /**
-     * gestion d'evenement de bouton modifier compte
-     */
-    fun clicModifierCompte(){
-        Log.d("baseDonnees", "______"+ client.value?.telephoneClient)
-    }
 }

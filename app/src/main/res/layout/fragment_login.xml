@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:hint="@string/strPassword"
                 android:inputType="textPassword"
-                android:text="@={viewModel.pswClient}" />
+                android:text="@={viewModel.pswClient}"/>
 
         </LinearLayout>
 

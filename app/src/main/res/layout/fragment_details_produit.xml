@@ -131,9 +131,36 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/idLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextNumber"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_30sdp"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:text="@={viewModel.quantiteProduit}"
+                    android:inputType="number"/>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/idTxtPrixTotal"-->
+<!--                    android:layout_width="@dimen/_100sdp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0"-->
+<!--                    android:text="@{viewModel.quantiteProduit}"-->
+<!--                    android:textStyle="bold|italic" />-->
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -167,9 +194,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@string/strcommander"
-                        />
-<!--                    android:onClick="@{() -> viewModel.clicCommander()}"-->
+                        android:text="@string/strcommander" />
+                    <!--                    android:onClick="@{() -> viewModel.clicCommander()}"-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -185,9 +211,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_shopping_cart"
-                        app:fabSize="auto"
-                        />
-<!--                    android:onClick="@{() -> viewModel.clicBtnAjoutPanier()}"-->
+                        app:fabSize="auto" />
+                    <!--                    android:onClick="@{() -> viewModel.clicBtnAjoutPanier()}"-->
 
                 </LinearLayout>
             </LinearLayout>

@@ -49,11 +49,7 @@ class ContactsFragment : Fragment() {
         //Définissez l'activité actuelle en tant que propriétaire du cycle de vie de la liaison
         binding.setLifecycleOwner(this)
         //initialiser le viewModel
-//        viewModel = ViewModelProvider(this).get(AuthentifivationVM::class.java)
         binding.viewModel = viewModel
-
-//        viewModel.ajoutInfos()
-
          //recuperer les informations
         viewModel.recup()
         viewModel.infosOrganisme.observe(viewLifecycleOwner, Observer<InfosOrganismeEntity> {
@@ -66,13 +62,7 @@ class ContactsFragment : Fragment() {
             }
 
         })
-//        binding.viewModel.infosOrganisme.observe(viewLifecycleOwner, Observer<InfosOrganismeEntity>{
-//            binding.idAddresseOrganisme.text = it.adresseOrganisme
-//            binding.idCodePostalOrganisme.text = it.codePostalOrganisme
-//            binding.idEmailOrganisme.text = it.emailOrganisme
-//            binding.idNomOrganisme.text = it.nomOrganisme
-//            binding.idTelephoneOrganisme.text = it.telephoneOrganisme
-//        })
+
         binding.fabTelephone.setOnClickListener {
             //val uri =Uri.parse("tel:0658164251")
             var uri = "tel:"+viewModel.telephoneOrganismeV
@@ -85,33 +75,8 @@ class ContactsFragment : Fragment() {
             if (isIntentSafe) {
                 startActivity(callIntent)
             }
-
-//            val callIntent = Intent(Intent.ACTION_CALL, uri)
-//            if(ActivityCompat.checkSelfPermission(
-//                    application,
-//                    android.Manifest.permission.CALL_PHONE
-//                ) != PackageManager.PERMISSION_GRANTED)
-//            {
-//                var permissions: Array<String>
-//                permissions = arrayOf(android.Manifest.permission.CALL_PHONE)
-//                requestPermissions(permissions, 1000)
-//            }
-//            startActivity(callIntent)
         }
+
         return binding.root
-
     }
-
-//    fun onCall() {
-//        val permissionCheck =
-//            ContextCompat.checkSelfPermission(, android.Manifest.permission.CALL_PHONE)
-//        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(
-//                this, arrayOf(Manifest.permission.CALL_PHONE),
-//                "123"
-//            )
-//        } else {
-//            startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:12345678901")))
-//        }
-//    }
 }

@@ -10,7 +10,6 @@ import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.PanierDao
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ClientEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.PanierEntity
-import com.example.safesoftapplication.model.Client
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -28,7 +27,13 @@ class MonPanierVM @ViewModelInject constructor(
     val messageDelete : LiveData<String>
         get() = _messageDelete
 
+    private val _messageSupToutPanier = MutableLiveData<String>()
+    val messageSupToutPanier : LiveData<String>
+        get() = _messageSupToutPanier
+
     var idClient : Int = 0
+
+
 
     /**
      * verifier si le client et connecter ou non
@@ -43,17 +48,6 @@ class MonPanierVM @ViewModelInject constructor(
     fun recupToutProduits() : LiveData<List<PanierEntity>>{
         TODO()
     }
-//    /**
-//     * ajout d'un produit au panier
-//     */
-//    fun ajoutProduitPanier(){
-//        var panier1 = PanierEntity(0,1, 1 , 9000.0)
-//        var panier2 = PanierEntity(0,1, 2 , 3000.0)
-//        viewModelScope.launch {
-//            panierDao.ajoutProdPanier(panier1)
-//            panierDao.ajoutProdPanier(panier2)
-//        }
-//    }
 
     /**
      * recuperer tous id client connecter
@@ -68,6 +62,42 @@ class MonPanierVM @ViewModelInject constructor(
         return panierDao.recupTousPanier(idClient)
     }
 
+    fun supProduitPanier(idProduit: Int){
+        viewModelScope.launch {
+            try {
+                panierDao.supProduitPanierById(idProduit)
+                _messageDelete.value = "Le produit à été retiré de votre panier"
+            }catch (e : Exception){
+                _messageDelete.value = "erreur"
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    /**
+     * suprrimer tout les produit du panier d'un client
+     */
+    fun supToutPanier(){
+        viewModelScope.launch {
+            try {
+                var idClient = clientDao.recupIdClient()
+                panierDao.supToutPanier(idClient)
+                _messageSupToutPanier.value = "Votre panier est vide"
+            }catch (e : Exception){
+                _messageSupToutPanier.value = "Erreur"
+            }
+        }
+    }
+
+    fun renitMessageSupTout(){
+        _messageSupToutPanier.value = null
+    }
+
+    fun renitMessageDelete(){
+        _messageDelete.value = null
+    }
+
     fun clicProduit(idProduit : Int){
         _navigateToDetailsProduit.value = idProduit
     }
@@ -75,16 +105,4 @@ class MonPanierVM @ViewModelInject constructor(
     fun ProduitDetailsNavgated(){
         _navigateToDetailsProduit.value = null
     }
-
-    fun supProduitPanier(idProduit: Int){
-        viewModelScope.launch {
-            try {
-                panierDao.supProduitPanierById(idProduit)
-                _messageDelete.value = "Le produit à été retiré de votre"
-            }catch (e : Exception){
-                e.printStackTrace()
-            }
-        }
-    }
-
 }

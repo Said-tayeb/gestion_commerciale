@@ -1,17 +1,14 @@
 package com.example.safesoftapplication.ui.catalogue
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safesoftapplication.R
-import com.example.safesoftapplication.backend.api.bdLocal.entity.CommandeEntity
 import com.example.safesoftapplication.backend.api.bdLocal.entity.ProduitEntity
 import com.example.safesoftapplication.databinding.FragmentElementCatalogueBinding
 import com.squareup.picasso.Picasso
-import java.io.File
 
 class CatalogueAdapter(val clickListener: ProduitListener)  :
     ListAdapter<ProduitEntity, CatalogueAdapter.ViewHolder>(CataloguetDiffCallback()) {
@@ -30,8 +27,6 @@ class CatalogueAdapter(val clickListener: ProduitListener)  :
         val item = getItem(position)
         holder.bind(item, clickListener)
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)

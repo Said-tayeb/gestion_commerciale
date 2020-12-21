@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.safesoftapplication.backend.api.bdLocal.dao.ClientDao
 import com.example.safesoftapplication.backend.api.bdLocal.dao.PanierDao
-import com.example.safesoftapplication.vM.authVM.AuthentifivationVM
 
 class MonPanierVMFactory (
     private val panierDao: PanierDao,

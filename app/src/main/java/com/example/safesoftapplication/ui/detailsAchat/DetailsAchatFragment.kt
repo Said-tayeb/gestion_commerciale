@@ -16,10 +16,9 @@ import com.example.safesoftapplication.databinding.FragmentDetailsAchatBinding
 import com.example.safesoftapplication.vM.detailsAchats.DetailsCommandeVM
 import com.example.safesoftapplication.vM.detailsAchats.DetailsCommandeVMFactory
 import dagger.hilt.android.AndroidEntryPoint
-import org.jetbrains.anko.AnkoLogger
 
 @AndroidEntryPoint
-class DetailsAchatFragment : Fragment(), AnkoLogger {
+class DetailsAchatFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsAchatBinding
 
@@ -61,18 +60,6 @@ class DetailsAchatFragment : Fragment(), AnkoLogger {
                     txtDateExp.text = newCommande.dateExpCommande
                     txtQuantite.text = newCommande.quantiteProduit.toString()
                 }
-
-//            viewModel.recupProduit(newCommande.idProduit).observe(viewLifecycleOwner, Observer {newProduit ->
-//                binding.apply {
-//                    txtCategorieProduit.text = newProduit.categorieProduit
-//                    txtNomProduit.text = newProduit.titreProduit
-//                    txtDateCommande.text = newCommande.dateCommande
-//                    txtPrixTotal.text = newCommande.prixTotalCommande.toString()
-//                    txtDateExp.text = newCommande.dateExpCommande
-//                    txtQuantite.text = newCommande.quantiteProduit.toString()
-//                }
-//
-//            })
             })
 
         binding.idModifierCommande.setOnClickListener {

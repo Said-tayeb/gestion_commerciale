@@ -1,17 +1,11 @@
 package com.example.safesoftapplication
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.navigation.ui.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,19 +19,11 @@ class AccueilActivity : AppCompatActivity() {
         setContentView(R.layout.activity_accueil)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        //val fab: FloatingActionButton = findViewById(R.id.fab)
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
         NavigationUI.setupActionBarWithNavController(this,navController)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
@@ -52,40 +38,9 @@ class AccueilActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.accueil, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.idDeconnexion -> logout()
-//        }
-//        return true
-//    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun logout() {
-//        val viewModel = ViewModelProviders.of(this).get(AuthVModel::class.java)
-//        viewModel.logout()
-//        PreferencesRepository(
-//            SecurePreferences(
-//                application,
-//                PREFERENCES_ENCRYPT_KEY,
-//                PREFERENCES_NAME
-//            )
-//        ).setLogged(false)
-//        startActivity(
-//            Intent(
-//                applicationContext,
-//                SplashScreen::class.java
-//            ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//        )
-//        finishAffinity()
-    }
 }
